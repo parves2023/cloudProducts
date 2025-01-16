@@ -24,7 +24,7 @@ const DashboardLayout = () => {
         {/* Navigation Links */}
         <nav className="space-y-4">
           <Link
-            to="/dashboard/myprofile"
+            to="/dashboard/my-profile"
             className="flex items-center gap-3 text-gray-300 hover:text-white hover:bg-gray-700 p-2 rounded"
           >
             <FaUserCircle className="text-xl" /> My Profile
