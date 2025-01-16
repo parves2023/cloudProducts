@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+html {
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+  }
+
+body{
+  font-family: "Raleway", sans-serif;
+  
+  margin: 0;
+  padding: 0;
+  background-color: rgb(246, 255, 249);
+  
+}
+.ralewayfont{
+  font-family: "Raleway", sans-serif;
+}
+.montsefont{
+  font-family: "Montserrat", sans-serif;
+}
+.scroll-to-top{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+  
+
+  .animate__animated {
+    animation: bounce 2s infinite !important;
+  }
+  
+  .bounce-animation {
+    animation: bounce 2s infinite;
+  }
+  
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+
+
+
+  
+
+
+
+
+  .btn-green-500 {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .btn-outline {
+    border: 2px solid #4caf50;
+    color: #4caf50;
+  }
+  
+  .text-green-600 {
+    color: #43a047;
+  }
+  
+  .text-gray-600 {
+    color: #757575;
+  }
+  
+
+
+
+  /* navbar design */
+
+  .menu-hidden {
+     display: none; 
+  }
+  
+  .menu-photo:hover .menu-hidden {
+    display: block; /* Make visible on hover */
+  }
+  
+
+  .menu li {
+    position: relative;
+  }
+  
+
+  @media only screen and (max-width: 768px) {
+    .menu li a::before {
+      background-image: none;
+    }
+  }
+  
+  .menu li a.active::before {
+    opacity: 1;
+    visibility: visible;
+  }
+  .menu li a {
+    font-size: 18px;
+    font-weight: 500;
+    text-transform: capitalize;
+  }
+  
+  .active{
+    color: white !important;
+    background-color: #309255 !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
