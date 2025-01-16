@@ -14,6 +14,7 @@ import MyProducts from "../components/Myproducts";
 import AllProducts from "../components/AllProducts";
 import MyProfile from "../pages/MyProfile/MyProfile";
 import UpdateProfile from "../pages/MyProfile/UpdateProfile";
+import PendingPosts from "../pages/Moderator/PendingPosts";
 
 const router = createBrowserRouter([
   {
@@ -77,6 +78,10 @@ const router = createBrowserRouter([
       {
         path: 'update-profile',
         element: <UpdateProfile></UpdateProfile>
+      },
+      {
+        path: 'pending-posts',
+        element: <PendingPosts></PendingPosts>
       }
     ],
   },
