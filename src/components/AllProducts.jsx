@@ -5,49 +5,41 @@ import { AuthContext } from "../providers/AuthProvider";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 
 function AllProducts() {
-  const [products, setProducts] = useState([]); // All products from server
+  const [products, setProducts] = useState([]); // Products for the current page
   const { dataFetching, setDataFetching } = useContext(AuthContext); // Loading state context
-  const [selectedCategory, setSelectedCategory] = useState("All"); // Dropdown selection
-  const [filteredProducts, setFilteredProducts] = useState([]); // Filtered products by category
+  const [currentPage, setCurrentPage] = useState(1); // Current page number
+  const [totalPages, setTotalPages] = useState(1); // Total number of pages
   const axiosPublic = useAxiosPublic();
+  const limit = 6; // Items per page
 
-  // Handle dropdown filter change
-  const handleFilterChange = (e) => {
-    const category = e.target.value;
-    setSelectedCategory(category);
-    if (category === "All") {
-      setFilteredProducts(products); // Show all products
-    } else {
-      setFilteredProducts(products.filter((product) => product.category === category));
+  // Fetch products from the server
+  const fetchProducts = async (page) => {
+    setDataFetching(true);
+    try {
+      const response = await axiosPublic.get(`/products?page=${page}&limit=${limit}`);
+      if (response.status === 200) {
+        const { products, totalPages } = response.data;
+        setProducts(products);
+        setTotalPages(totalPages);
+      } else {
+        console.error("Failed to fetch products");
+      }
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    } finally {
+      setDataFetching(false);
     }
   };
 
-  // Fetch products from the server
+  // Fetch products on page load and page change
   useEffect(() => {
-    const fetchProducts = async () => {
-      setDataFetching(true);
-      try {
-        const response = await axiosPublic.get("/products");
-        if (response.status === 200) {
-          const data = response.data;
-          console.log(data);
-          setProducts(data);
-          setFilteredProducts(data); // Initialize with all products
-        } else {
-          console.error("Failed to fetch products");
-        }
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      } finally {
-        setDataFetching(false);
-      }
-    };
+    fetchProducts(currentPage);
+  }, [currentPage]);
 
-    fetchProducts();
-  }, [axiosPublic, setDataFetching]);
-
-  // Get unique categories from the products array
-  const categories = ["All", ...new Set(products.map((product) => product.category))];
+  // Handle page change
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
 
   // Show loading spinner while fetching data
   if (dataFetching) {
@@ -72,24 +64,9 @@ function AllProducts() {
     <div className="max-w-6xl mx-auto mt-8">
       <h1 className="text-3xl font-bold text-center mb-6">All Products</h1>
 
-      {/* Dropdown Menu */}
-      <div className="flex justify-center mb-6">
-        <select
-          value={selectedCategory}
-          onChange={handleFilterChange}
-          className="border border-gray-300 rounded-lg px-4 py-2 shadow-md focus:outline-none focus:ring focus:ring-green-300"
-        >
-          {categories.map((category, index) => (
-            <option key={index} value={category}>
-              {category}
-            </option>
-          ))}
-        </select>
-      </div>
-
       {/* Product Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-        {filteredProducts.map((product) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {products.map((product) => (
           <div
             key={product._id}
             className="border flex flex-col justify-between p-4 rounded shadow hover:shadow-lg transition"
@@ -111,6 +88,23 @@ function AllProducts() {
               View Details
             </Link>
           </div>
+        ))}
+      </div>
+
+      {/* Pagination Controls */}
+      <div className="flex justify-center mt-6">
+        {[...Array(totalPages)].map((_, index) => (
+          <button
+            key={index}
+            onClick={() => handlePageChange(index + 1)}
+            className={`px-4 py-2 mx-1 rounded ${
+              currentPage === index + 1
+                ? "bg-green-500 text-white"
+                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+            }`}
+          >
+            {index + 1}
+          </button>
         ))}
       </div>
     </div>
