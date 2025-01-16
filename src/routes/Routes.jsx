@@ -15,6 +15,8 @@ import AllProducts from "../components/AllProducts";
 import MyProfile from "../pages/MyProfile/MyProfile";
 import UpdateProfile from "../pages/MyProfile/UpdateProfile";
 import PendingPosts from "../pages/Moderator/PendingPosts";
+import AcceptedPosts from "../pages/Moderator/AcceptedPosts";
+import RejectedPosts from "../pages/Moderator/RejectedPosts";
 
 const router = createBrowserRouter([
   {
@@ -82,6 +84,14 @@ const router = createBrowserRouter([
       {
         path: 'pending-posts',
         element: <PendingPosts></PendingPosts>
+      },
+      {
+        path: 'accepted-posts',
+        element: <AcceptedPosts></AcceptedPosts>
+      },
+      {
+        path: 'rejected-posts',
+        element: <RejectedPosts></RejectedPosts>
       }
     ],
   },

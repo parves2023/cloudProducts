@@ -41,7 +41,7 @@ const DashboardLayout = () => {
     checkModeratorRole();
   }, [user, axiosPublic]);
 
-  
+
 
   return (
     <div className="flex min-h-screen">
@@ -91,6 +91,18 @@ const DashboardLayout = () => {
             className="flex items-center gap-3 text-gray-300 hover:text-white hover:bg-gray-700 p-2 rounded"
           >
             <FaPooStorm className="text-xl" /> Pending posts
+          </Link>
+          <Link
+            to="/dashboard/accepted-posts"
+            className="flex items-center gap-3 text-gray-300 hover:text-white hover:bg-gray-700 p-2 rounded"
+          >
+            <FaPooStorm className="text-xl" /> Accepted posts
+          </Link>
+          <Link
+            to="/dashboard/rejected-posts"
+            className="flex items-center gap-3 text-gray-300 hover:text-white hover:bg-gray-700 p-2 rounded"
+          >
+            <FaPooStorm className="text-xl" /> Rejected posts
           </Link>
         </nav>
       </div>
