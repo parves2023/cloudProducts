@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../providers/AuthProvider";
 
 const ForgotPass = () => {
-    const {auth,forgotEmail} = useContext(AuthContext);
+  const { auth, forgotEmail } = useContext(AuthContext);
   const [email, setEmail] = useState(forgotEmail || "");
 
   const handleResetPassword = (e) => {
@@ -27,9 +27,9 @@ const ForgotPass = () => {
           autoClose: 2000,
         });
         toast("Redirecting to your Gmail!", {
-            position: "top-center",
-            autoClose: 2000,
-          });
+          position: "top-center",
+          autoClose: 2000,
+        });
 
         setTimeout(() => {
           window.location.href = "https://mail.google.com/";
@@ -40,13 +40,12 @@ const ForgotPass = () => {
           position: "top-center",
           autoClose: 2000,
         });
-      
       });
   };
 
   return (
     <div className="container mx-auto px-4 py-10">
-        <ToastContainer></ToastContainer>
+      <ToastContainer></ToastContainer>
       <h2 className="text-3xl font-bold text-center mb-6">Forgot Password</h2>
       <form
         onSubmit={handleResetPassword}
@@ -67,7 +66,10 @@ const ForgotPass = () => {
           />
         </div>
         <div className="form-control mt-6">
-          <button type="submit" className="btn bg-white px-10 hover:bg-green-800 hover:text-white font-medium border border-green-500">
+          <button
+            type="submit"
+            className="btn bg-white px-10 hover:bg-teal-800 hover:text-white font-medium border border-green-500"
+          >
             Reset Password
           </button>
         </div>

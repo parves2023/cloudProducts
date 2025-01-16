@@ -13,7 +13,7 @@ const ReviewSection = () => {
   return (
     <div className="review-section my-10">
       <h2 className="text-center text-4xl font-bold mb-10">
-        3940+ <span className="text-[#309255]">Happy Users</span>
+        3940+ <span className="text-indigo-600">Happy Users</span>
       </h2>
       <div className="flex flex-wrap justify-center gap-10 mx-auto w-11/12">
         {reviews.map((review) => (

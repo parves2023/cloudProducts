@@ -150,7 +150,7 @@ const UpdateProfile = () => {
         <div className="form-control mt-6">
           <button
             type="submit"
-            className="btn bg-green-50 px-10 hover:bg-green-800 hover:text-white font-medium border border-green-500"
+            className="btn bg-green-50 px-10 hover:bg-teal-800 hover:text-white font-medium border border-green-500"
           >
             Update Profile
           </button>

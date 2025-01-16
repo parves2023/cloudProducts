@@ -1,19 +1,40 @@
+
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 const GoogleLoginButton = ({ signInGoogle }) => {
     const location = useLocation();
     const navigate = useNavigate();
+    const axiosPublic = useAxiosPublic();
 
     const handleGoogleLogin = () => {
-        signInGoogle()
-        .then((result) => {
-            navigate(location?.state ? location.state : "/");
+      signInGoogle()
+      .then(async (result) => {
+        const user = result.user;
     
-          }).catch((error) => {
-            const errorMessage = error.message;
-         
+        try {
+          const response = await axiosPublic.post("/register", {
+            email: user.email,
+            name: user.displayName,
+            photo: user.photoURL,
           });
+    
+          if (response.status === 201) {
+            console.log("User registered successfully:", response.data.user);
+          } else if (response.status === 200) {
+            console.log("User already exists:", response.data.user);
+          }
+    
+          navigate(location?.state ? location.state : "/");
+        } catch (error) {
+          console.error("Error during registration:", error);
+        }
+      })
+      .catch((error) => {
+        console.error("Google login failed:", error);
+      });
+    
     }
   return (
     <div className="flex justify-center mt-10">

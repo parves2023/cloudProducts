@@ -2,7 +2,6 @@ import { Link, NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 
-
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
 
@@ -10,24 +9,17 @@ const Navbar = () => {
     logOut().then().catch();
   };
 
-
   const navLinks = (
     <>
       <li>
-        <NavLink to="/" >
-          Home
-        </NavLink>
+        <NavLink to="/">Home</NavLink>
       </li>
       <li>
-        <NavLink to="/all-product" >
-          All Products
-        </NavLink>
+        <NavLink to="/all-product">All Products</NavLink>
       </li>
-    
+
       <li>
-        <NavLink to="/dashboard" >
-          Dashboard
-        </NavLink>
+        <NavLink to="/dashboard">Dashboard</NavLink>
       </li>
     </>
   );
@@ -35,16 +27,14 @@ const Navbar = () => {
   return (
     <div className="sticky top-0 pt-1 pb-2 z-50  bg-white dark:bg-gray-700">
       <div className="container mx-auto">
-        <div className="navbar bg-[#EEFBF3] p-4 rounded-2xl border border-green-300">
+        <div className="navbar bg-[#EEFBF3] p-4 rounded-2xl border border-teal-300">
           <div className="navbar-start">
             <div className="">
               <Link to="/" className="md:flex">
                 <h1 className="md:text-3xl text-2xl ralewayfont font-bold">
-                  Visa<span className="text-[#309255]">Pilot</span>
+                  Visa<span className="text-indigo-600">Pilot</span>
                 </h1>
               </Link>
-             
-
             </div>
           </div>
           <div className="navbar-center hidden lg:flex">
@@ -53,41 +43,42 @@ const Navbar = () => {
           <div className="navbar-end">
             {user ? (
               <div className="flex flex-col md:flex-row items-center justify-center gap-3">
-              <div className="relative flex items-center gap-2 md:flex-row-reverse flex-row menu-photo">
-                <img
-                  src={user?.photoURL || "https://via.placeholder.com/150"}
-                  alt="Profile"
-                  className="w-10 mx-auto rounded-full ring ring-green-300 text-center"
-                />
-                <div className="menu-hidden absolute top-full -left-1/2 transform -translate-x-1/2 bg-white p-4 rounded shadow-lg">
-                  <h2 className="text-xs text-center">Welcome {user?.displayName}</h2>
-                  <button
-                    onClick={handleSignOut}
-                    className="btn bg-white px-10 hover:bg-green-800 hover:text-white font-medium border border-green-500 mt-2"
-                  >
-                    Sign Out
-                  </button>
+                <div className="relative flex items-center gap-2 md:flex-row-reverse flex-row menu-photo">
+                  <img
+                    src={user?.photoURL || "https://via.placeholder.com/150"}
+                    alt="Profile"
+                    className="size-10  mx-auto rounded-full ring ring-green-300 text-center"
+                  />
+                  <div className="menu-hidden absolute top-full -left-1/2 transform -translate-x-1/2 bg-white p-4 rounded shadow-lg">
+                    <h2 className="text-xs text-center">
+                      Welcome {user?.displayName}
+                    </h2>
+                    <button
+                      onClick={handleSignOut}
+                      className="btn bg-white px-10 hover:bg-teal-800 hover:text-white font-medium border border-green-500 mt-2"
+                    >
+                      Sign Out
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-            
             ) : (
               <div className="space-x-2 flex">
                 <Link to="/login">
-                <button className="btn bg-white px-10 hover:bg-green-800 hover:text-white font-medium border border-green-500">
-                  Login
-                </button>
-              </Link>
-              <Link to="/register" >
-                <button className="btn hidden lg:flex bg-white px-10 hover:bg-green-800 hover:text-white font-medium border border-green-500">
-                  Register
-                </button>
-              </Link>
+                  <button className="btn bg-white px-10 hover:bg-teal-800 hover:text-white font-medium border border-green-500">
+                    Login
+                  </button>
+                </Link>
+                <Link to="/register">
+                  <button className="btn hidden lg:flex bg-white px-10 hover:bg-teal-800 hover:text-white font-medium border border-green-500">
+                    Register
+                  </button>
+                </Link>
               </div>
             )}
 
             <div className="dropdown">
-            <label tabIndex={0} className="btn btn-ghost lg:hidden">
+              <label tabIndex={0} className="btn btn-ghost lg:hidden">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-5 w-5"

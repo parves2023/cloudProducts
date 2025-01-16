@@ -47,72 +47,69 @@ const Register = () => {
 
     // Create user
     createUser(email, password, name, photo)
-    .then((result) => {
-      updateProfile(auth.currentUser, {
-        displayName: name,
-        photoURL: photo,
-      })
-        .then(() => {
-          toast.success("Registration successful!", {
-            position: "top-center",
-            autoClose: 2000,
-          });
-  
-          // Send user data to the backend
-          fetch("http://localhost:5000/register", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              email: email,
-              name: name,
-              photo: photo,
-            }),
-          })
-            .then((response) => response.json())
-            .then((data) => {
-              if (data.message === "User registered successfully") {
-                const destination = redirectPath || "/";
-                setTimeout(() => {
-                  navigate(destination, { replace: true });
-                }, 2000);
-              } else {
-                toast.error("Failed to register user in the database", {
+      .then((result) => {
+        updateProfile(auth.currentUser, {
+          displayName: name,
+          photoURL: photo,
+        })
+          .then(() => {
+            toast.success("Registration successful!", {
+              position: "top-center",
+              autoClose: 2000,
+            });
+
+            // Send user data to the backend
+            fetch("http://localhost:5000/register", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                email: email,
+                name: name,
+                photo: photo,
+              }),
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                if (data.message === "User registered successfully") {
+                  const destination = redirectPath || "/";
+                  setTimeout(() => {
+                    navigate(destination, { replace: true });
+                  }, 2000);
+                } else {
+                  toast.error("Failed to register user in the database", {
+                    position: "top-center",
+                    autoClose: 2000,
+                  });
+                }
+              })
+              .catch((error) => {
+                toast.error(`API Error: ${error.message}`, {
                   position: "top-center",
                   autoClose: 2000,
                 });
-              }
-            })
-            .catch((error) => {
-              toast.error(`API Error: ${error.message}`, {
-                position: "top-center",
-                autoClose: 2000,
               });
+          })
+          .catch((error) => {
+            toast.error(`Error: ${error.message}`, {
+              position: "top-center",
+              autoClose: 2000,
             });
-        })
-        .catch((error) => {
-          toast.error(`Error: ${error.message}`, {
-            position: "top-center",
-            autoClose: 2000,
           });
+      })
+      .catch((error) => {
+        toast.error(`Error: ${error.message}`, {
+          position: "top-center",
+          autoClose: 2000,
         });
-    })
-    .catch((error) => {
-      toast.error(`Error: ${error.message}`, {
-        position: "top-center",
-        autoClose: 2000,
       });
-    });
-
-    
-    
   };
 
   return (
     <div className="my-7">
       <h1 className="text-3xl mt-7 ralewayfont font-bold text-center mb-6">
-        Please <span className="text-[#309255]">Register</span>
+        Please <span className="text-indigo-600">Register</span>
       </h1>
       <form onSubmit={handleRegister} className="md:w-3/4 lg:w-1/2 mx-auto">
         <ToastContainer
@@ -182,7 +179,7 @@ const Register = () => {
 
         {/* Register Button */}
         <div className="form-control mt-6">
-          <button className="btn bg-green-50 px-10 hover:bg-green-800 hover:text-white font-medium border border-green-500">
+          <button className="btn bg-green-50 px-10 hover:bg-teal-800 hover:text-white font-medium border border-green-500">
             Register
           </button>
         </div>

@@ -7,11 +7,7 @@ import PrivateRoute from "./PrivateRoute";
 
 import NotFound from "../components/NotFound";
 import ForgotPass from "../components/ForgotPass";
-import AddVisa from "../components/AddVisa";
-import MyVisa from "../components/MyVisa";
-import AllVisa from "../components/AllProducts";
 import VisaDetails from "../components/ProductDetails";
-import MyVisaApplications from "../components/MyVisaApplications";
 import DashboardLayout from "../layouts/DashboardLayout";
 import AddProduct from "../components/AddProduct";
 import MyProducts from "../components/Myproducts";
