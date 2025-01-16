@@ -4,6 +4,9 @@ import {
   FaPlusCircle,
   FaHome,
   FaProductHunt,
+  FaWind,
+  FaCross,
+  FaCrosshairs,
 } from "react-icons/fa";
 import useAuth from "../hooks/useAuth";
 import { useEffect, useState } from "react";
@@ -86,7 +89,9 @@ const DashboardLayout = () => {
 
           <div className=" border-b"></div>
 
-          <Link
+          {
+            moderator && <>
+            <Link
             to="/dashboard/pending-posts"
             className="flex items-center gap-3 text-gray-300 hover:text-white hover:bg-gray-700 p-2 rounded"
           >
@@ -96,14 +101,18 @@ const DashboardLayout = () => {
             to="/dashboard/accepted-posts"
             className="flex items-center gap-3 text-gray-300 hover:text-white hover:bg-gray-700 p-2 rounded"
           >
-            <FaPooStorm className="text-xl" /> Accepted posts
+            <FaWind className="text-xl" /> Accepted posts
           </Link>
           <Link
             to="/dashboard/rejected-posts"
             className="flex items-center gap-3 text-gray-300 hover:text-white hover:bg-gray-700 p-2 rounded"
           >
-            <FaPooStorm className="text-xl" /> Rejected posts
+            <FaCrosshairs className="text-xl" /> Rejected posts
           </Link>
+            </>
+          }
+
+
         </nav>
       </div>
 
