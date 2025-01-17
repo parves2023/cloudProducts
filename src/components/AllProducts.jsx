@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { BallTriangle } from "react-loader-spinner";
 import { AuthContext } from "../providers/AuthProvider";
 import useAxiosPublic from "../hooks/useAxiosPublic";
+import { IoThumbsUpOutline } from "react-icons/io5";
+import { motion } from "framer-motion";
 
 function AllProducts() {
   const [products, setProducts] = useState([]); // Products for the current page
@@ -81,12 +83,22 @@ function AllProducts() {
             <p className="text-sm text-gray-600 mb-2">Price: ${product.price}</p>
             <p className="text-sm text-gray-600 mb-2">Status: {product.status}</p>
             <p className="text-sm text-gray-600 mb-4">{product.description}</p>
+            <div className="flex items-center justify-between">
             <Link
               to={`/details/${product._id}`}
-              className="mt-2 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+              className="mt-2 bg-green-500 flex-1 text-white px-4 py-2 rounded hover:bg-green-600"
             >
               View Details
             </Link>
+            <motion.div
+      whileHover={{ scale: 1.2, rotate: -7, backgroundColor: "#E5E7EB" }} // Slight enlarge and rotate on hover
+      whileTap={{ scale: 0.9 }} // Shrink slightly on click
+      className="bg-slate-300 size-10 mt-2 ml-2 p-1 rounded cursor-pointer flex items-center justify-center"
+    >
+      <IoThumbsUpOutline className="text-gray-700 size-10" />
+      
+    </motion.div>
+            </div>
           </div>
         ))}
       </div>

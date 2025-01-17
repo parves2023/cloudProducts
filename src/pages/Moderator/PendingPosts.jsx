@@ -40,7 +40,7 @@ function PendingPosts() {
             {pendingProducts.length === 0 ? (
                 <p className="text-center text-gray-500">No pending products found.</p>
             ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
                     {pendingProducts.map((product) => (
                         <div key={product._id} className="card bg-base-100 shadow-xl">
                             <figure>
@@ -59,13 +59,17 @@ function PendingPosts() {
                                 <p className="text-sm text-gray-600">
                                     {product.description}
                                 </p>
-                                <div className="card-actions justify-end">
+                                <div className="card-actions justify-between">
+                                   
+
+                                    <div className="flex gap-3">
                                     <button
                                      onClick={() => handleStatusChange(product._id, "approved")}
                                     className="btn btn-primary">Approve</button>
                                     <button
                                      onClick={() => handleStatusChange(product._id, "rejected")}
                                     className="btn btn-secondary">Reject</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

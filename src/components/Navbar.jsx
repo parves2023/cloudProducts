@@ -32,7 +32,7 @@ const Navbar = () => {
             <div className="">
               <Link to="/" className="md:flex">
                 <h1 className="md:text-3xl text-2xl ralewayfont font-bold">
-                  Visa<span className="text-indigo-600">Pilot</span>
+                  Product<span className="text-indigo-600">Hunt</span>
                 </h1>
               </Link>
             </div>
