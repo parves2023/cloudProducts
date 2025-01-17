@@ -1,15 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { BallTriangle } from "react-loader-spinner";
 import { AuthContext } from "../providers/AuthProvider";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import { IoThumbsUpOutline } from "react-icons/io5";
 import { motion } from "framer-motion";
 import useAuth from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 function AllProducts() {
   const {user} = useAuth();
-  
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]); // Products for the current page
   const { dataFetching, setDataFetching } = useContext(AuthContext); // Loading state context
   const [currentPage, setCurrentPage] = useState(1); // Current page number
@@ -66,6 +67,7 @@ function AllProducts() {
   }
 
   const handleLike = async (productId) => {
+    
     console.log(productId);
     
     try {
@@ -132,6 +134,19 @@ function AllProducts() {
           >
             <IoThumbsUpOutline className="text-gray-700 size-10" />
           </motion.div>
+        }
+
+{
+  !user && 
+    <motion.div
+    onClick={() => navigate("/login")}
+      whileHover={{ scale: 1.2, rotate: -7, backgroundColor: "#E5E7EB" }}
+      whileTap={{ scale: 0.9 }}
+      className="bg-slate-300 size-10 mt-2 ml-2 p-1 rounded cursor-pointer flex items-center justify-center"
+    >
+      <IoThumbsUpOutline className="text-gray-700 size-10" />
+    </motion.div>
+  
         }
       
             </div>

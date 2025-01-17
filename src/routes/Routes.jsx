@@ -17,6 +17,7 @@ import UpdateProfile from "../pages/MyProfile/UpdateProfile";
 import PendingPosts from "../pages/Moderator/PendingPosts";
 import AcceptedPosts from "../pages/Moderator/AcceptedPosts";
 import RejectedPosts from "../pages/Moderator/RejectedPosts";
+import ReportedPosts from "../pages/Moderator/ReportedPosts";
 
 const router = createBrowserRouter([
   {
@@ -92,6 +93,10 @@ const router = createBrowserRouter([
       {
         path: 'rejected-posts',
         element: <RejectedPosts></RejectedPosts>
+      },
+      {
+        path: 'reported-posts',
+        element: <ReportedPosts></ReportedPosts>
       }
     ],
   },

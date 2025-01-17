@@ -109,6 +109,12 @@ const DashboardLayout = () => {
           >
             <FaCrosshairs className="text-xl" /> Rejected posts
           </Link>
+          <Link
+            to="/dashboard/reported-posts"
+            className="flex items-center gap-3 text-gray-300 hover:text-white hover:bg-gray-700 p-2 rounded"
+          >
+            <FaCrosshairs className="text-xl" /> Reported posts
+          </Link>
             </>
           }
 
