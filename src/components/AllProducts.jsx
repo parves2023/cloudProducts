@@ -5,8 +5,11 @@ import { AuthContext } from "../providers/AuthProvider";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import { IoThumbsUpOutline } from "react-icons/io5";
 import { motion } from "framer-motion";
+import useAuth from "../hooks/useAuth";
 
 function AllProducts() {
+  const {user} = useAuth();
+  
   const [products, setProducts] = useState([]); // Products for the current page
   const { dataFetching, setDataFetching } = useContext(AuthContext); // Loading state context
   const [currentPage, setCurrentPage] = useState(1); // Current page number
@@ -36,7 +39,7 @@ function AllProducts() {
   // Fetch products on page load and page change
   useEffect(() => {
     fetchProducts(currentPage);
-  }, [currentPage]);
+  }, [currentPage , user]);
 
   // Handle page change
   const handlePageChange = (page) => {
@@ -62,6 +65,29 @@ function AllProducts() {
     );
   }
 
+  const handleLike = async (productId) => {
+    console.log(productId);
+    
+    try {
+      const response = await axiosPublic.patch(`/products/like/${productId}`, {
+        userEmail: user.email,
+        userName: user.name,
+      });
+      if (response.data.success) {
+        fetchProducts(currentPage)
+      } else {
+        console.error("Failed to like product");
+      }
+    } catch (error) {
+      console.error("Error liking product:", error);
+    }
+  };
+
+
+
+
+  
+
   return (
     <div className="max-w-6xl mx-auto mt-8">
       <h1 className="text-3xl font-bold text-center mb-6">All Products</h1>
@@ -83,6 +109,7 @@ function AllProducts() {
             <p className="text-sm text-gray-600 mb-2">Price: ${product.price}</p>
             <p className="text-sm text-gray-600 mb-2">Status: {product.status}</p>
             <p className="text-sm text-gray-600 mb-4">{product.description}</p>
+            <span className="text-sm text-gray-600">Total Likes: {product.likes?.length || 0}</span>
             <div className="flex items-center justify-between">
             <Link
               to={`/details/${product._id}`}
@@ -90,14 +117,23 @@ function AllProducts() {
             >
               View Details
             </Link>
-            <motion.div
-      whileHover={{ scale: 1.2, rotate: -7, backgroundColor: "#E5E7EB" }} // Slight enlarge and rotate on hover
-      whileTap={{ scale: 0.9 }} // Shrink slightly on click
-      className="bg-slate-300 size-10 mt-2 ml-2 p-1 rounded cursor-pointer flex items-center justify-center"
-    >
-      <IoThumbsUpOutline className="text-gray-700 size-10" />
+            
+            
+        {
+          user && <motion.div
+          onClick={() => handleLike(product._id)}
+            whileHover={{ scale: 1.2, rotate: -7, backgroundColor: "#E5E7EB" }} // Slight enlarge and rotate on hover
+            whileTap={{ scale: 0.9 }} // Shrink slightly on click
+            className={`${
+              product.creatorEmail !== user?.email ? "block" : "hidden"
+            } ${
+              product.likes?.some((like) => like.email === user?.email) ? "bg-blue-500" : "bg-slate-300"
+            } size-10 mt-2 ml-2 p-1 rounded cursor-pointer flex items-center justify-center`}
+          >
+            <IoThumbsUpOutline className="text-gray-700 size-10" />
+          </motion.div>
+        }
       
-    </motion.div>
             </div>
           </div>
         ))}
