@@ -15,6 +15,7 @@ import { FaPooStorm } from "react-icons/fa6";
 
 const DashboardLayout = () => {
   const [moderator, setModerator] = useState(false);
+  const [admin, setAdmin] = useState(false);
   const axiosPublic = useAxiosPublic();
   const { user } = useAuth();
 
@@ -31,8 +32,11 @@ const DashboardLayout = () => {
           // Assuming the response contains a `role` field
           if (response.data.role === "moderator") {
             setModerator(true);
+          } else if (response.data.role === "admin") {
+            setAdmin(true);
           } else {
             setModerator(false);
+            setAdmin(false);
           }
         }
       } catch (error) {
@@ -43,8 +47,6 @@ const DashboardLayout = () => {
 
     checkModeratorRole();
   }, [user, axiosPublic]);
-
-
 
   return (
     <div className="flex min-h-screen">
@@ -89,36 +91,60 @@ const DashboardLayout = () => {
 
           <div className=" border-b"></div>
 
-          {
-            moderator && <>
-            <Link
-            to="/dashboard/pending-posts"
-            className="flex items-center gap-3 text-gray-300 hover:text-white hover:bg-gray-700 p-2 rounded"
-          >
-            <FaPooStorm className="text-xl" /> Pending posts
-          </Link>
-          <Link
-            to="/dashboard/accepted-posts"
-            className="flex items-center gap-3 text-gray-300 hover:text-white hover:bg-gray-700 p-2 rounded"
-          >
-            <FaWind className="text-xl" /> Accepted posts
-          </Link>
-          <Link
-            to="/dashboard/rejected-posts"
-            className="flex items-center gap-3 text-gray-300 hover:text-white hover:bg-gray-700 p-2 rounded"
-          >
-            <FaCrosshairs className="text-xl" /> Rejected posts
-          </Link>
-          <Link
-            to="/dashboard/reported-posts"
-            className="flex items-center gap-3 text-gray-300 hover:text-white hover:bg-gray-700 p-2 rounded"
-          >
-            <FaCrosshairs className="text-xl" /> Reported posts
-          </Link>
+          {moderator && (
+            <>
+              <Link
+                to="/dashboard/pending-posts"
+                className="flex items-center gap-3 text-gray-300 hover:text-white hover:bg-gray-700 p-2 rounded"
+              >
+                <FaPooStorm className="text-xl" /> Pending posts
+              </Link>
+              <Link
+                to="/dashboard/accepted-posts"
+                className="flex items-center gap-3 text-gray-300 hover:text-white hover:bg-gray-700 p-2 rounded"
+              >
+                <FaWind className="text-xl" /> Accepted posts
+              </Link>
+              <Link
+                to="/dashboard/rejected-posts"
+                className="flex items-center gap-3 text-gray-300 hover:text-white hover:bg-gray-700 p-2 rounded"
+              >
+                <FaCrosshairs className="text-xl" /> Rejected posts
+              </Link>
+              <Link
+                to="/dashboard/reported-posts"
+                className="flex items-center gap-3 text-gray-300 hover:text-white hover:bg-gray-700 p-2 rounded"
+              >
+                <FaCrosshairs className="text-xl" /> Reported posts
+              </Link>
             </>
-          }
+          )}
 
+          {admin && (
+            <>
+              <Link
+                to="/dashboard/all-users"
+                className="flex items-center gap-3 text-gray-300 hover:text-white hover:bg-gray-700 p-2 rounded"
+              >
+                <FaCrosshairs className="text-xl" /> All Users
+              </Link>
 
+              <Link
+            to="/dashboard/all-modetators"
+            className="flex items-center gap-3 text-gray-300 hover:text-white hover:bg-gray-700 p-2 rounded"
+          >
+            <FaCrosshairs className="text-xl" /> Modarators
+          </Link>
+
+          <Link
+            to="/dashboard/all-admins"
+            className="flex items-center gap-3 text-gray-300 hover:text-white hover:bg-gray-700 p-2 rounded"
+          >
+            <FaCrosshairs className="text-xl" /> Admins
+          </Link>
+
+            </>
+          )}
         </nav>
       </div>
 

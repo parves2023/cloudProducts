@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 import { toast, ToastContainer } from "react-toastify";
 
 function ReportedPosts() {
   const [reportedPosts, setReportedPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchReportedPosts = async () => {
@@ -103,7 +105,12 @@ function ReportedPosts() {
         <tbody>
           {reportedPosts.map((product) => (
             <tr key={product._id}>
-              <td className="border border-gray-300 px-4 py-2">{product.name}</td>
+              <td
+              className="border cursor-pointer flex flex-col text-center border-gray-300 px-4 py-2"> <br /> <img src={`${product.image}`} className="size-36 rounded-sm mx-auto" alt="asdf" /> <p>{product.name}</p> <button
+              onClick={()=>{
+              navigate(`/details/${product._id}`)
+              }}
+              className="btn btn-primary">View Details</button></td>
               <td className="border border-gray-300 px-4 py-2">
                 {product.reports.map((report, index) => (
                   <div

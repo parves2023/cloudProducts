@@ -110,7 +110,7 @@ const ProductDetails = () => {
         <strong>Status:</strong> {product.status}
       </p>
       <p>
-        <strong>Creator Email:</strong> {product.creatorEmail}
+        <strong>Creator Email:</strong> {product?.creatorEmail}
       </p>
       <p className="mt-4">
         <strong>Description:</strong>

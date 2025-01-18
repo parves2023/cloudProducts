@@ -7,7 +7,7 @@ const ImageUpload = ({ onImageUpload,preview, setPreview }) => {
   const [isUploading, setIsUploading] = useState(false);
   const [error, setError] = useState("");
 
-  const imgbbAPIKey = import.meta.env.VITE_IMGBB_API;
+  const imgbbAPIKey = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 
   
   const uploadToImgBB = async (file) => {

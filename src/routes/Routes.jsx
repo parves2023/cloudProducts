@@ -18,6 +18,9 @@ import PendingPosts from "../pages/Moderator/PendingPosts";
 import AcceptedPosts from "../pages/Moderator/AcceptedPosts";
 import RejectedPosts from "../pages/Moderator/RejectedPosts";
 import ReportedPosts from "../pages/Moderator/ReportedPosts";
+import AllUsers from "../pages/Adminpages/AllUsers";
+import AllModerators from "../pages/Adminpages/Allmoderators";
+import AllAdmins from "../pages/Adminpages/AllAdmins";
 
 const router = createBrowserRouter([
   {
@@ -97,6 +100,18 @@ const router = createBrowserRouter([
       {
         path: 'reported-posts',
         element: <ReportedPosts></ReportedPosts>
+      },
+      {
+        path: 'all-users',
+        element: <AllUsers></AllUsers>
+      },
+      {
+        path: 'all-modetators',
+        element: <AllModerators></AllModerators>
+      },
+      {
+        path: 'all-admins',
+        element: <AllAdmins></AllAdmins>
       }
     ],
   },
