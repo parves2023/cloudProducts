@@ -41,11 +41,13 @@ const Featured = () => {
 
 
 
-  const handleLike = async (productId) => {
+  const handleLike = async (productId,totalLikes) => {
+    const newLikeCount = totalLikes  ;
     try {
       const response = await axiosPublic.patch(`/products/like/${productId}`, {
         userEmail: user.email,
         userName: user.name,
+        likeCount: newLikeCount,
       });
   
       if (response.data.success) {
@@ -170,7 +172,7 @@ const Featured = () => {
 {
   user && (
     <motion.div
-      onClick={() => handleLike(product._id)}
+      onClick={() => handleLike(product._id,product.likes?.length)}
       whileHover={{ scale: 1.2, rotate: -7 }}
       whileTap={{ scale: 0.9 }}
       style={{

@@ -9,16 +9,8 @@
       "createdAt": "2025-01-15T18:33:59.814+00:00",
       "featured": true,
       "tags": ["Web Apps", "Tech Tools", "AI Integration"],
-      "likes": [
-        {
-          "email": "user1@example.com",
-          "name": "John Doe"
-        },
-        {
-          "email": "user2@example.com",
-          "name": "Jane Smith"
-        }
-      ]
+      "likes": [],
+      "likeCount": 0
     },
     {
       "name": "AI Image Enhancer",
@@ -31,11 +23,8 @@
       "featured": false,
       "tags": ["AI Tools", "Image Enhancement", "Tech Tools"],
       "likes": [
-        {
-          "email": "user3@example.com",
-          "name": "Alex Brown"
-        }
-      ]
+       
+      ],"likeCount": 0
     },
     {
       "name": "Mobile App Creator",
@@ -47,7 +36,7 @@
       "createdAt":  "2025-01-17T10:45:11.234+00:00",
       "featured": true,
       "tags": ["Mobile Apps", "App Builder", "Tech Tools"],
-      "likes": []
+      "likes": [],"likeCount": 0
     },
     {
       "name": "Online Chatbot",
@@ -60,11 +49,8 @@
       "featured": false,
       "tags": ["AI Tools", "Web Apps", "Customer Service"],
       "likes": [
-        {
-          "email": "user4@example.com",
-          "name": "Emily Clark"
-        }
-      ]
+       
+      ],"likeCount": 0
     },
     {
       "name": "Game Design Studio",
@@ -77,11 +63,8 @@
       "featured": true,
       "tags": ["Games", "Game Development", "Tech Tools"],
       "likes": [
-        {
-          "email": "user5@example.com",
-          "name": "Michael Lee"
-        }
-      ]
+        
+      ],"likeCount": 0
     },
     {
       "name": "Data Analysis Tool",
@@ -94,11 +77,8 @@
       "featured": false,
       "tags": ["Software", "Data Analysis", "Tech Tools"],
       "likes": [
-        {
-          "email": "user6@example.com",
-          "name": "Sophia Turner"
-        }
-      ]
+       
+      ],"likeCount": 0
     },
     {
       "name": "AI Code Generator",
@@ -110,7 +90,8 @@
       "createdAt":  "2025-01-19T11:55:44.432+00:00",
       "featured": true,
       "tags": ["AI Tools", "Programming", "Tech Tools"],
-      "likes": []
+      "likes": [],"likeCount": 0
+
     },
     {
       "name": "Cloud Storage Service",
@@ -123,11 +104,8 @@
       "featured": false,
       "tags": ["Software", "Cloud Storage", "Tech Tools"],
       "likes": [
-        {
-          "email": "user7@example.com",
-          "name": "Johnathan Green"
-        }
-      ]
+        
+      ],"likeCount": 0
     },
     {
       "name": "VR Game World",
@@ -140,11 +118,8 @@
       "featured": true,
       "tags": ["Games", "VR", "Tech Tools"],
       "likes": [
-        {
-          "email": "user8@example.com",
-          "name": "Daniel Wright"
-        }
-      ]
+        
+      ],"likeCount": 0
     },
     {
       "name": "AI Voice Assistant",
@@ -156,7 +131,7 @@
       "createdAt":  "2025-01-19T13:34:28.545+00:00",
       "featured": false,
       "tags": ["AI Tools", "Voice Assistants", "Tech Tools"],
-      "likes": []
+      "likes": [],"likeCount": 0
     },
     {
       "name": "Website Analytics Tool",
@@ -169,11 +144,8 @@
       "featured": true,
       "tags": ["Web Apps", "Analytics", "Tech Tools"],
       "likes": [
-        {
-          "email": "user9@example.com",
-          "name": "Oliver Harris"
-        }
-      ]
+        
+      ],"likeCount": 0
     },
     {
       "name": "Personal Finance Manager",
@@ -185,7 +157,7 @@
       "createdAt":  "2025-01-19T15:02:22.456+00:00",
       "featured": false,
       "tags": ["Software", "Finance", "Tech Tools"],
-      "likes": []
+      "likes": [],"likeCount": 0
     },
     {
       "name": "Digital Marketing Tool",
@@ -198,11 +170,8 @@
       "featured": true,
       "tags": ["Web Apps", "Marketing", "Tech Tools"],
       "likes": [
-        {
-          "email": "user10@example.com",
-          "name": "Lucas James"
-        }
-      ]
+       
+      ],"likeCount": 0
     },
     {
       "name": "3D Modeler Tool",
@@ -214,7 +183,7 @@
       "createdAt":  "2025-01-19T17:15:12.054+00:00",
       "featured": false,
       "tags": ["Software", "3D Modeling", "Tech Tools"],
-      "likes": []
+      "likes": [],"likeCount": 0
     }
   ]
   

@@ -2,6 +2,7 @@ import React from "react";
 import Slider from "../../components/Slider";
 import DynamicBanner from "../../components/DynamicBanner";
 import Featured from "../../components/Fetured";
+import TrendingProducts from "../../components/TrendingProducts";
 
 
 const Home = () => {
@@ -12,6 +13,7 @@ const Home = () => {
       <div className="pt-4">
       <DynamicBanner></DynamicBanner>
       <Featured></Featured>
+      <TrendingProducts></TrendingProducts>
       </div>
     </div>
   );

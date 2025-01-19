@@ -66,11 +66,18 @@ function AllProducts() {
     );
   }
 
-  const handleLike = async (productId) => {
+  const handleLike = async (productId, totalLikes) => {
     try {
+      const hasLiked = products.find((product) => product._id === productId)?.likes.some(
+        (like) => like.email === user.email
+      );
+  
+      const newLikeCount = totalLikes  ;
+  
       const response = await axiosPublic.patch(`/products/like/${productId}`, {
         userEmail: user.email,
         userName: user.name,
+        likeCount: newLikeCount,
       });
   
       if (response.data.success) {
@@ -79,20 +86,22 @@ function AllProducts() {
             product._id === productId
               ? {
                   ...product,
-                  likes: product.likes.some((like) => like.email === user.email)
+                  likes: hasLiked
                     ? product.likes.filter((like) => like.email !== user.email)
                     : [...product.likes, { email: user.email, name: user.name }],
+                  likeCount: newLikeCount, // Update likeCount in local state
                 }
               : product
           )
         );
       } else {
-        console.error("Failed to like product");
+        console.error('Failed to update like');
       }
     } catch (error) {
-      console.error("Error liking product:", error);
+      console.error('Error liking product:', error);
     }
   };
+  
   
 
 
@@ -134,7 +143,7 @@ function AllProducts() {
             {
   user && (
     <motion.div
-      onClick={() => handleLike(product._id)}
+      onClick={() => handleLike(product._id,product.likes?.length)}
       whileHover={{ scale: 1.2, rotate: -7 }}
       whileTap={{ scale: 0.9 }}
       style={{
