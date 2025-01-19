@@ -67,16 +67,25 @@ function AllProducts() {
   }
 
   const handleLike = async (productId) => {
-    
-    console.log(productId);
-    
     try {
       const response = await axiosPublic.patch(`/products/like/${productId}`, {
         userEmail: user.email,
         userName: user.name,
       });
+  
       if (response.data.success) {
-        fetchProducts(currentPage)
+        setProducts((prevProducts) =>
+          prevProducts.map((product) =>
+            product._id === productId
+              ? {
+                  ...product,
+                  likes: product.likes.some((like) => like.email === user.email)
+                    ? product.likes.filter((like) => like.email !== user.email)
+                    : [...product.likes, { email: user.email, name: user.name }],
+                }
+              : product
+          )
+        );
       } else {
         console.error("Failed to like product");
       }
@@ -84,6 +93,7 @@ function AllProducts() {
       console.error("Error liking product:", error);
     }
   };
+  
 
 
 
@@ -109,7 +119,7 @@ function AllProducts() {
             <h2 className="text-lg font-semibold">{product.name}</h2>
             <p className="text-sm text-gray-600 mb-2">Category: {product.category}</p>
             <p className="text-sm text-gray-600 mb-2">Price: ${product.price}</p>
-            <p className="text-sm text-gray-600 mb-2">Status: {product.status}</p>
+            
             <p className="text-sm text-gray-600 mb-4">{product.description}</p>
             <span className="text-sm text-gray-600">Total Likes: {product.likes?.length || 0}</span>
             <div className="flex items-center justify-between">
@@ -121,20 +131,41 @@ function AllProducts() {
             </Link>
             
             
-        {
-          user && <motion.div
-          onClick={() => handleLike(product._id)}
-            whileHover={{ scale: 1.2, rotate: -7, backgroundColor: "#E5E7EB" }} // Slight enlarge and rotate on hover
-            whileTap={{ scale: 0.9 }} // Shrink slightly on click
-            className={`${
-              product.creatorEmail !== user?.email ? "block" : "hidden"
-            } ${
-              product.likes?.some((like) => like.email === user?.email) ? "bg-blue-500" : "bg-slate-300"
-            } size-10 mt-2 ml-2 p-1 rounded cursor-pointer flex items-center justify-center`}
-          >
-            <IoThumbsUpOutline className="text-gray-700 size-10" />
-          </motion.div>
-        }
+            {
+  user && (
+    <motion.div
+      onClick={() => handleLike(product._id)}
+      whileHover={{ scale: 1.2, rotate: -7 }}
+      whileTap={{ scale: 0.9 }}
+      style={{
+        backgroundColor: product.likes?.some((like) => like.email === user?.email)
+          ? "#3B82F6" // blue-500
+          : "#CBD5E1", // slate-300
+      }}
+      className={`${
+        product.creatorEmail !== user?.email ? "block" : "hidden"
+      } size-10 w-16 mt-2 ml-2 p-2 rounded cursor-pointer flex items-center justify-center gap-2`}
+    >
+      <IoThumbsUpOutline
+        className={`${
+          product.likes?.some((like) => like.email === user?.email)
+            ? "text-white"
+            : "text-gray-700"
+        } size-6`}
+      />
+      <span
+        className={`${
+          product.likes?.some((like) => like.email === user?.email)
+            ? "text-white"
+            : "text-gray-700"
+        } text-sm font-medium`}
+      >
+        {product.likes?.length || 0}
+      </span>
+    </motion.div>
+  )
+}
+
 
 {
   !user && 

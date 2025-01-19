@@ -15,6 +15,7 @@
     "framer-motion": "^11.18.0",
     "lottie-react": "^2.4.0",
     "react": "^18.3.1",
+    "react-awesome-button": "^7.0.5",
     "react-awesome-reveal": "^4.2.14",
     "react-dark-mode-toggle": "^0.2.0",
     "react-dom": "^18.3.1",
@@ -31,7 +32,7 @@
     "react-slick": "^0.30.2",
     "react-toastify": "^10.0.6",
     "slick-carousel": "^1.8.1",
-    "sweetalert2": "^11.15.10"
+    "sweetalert2": "^11.6.13"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",

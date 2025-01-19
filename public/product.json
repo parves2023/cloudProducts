@@ -1,0 +1,220 @@
+[
+    {
+      "name": "Web App Builder",
+      "category": "Web Apps",
+      "price": 4999,
+      "description": "A powerful web app builder tool for creating and managing your web applications.",
+      "image": "https://blog.dymaptic.com/hubfs/Experience-Builder--1.jpg",
+      "status": "approved",
+      "createdAt": "2025-01-15T18:33:59.814+00:00",
+      "featured": true,
+      "tags": ["Web Apps", "Tech Tools", "AI Integration"],
+      "likes": [
+        {
+          "email": "user1@example.com",
+          "name": "John Doe"
+        },
+        {
+          "email": "user2@example.com",
+          "name": "Jane Smith"
+        }
+      ]
+    },
+    {
+      "name": "AI Image Enhancer",
+      "category": "AI Tools",
+      "price": 2999,
+      "description": "AI-powered tool to enhance images with better clarity and sharpness.",
+      "image": "https://www.ifoto.ai/blog/wp-content/uploads/ai-photo-enhancer-1.jpeg",
+      "status": "approved",
+      "createdAt":  "2025-01-16T08:15:32.123+00:00",
+      "featured": false,
+      "tags": ["AI Tools", "Image Enhancement", "Tech Tools"],
+      "likes": [
+        {
+          "email": "user3@example.com",
+          "name": "Alex Brown"
+        }
+      ]
+    },
+    {
+      "name": "Mobile App Creator",
+      "category": "Mobile Apps",
+      "price": 2499,
+      "description": "Build mobile apps for iOS and Android without coding skills.",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU7D0WG0N6grUv92CgSJ7kg0y6eJaXWXQCew&s",
+      "status": "approved",
+      "createdAt":  "2025-01-17T10:45:11.234+00:00",
+      "featured": true,
+      "tags": ["Mobile Apps", "App Builder", "Tech Tools"],
+      "likes": []
+    },
+    {
+      "name": "Online Chatbot",
+      "category": "Web Apps",
+      "price": 1599,
+      "description": "AI-powered chatbot to engage customers on your website.",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6q96TO2Jl3lshtc95dROSdKXauCAv52hk0Q&s",
+      "status": "approved",
+      "createdAt":  "2025-01-17T12:20:44.765+00:00",
+      "featured": false,
+      "tags": ["AI Tools", "Web Apps", "Customer Service"],
+      "likes": [
+        {
+          "email": "user4@example.com",
+          "name": "Emily Clark"
+        }
+      ]
+    },
+    {
+      "name": "Game Design Studio",
+      "category": "Games",
+      "price": 3999,
+      "description": "Create, design, and publish your own video games.",
+      "image": "https://constellations.uk.com/wp-content/uploads/2021/01/CONFETTI-Sumo-Studios-11-12-2020-58-1.jpg",
+      "status": "pending",
+      "createdAt":  "2025-01-18T09:33:22.567+00:00",
+      "featured": true,
+      "tags": ["Games", "Game Development", "Tech Tools"],
+      "likes": [
+        {
+          "email": "user5@example.com",
+          "name": "Michael Lee"
+        }
+      ]
+    },
+    {
+      "name": "Data Analysis Tool",
+      "category": "Software",
+      "price": 1999,
+      "description": "Analyze large datasets efficiently with this powerful tool.",
+      "image": "https://cdn.educba.com/academy/wp-content/uploads/2019/09/Free-Data-Analysis-Tools.png",
+      "status": "approved",
+      "createdAt":  "2025-01-18T10:44:13.091+00:00",
+      "featured": false,
+      "tags": ["Software", "Data Analysis", "Tech Tools"],
+      "likes": [
+        {
+          "email": "user6@example.com",
+          "name": "Sophia Turner"
+        }
+      ]
+    },
+    {
+      "name": "AI Code Generator",
+      "category": "AI Tools",
+      "price": 3499,
+      "description": "Generate code using AI for multiple programming languages.",
+      "image": "https://wbcomdesigns.com/wp-content/uploads/2023/06/Best-AI-Code-Generators.png",
+      "status": "approved",
+      "createdAt":  "2025-01-19T11:55:44.432+00:00",
+      "featured": true,
+      "tags": ["AI Tools", "Programming", "Tech Tools"],
+      "likes": []
+    },
+    {
+      "name": "Cloud Storage Service",
+      "category": "Software",
+      "price": 999,
+      "description": "Secure and reliable cloud storage for all your files.",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMK8JzPdE6F2faUikfHlSavL5lNqurONDMLw&s",
+      "status": "approved",
+      "createdAt":  "2025-01-19T12:05:59.122+00:00",
+      "featured": false,
+      "tags": ["Software", "Cloud Storage", "Tech Tools"],
+      "likes": [
+        {
+          "email": "user7@example.com",
+          "name": "Johnathan Green"
+        }
+      ]
+    },
+    {
+      "name": "VR Game World",
+      "category": "Games",
+      "price": 5999,
+      "description": "Enter the world of virtual reality gaming with this immersive experience.",
+      "image": "https://www.juegostudio.com/wp-content/uploads/2024/02/vr-app-game-development-costs.jpg",
+      "status": "rejected",
+      "createdAt":  "2025-01-19T13:02:01.321+00:00",
+      "featured": true,
+      "tags": ["Games", "VR", "Tech Tools"],
+      "likes": [
+        {
+          "email": "user8@example.com",
+          "name": "Daniel Wright"
+        }
+      ]
+    },
+    {
+      "name": "AI Voice Assistant",
+      "category": "AI Tools",
+      "price": 2599,
+      "description": "Smart AI assistant that can interact with users through voice.",
+      "image": "https://eu-images.contentstack.com/v3/assets/blt69509c9116440be8/bltfab6810288157b12/64cb1814dd62f552de45ef01/voice-lassedesignen-stock.jpg?width=1280&auto=webp&quality=95&format=jpg&disable=upscale",
+      "status": "approved",
+      "createdAt":  "2025-01-19T13:34:28.545+00:00",
+      "featured": false,
+      "tags": ["AI Tools", "Voice Assistants", "Tech Tools"],
+      "likes": []
+    },
+    {
+      "name": "Website Analytics Tool",
+      "category": "Web Apps",
+      "price": 1499,
+      "description": "Monitor and track website traffic with advanced analytics tools.",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7HGjmznBl2SDxEB2VUhqgxkFBRWWWRmlmP32tHVOlsmkUI5a6EHfwIIOYzddM0MnauVE&usqp=CAU",
+      "status": "approved",
+      "createdAt":  "2025-01-19T14:15:52.876+00:00",
+      "featured": true,
+      "tags": ["Web Apps", "Analytics", "Tech Tools"],
+      "likes": [
+        {
+          "email": "user9@example.com",
+          "name": "Oliver Harris"
+        }
+      ]
+    },
+    {
+      "name": "Personal Finance Manager",
+      "category": "Software",
+      "price": 1799,
+      "description": "Manage your finances with this easy-to-use personal finance software.",
+      "image": "https://blogassets.leverageedu.com/blog/wp-content/uploads/2020/03/16161305/Scope-of-Financial-Management.jpg",
+      "status": "pending",
+      "createdAt":  "2025-01-19T15:02:22.456+00:00",
+      "featured": false,
+      "tags": ["Software", "Finance", "Tech Tools"],
+      "likes": []
+    },
+    {
+      "name": "Digital Marketing Tool",
+      "category": "Web Apps",
+      "price": 3499,
+      "description": "All-in-one marketing platform for your business.",
+      "image": "https://d1jnx9ba8s6j9r.cloudfront.net/blog/wp-content/uploads/2019/12/Digital-Marketing-Tools-1.jpg",
+      "status": "approved",
+      "createdAt":  "2025-01-19T16:10:59.302+00:00",
+      "featured": true,
+      "tags": ["Web Apps", "Marketing", "Tech Tools"],
+      "likes": [
+        {
+          "email": "user10@example.com",
+          "name": "Lucas James"
+        }
+      ]
+    },
+    {
+      "name": "3D Modeler Tool",
+      "category": "Software",
+      "price": 2599,
+      "description": "Create 3D models for your projects with this intuitive tool.",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgLgoK_QYr_tCT1D8zSWs9_yCYBVcbdCl6zQ&s",
+      "status": "approved",
+      "createdAt":  "2025-01-19T17:15:12.054+00:00",
+      "featured": false,
+      "tags": ["Software", "3D Modeling", "Tech Tools"],
+      "likes": []
+    }
+  ]
+  
