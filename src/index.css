@@ -84,13 +84,13 @@ body{
 
   /* navbar design */
 
-  .menu-hidden {
+  /* .menu-hidden {
      display: none; 
   }
   
   .menu-photo:hover .menu-hidden {
-    display: block; /* Make visible on hover */
-  }
+    display: block; 
+  } */
   
 
   .menu li {

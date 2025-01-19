@@ -1,9 +1,10 @@
 import { Link, NavLink } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [profileMenu, setProfileMenu] = useState(false);
 
   const handleSignOut = () => {
     logOut().then().catch();
@@ -17,12 +18,12 @@ const Navbar = () => {
       <li>
         <NavLink to="/all-product">All Products</NavLink>
       </li>
-
-      <li>
-        <NavLink to="/dashboard">Dashboard</NavLink>
-      </li>
     </>
   );
+
+  const handleProfileClick = ()=>{
+    setProfileMenu(!profileMenu);
+  }
 
   return (
     <div className="sticky top-0 pt-1 pb-2 z-50  bg-white dark:bg-gray-700">
@@ -47,12 +48,19 @@ const Navbar = () => {
                   <img
                     src={user?.photoURL || "https://via.placeholder.com/150"}
                     alt="Profile"
-                    className="size-10  mx-auto rounded-full ring ring-green-300 text-center"
+                    onClick={handleProfileClick}
+                    className="size-10  mx-auto rounded-full ring ring-green-300 text-center cursor-pointer hover:brightness-75"
                   />
-                  <div className="menu-hidden absolute top-full -left-1/2 transform -translate-x-1/2 bg-white p-4 rounded shadow-lg">
-                    <h2 className="text-xs text-center">
-                      Welcome {user?.displayName}
-                    </h2>
+                  <div className={`menu-hidden ${profileMenu ? "flex flex-col gap-3" : "hidden"}  absolute top-full -left-1/2 transform -translate-x-1/2 bg-white p-4 rounded shadow-lg`}>
+                    <h2 className="text-xs text-center">Welcome</h2>
+                    <p className="text-center text-sm font-bold">
+                      {user?.displayName}
+                    </p>
+
+                    <li className="list-none text-center font-bold text-blue-400">
+                      <NavLink to="/dashboard">Dashboard</NavLink>
+                    </li>
+
                     <button
                       onClick={handleSignOut}
                       className="btn bg-white px-10 hover:bg-teal-800 hover:text-white font-medium border border-green-500 mt-2"
