@@ -14,7 +14,7 @@ const Featured = () => {
   const navigate = useNavigate();
   const {user} = useAuth();
   const [ fetchAgain , setfetchagain] = useState(false);
-  const axiosPublic = useAxiosPublic();
+  const axiosPublic = useAxiosPublic(); 
 
 
   const fetchFeaturedProducts = async () => {

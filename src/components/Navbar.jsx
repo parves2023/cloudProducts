@@ -28,12 +28,12 @@ const Navbar = () => {
   return (
     <div className="sticky top-0 pt-1 pb-2 z-50  bg-white dark:bg-gray-700">
       <div className="container mx-auto">
-        <div className="navbar bg-[#EEFBF3] p-4 rounded-2xl border border-teal-300">
+        <div className="navbar bg-white p-4 rounded-2xl border-b-2">
           <div className="navbar-start">
             <div className="">
               <Link to="/" className="md:flex">
-                <h1 className="md:text-3xl text-2xl ralewayfont font-bold">
-                  Product<span className="text-indigo-600">Hunt</span>
+                <h1 className="md:text-3xl text-[#932F04] text-2xl ralewayfont font-bold">
+                  Product<span className="text-[#0E5C3E]">Hunt</span>
                 </h1>
               </Link>
             </div>

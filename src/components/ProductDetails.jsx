@@ -4,7 +4,12 @@ import Modal from "react-modal";
 import { AuthContext } from "../providers/AuthProvider";
 import { BallTriangle } from "react-loader-spinner";
 import { toast, ToastContainer } from "react-toastify";
-import useAuth from "../hooks/useAuth";
+import { motion } from "framer-motion";
+import { IoThumbsUpOutline } from "react-icons/io5";
+import useAxiosPublic from "../hooks/useAxiosPublic";
+import ReviewModal from "./review/ReviewModal";
+import ShowReview from "./review/ShowReview";
+
 
 // Set the app element for accessibility
 Modal.setAppElement("#root");
@@ -16,6 +21,8 @@ const ProductDetails = () => {
   const [loading, setLoading] = useState(true); // Loading state
   const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
   const [reportDetails, setReportDetails] = useState(""); // Report details state
+  const axiosPublic = useAxiosPublic(); 
+  const [isreviewModalOpen, setIsreviewModalOpen] = useState(false);
 
   // Fetch product details on component mount
   useEffect(() => {
@@ -87,6 +94,50 @@ const ProductDetails = () => {
     );
   }
 
+
+
+  const handleLike = async (productId, totalLikes) => {
+    try {
+      // API call to update the like count in the backend
+      const response = await axiosPublic.patch(`/products/like/${productId}`, {
+        userEmail: user.email,
+        userName: user.name,
+        likeCount: totalLikes,
+      });
+  
+      if (response.data.success) {
+        // Update the local state directly since `product` is an object
+        setProduct((prevProduct) => {
+
+          // Check if the user has already liked the product
+          const isLiked = prevProduct.likes.some(
+            (like) => like.email === user.email
+          );
+  
+          // Update the `likeCount` and `likes` array
+          return {
+            ...prevProduct,
+            likeCount: isLiked
+              ? prevProduct.likeCount - 1
+              : prevProduct.likeCount + 1,
+            likes: isLiked
+              ? prevProduct.likes.filter((like) => like.email !== user.email)
+              : [...prevProduct.likes, { email: user.email, name: user.name }],
+          };
+        });
+      } else {
+        console.error("Failed to like product");
+      }
+    } catch (error) {
+      console.error("Error liking product:", error);
+    }
+  };
+  
+  
+  
+
+
+
   // Handle product not found
   if (!product) {
     return <div className="text-center mt-10">Product not found</div>;
@@ -112,18 +163,174 @@ const ProductDetails = () => {
       <p>
         <strong>Creator Email:</strong> {product?.creatorEmail}
       </p>
+
+      <p>total Likes : {product?.likeCount}</p>
+
+      <div className="flex flex-wrap mt-2 mb-3 ">
+                {product.tags.map((tag, index) => (
+                  <span
+                    key={index}
+                    className="bg-blue-100 text-blue-600 text-xs font-semibold px-2 py-1 rounded-full mr-2"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+             
+
+
       <p className="mt-4">
         <strong>Description:</strong>
       </p>
       <p>{product.description}</p>
 
       {/* Button to open the report modal */}
+      <div>
       <button
         onClick={() => setIsModalOpen(true)}
         className="btn btn-warning text-gray-700 my-3"
       >
         Report this post
       </button>
+
+      <a
+  href={`https://${product.name
+    .split(' ') // Convert the string into an array of words
+    .map((word) => word.trim().toLowerCase()) // Trim and lowercase each word
+    .join('') // Join the words back into a single string without spaces
+  }.com`}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="btn btn-link"
+>
+  <button>
+    Visit {product.name.trim()} services
+  </button>
+</a>
+
+
+<div className="flex gap-5 mb-10 flex-row-reverse justify-end">
+  {/* //like button  */}
+{
+  user && (
+    <motion.div
+      onClick={() => handleLike(product._id,product.likes?.length)}
+      whileHover={{ scale: 1.2, rotate: -7 }}
+      whileTap={{ scale: 0.9 }}
+      style={{
+        backgroundColor: product.likes?.some((like) => like.email === user?.email)
+          ? "#3B82F6" // blue-500
+          : "#CBD5E1", // slate-300
+      }}
+      className={`${
+        product.creatorEmail !== user?.email ? "block" : "hidden"
+      } size-10 btn w-16   p-2 rounded cursor-pointer flex items-center justify-center gap-2`}
+    >
+      <IoThumbsUpOutline
+        className={`${
+          product.likes?.some((like) => like.email === user?.email)
+            ? "text-white"
+            : "text-gray-700"
+        } size-6`}
+      />
+      <span
+        className={`${
+          product.likes?.some((like) => like.email === user?.email)
+            ? "text-white"
+            : "text-gray-700"
+        } text-sm font-medium`}
+      >
+        {product.likes?.length || 0}
+      </span>
+    </motion.div>
+  )
+}
+
+<button
+  className="px-4 py-2 text-white bg-blue-500 hover:bg-blue-600 rounded-md shadow-lg transition duration-300"
+  onClick={() => setIsreviewModalOpen(true)}
+>
+  Post a Review
+</button>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<hr />
+
+
+{
+  user && <ShowReview isreviewModalOpen={isreviewModalOpen} productId={product._id} ></ShowReview>
+}
+
+
+   {/* Review Modal */}
+   <ReviewModal
+        productId={product._id}
+        user={user}
+        isOpen={isreviewModalOpen}
+        onClose={() => setIsreviewModalOpen(false)}
+      />
+
+
+
+
+
+
+      </div>
+
+
 
       {/* Report Modal */}
       <Modal

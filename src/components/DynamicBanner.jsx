@@ -33,13 +33,13 @@ const DynamicBanner = () => {
   const { backgroundColor, image } = banners[currentBanner];
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-1">
       <div
         style={{
           backgroundColor, // Dynamic background color
           transition: "background-color 1.5s ease", // Smooth transition for background color
         }}
-        className="rounded-lg min-h-[300px] md:min-h-[400px] flex flex-col md:flex-row items-center justify-between p-6 md:p-10 text-white"
+        className="rounded-lg min-h-[300px] md:min-h-[500px] flex flex-col md:flex-row items-center justify-between p-6 md:p-10 text-white"
       >
         {/* Static Left Content */}
         <div className="text-center md:text-left flex-1">

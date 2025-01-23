@@ -80,17 +80,6 @@ body{
   }
   
 
-
-
-  /* navbar design */
-
-  /* .menu-hidden {
-     display: none; 
-  }
-  
-  .menu-photo:hover .menu-hidden {
-    display: block; 
-  } */
   
 
   .menu li {
@@ -115,8 +104,8 @@ body{
   }
   
   .active{
-    color: white !important;
-    background-color: #309255 !important;
+    color: #ffeae1 !important;
+    background-color: #007c4d !important;
 }
 
 
