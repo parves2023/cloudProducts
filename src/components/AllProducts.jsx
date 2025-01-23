@@ -15,14 +15,17 @@ function AllProducts() {
   const { dataFetching, setDataFetching } = useContext(AuthContext); // Loading state context
   const [currentPage, setCurrentPage] = useState(1); // Current page number
   const [totalPages, setTotalPages] = useState(1); // Total number of pages
+  const [searchTags, setSearchTags] = useState("");
   const axiosPublic = useAxiosPublic();
   const limit = 6; // Items per page
 
   // Fetch products from the server
-  const fetchProducts = async (page) => {
+  const fetchProducts = async (page, tags = "") => {
     setDataFetching(true);
     try {
-      const response = await axiosPublic.get(`/products?page=${page}&limit=${limit}`);
+      const response = await axiosPublic.get(
+        `/products?page=${page}&limit=${limit}&tags=${tags}`
+      );
       if (response.status === 200) {
         const { products, totalPages } = response.data;
         setProducts(products);
@@ -37,6 +40,9 @@ function AllProducts() {
     }
   };
 
+
+
+
   // Fetch products on page load and page change
   useEffect(() => {
     fetchProducts(currentPage);
@@ -46,6 +52,14 @@ function AllProducts() {
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
+
+  const handleTagSearch = (e) => {
+    e.preventDefault();
+    fetchProducts(currentPage, searchTags); // Pass tags to the fetchProducts function
+    console.log(searchTags);
+    
+  };
+
 
   // Show loading spinner while fetching data
   if (dataFetching) {
@@ -113,6 +127,25 @@ function AllProducts() {
     <div className="max-w-6xl mx-auto mt-8">
       <h1 className="text-3xl font-bold text-center mb-6">All Products</h1>
 
+       <div className="flex  justify-center">
+       <form onSubmit={handleTagSearch} className="flex items-center gap-2 mb-4">
+    <label className="font-medium">Search by Tags:</label> <br />
+    <input
+      type="text"
+      placeholder="Enter tags (comma-separated)"
+      value={searchTags}
+      onChange={(e) => setSearchTags(e.target.value)}
+      className="p-2 border rounded-md focus:ring focus:ring-blue-500"
+    />
+    <button
+      type="submit"
+      className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+    >
+      Search
+    </button>
+  </form>
+       </div>
+
       {/* Product Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {products.map((product) => (
@@ -128,8 +161,21 @@ function AllProducts() {
             <h2 className="text-lg font-semibold">{product.name}</h2>
             <p className="text-sm text-gray-600 mb-2">Category: {product.category}</p>
             <p className="text-sm text-gray-600 mb-2">Price: ${product.price}</p>
+
+            <div className="flex flex-wrap mt-2 mb-3 ">
+                {product.tags.map((tag, index) => (
+                  <span
+                    key={index}
+                    className="bg-blue-100 text-blue-600 text-xs font-semibold px-2 py-1 rounded-full mr-2"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
             
-            <p className="text-sm text-gray-600 mb-4">{product.description}</p>
+              <p className="text-sm text-gray-600 mb-4">
+  {product.description.split(" ").slice(0, 5).join(" ")}...
+</p>
             <span className="text-sm text-gray-600">Total Likes: {product.likes?.length || 0}</span>
             <div className="flex items-center justify-between">
             <Link

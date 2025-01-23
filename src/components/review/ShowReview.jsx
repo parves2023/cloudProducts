@@ -35,31 +35,50 @@ const ShowReview = ({ productId ,isreviewModalOpen }) => {
     <div className="space-y-6">
       <h2 className="text-xl font-semibold">Customer Reviews</h2>
       {reviews.map((review) => (
-        <div
-          key={review._id}
-          className="p-4 border rounded-md bg-gray-50 shadow-sm"
-        >
-            <img src={review.userImg} alt="not Available" />
-          <p className="font-medium text-lg">{review.userName}</p>
-          <div className="flex items-center">
-            <Rating
-              count={5}
-              size={20}
-              value={review.rating}
-              edit={false} // Disable editing for display purposes
-              activeColor="#ffd700"
-              isHalf={true} // Support half stars if needed
-            />
-            <span className="ml-2 text-gray-600 text-sm">
-              {review.rating}/5
-            </span>
-          </div>
-          <p className="text-gray-800 mt-2">{review.review}</p>
-          <p className="text-sm text-gray-500 mt-1">
-            Reviewed on: {new Date(review.createdAt).toLocaleDateString()}
-          </p>
+  <figure
+    key={review._id}
+    className="flex flex-col md:flex-row items-center bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden mb-6"
+  >
+    {/* User Image */}
+    <img
+      className="w-24 h-24 md:w-32 md:h-32 rounded-full md:rounded-l-lg object-cover mx-auto md:mx-0"
+      src={review.userImg || "https://via.placeholder.com/150"} // Fallback image
+      alt={review.userName}
+    />
+    
+    {/* Review Content */}
+    <div className="p-6 md:p-8 flex-1">
+      <blockquote>
+        <p className="text-lg font-semibold text-gray-900 dark:text-gray-100 leading-relaxed">
+          {review.review}
+        </p>
+      </blockquote>
+      <div className="flex items-center mt-4">
+        <Rating
+          count={5}
+          size={24}
+          value={review.rating}
+          edit={false}
+          activeColor="#fbbf24"
+          isHalf={true}
+        />
+        <span className="ml-3 text-gray-600 dark:text-gray-400 text-sm font-medium">
+          {review.rating}/5
+        </span>
+      </div>
+      <figcaption className="mt-4">
+        <div className="text-sky-600 dark:text-sky-400 font-semibold text-base">
+          {review.userName}
         </div>
-      ))}
+        <div className="text-gray-500 dark:text-gray-400 text-sm">
+          Reviewed on: {new Date(review.createdAt).toLocaleDateString()}
+        </div>
+      </figcaption>
+    </div>
+  </figure>
+))}
+
+
     </div>
   );
 };
