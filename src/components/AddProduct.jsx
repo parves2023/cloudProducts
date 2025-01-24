@@ -1,9 +1,11 @@
 import { useForm } from "react-hook-form";
-import { FaProductHunt, FaServicestack, FaUtensils } from "react-icons/fa";
+import {  FaServicestack } from "react-icons/fa";
 
 import Swal from "sweetalert2";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import useAuth from "../hooks/useAuth";
+import { useState } from "react";
+import { useNavigate } from "react-router";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -12,6 +14,9 @@ const AddProduct = () => {
     const {user} = useAuth();
   const { register, handleSubmit, reset } = useForm();
   const axiosPublic = useAxiosPublic();
+  const [externalLink, setExternalLink] = useState("");
+  const [tags, setTags] = useState([]);
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     console.log(data);
@@ -27,18 +32,25 @@ const AddProduct = () => {
           "Content-Type": "multipart/form-data",
         },
       });
+      
 
       if (res.data.success) {
-        // Prepare product data with the uploaded image URL
+        // Prepare product data with the uploaded image URL and additional data
         const product = {
           name: data.name,
+          creatorName: user?.displayName,
           creatorEmail: user?.email,
+          creatorImage: user.photoURL,
           category: data.category,
           price: parseFloat(data.price),
           description: data.description,
           image: res.data.data.display_url,
           status: "pending", // Initial status
           createdAt: new Date(),
+          tags: tags, // Add tags array here
+          likeCount: 0,
+          likes: [],
+          externalLink: externalLink, // Add external link here
         };
 
         // Send product data to the server
@@ -48,6 +60,7 @@ const AddProduct = () => {
         if (productRes.data.message === "Product added successfully") {
           // Show success popup and reset form
           reset();
+          setExternalLink("");
           Swal.fire({
             position: "top-end",
             icon: "success",
@@ -55,8 +68,12 @@ const AddProduct = () => {
             showConfirmButton: false,
             timer: 1500,
           });
+          navigate("/dashboard/myproducts");
         }
       }
+
+
+      
     } catch (error) {
       console.error("Error adding product:", error);
       Swal.fire({
@@ -65,6 +82,17 @@ const AddProduct = () => {
         text: error.response?.data?.message || error.message,
       });
     }
+  };
+
+
+  const handleTagsChange = (e) => {
+    const value = e.target.value;
+    const tagsArray = value.split(",").map(tag => tag.trim()).filter(tag => tag !== "");
+    setTags(tagsArray);
+  };
+
+  const handleExternalLinkChange = (e) => {
+    setExternalLink(e.target.value);
   };
 
   return (
@@ -133,6 +161,40 @@ const AddProduct = () => {
             placeholder="Enter product description"
           ></textarea>
         </div>
+
+         {/* Tags */}
+      <div className="form-control w-full my-4">
+        <label className="label">
+          <span className="label-text">Tags</span>
+        </label>
+        <input
+          type="text"
+          className="input input-bordered w-full"
+          placeholder="Enter tags separated by commas"
+          onChange={handleTagsChange}
+        />
+        <p className="text-sm text-gray-500">Enter tags separated by commas.</p>
+      </div>
+
+      {/* External Link */}
+      <div className="form-control w-full my-4">
+        <label className="label">
+          <span className="label-text">External Link</span>
+        </label>
+        <input
+          type="url"
+          {...register("externalLink")}
+          className="input input-bordered w-full"
+          placeholder="Enter external link (if any)"
+          value={externalLink}
+          onChange={handleExternalLinkChange}
+        />
+      </div>
+
+
+
+
+
 
         {/* Image Upload */}
         <div className="form-control w-full my-4">

@@ -22,7 +22,6 @@ const Featured = () => {
       const response = await axios.get('http://localhost:5000/api/featured-products');
       if (response.headers['content-type']?.includes('application/json')) {
         setFeaturedProducts(response.data); // Assume it's an array
-        console.log("been called");
         
       } else {
         console.error('Unexpected response format:', response.data);

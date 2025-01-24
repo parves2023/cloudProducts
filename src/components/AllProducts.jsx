@@ -81,6 +81,7 @@ function AllProducts() {
   }
 
   const handleLike = async (productId, totalLikes) => {
+    
     try {
       const hasLiked = products.find((product) => product._id === productId)?.likes.some(
         (like) => like.email === user.email

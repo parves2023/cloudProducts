@@ -38,12 +38,14 @@ const ProductDetails = () => {
       } catch (error) {
         toast.error("Error fetching product details");
       } finally {
-        setLoading(false); // Stop loading spinner
+        setLoading(false);
       }
     };
 
     fetchProduct();
   }, [_id]);
+
+
 
   // Handle the report post functionality
   const handleRepostPost = async (id) => {
@@ -194,20 +196,33 @@ const ProductDetails = () => {
         Report this post
       </button>
 
-      <a
-  href={`https://${product.name
-    .split(' ') // Convert the string into an array of words
-    .map((word) => word.trim().toLowerCase()) // Trim and lowercase each word
-    .join('') // Join the words back into a single string without spaces
-  }.com`}
-  target="_blank"
-  rel="noopener noreferrer"
-  className="btn btn-link"
->
-  <button>
-    Visit {product.name.trim()} services
-  </button>
-</a>
+      {
+  product.externalLink ? (
+    <a
+      href={product.externalLink} // Use the provided external link
+      target="_blank"
+      rel="noopener noreferrer"
+      className="btn btn-link"
+    >
+      Visit External Link
+    </a>
+  ) : (
+    <a
+      href={`https://${product.name
+        .split(' ') // Convert the string into an array of words
+        .map((word) => word.trim().toLowerCase()) // Trim and lowercase each word
+        .join('') // Join the words back into a single string without spaces
+      }.com`} // Generate the URL based on product name
+      target="_blank"
+      rel="noopener noreferrer"
+      className="btn btn-link"
+    >
+      Visit Product
+    </a>
+  )
+}
+
+
 
 
 <div className="flex gap-5 mb-10 flex-row-reverse justify-end">
