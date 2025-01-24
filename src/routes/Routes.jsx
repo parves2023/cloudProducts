@@ -21,6 +21,7 @@ import ReportedPosts from "../pages/Moderator/ReportedPosts";
 import AllUsers from "../pages/Adminpages/AllUsers";
 import AllModerators from "../pages/Adminpages/Allmoderators";
 import AllAdmins from "../pages/Adminpages/AllAdmins";
+import ProfilePayment from "../pages/MyProfile/ProfilePayment";
 
 const router = createBrowserRouter([
   {
@@ -80,6 +81,10 @@ const router = createBrowserRouter([
       {
         path: "my-profile",
         element: <MyProfile></MyProfile>,
+      },
+      {
+        path: "payment",
+        element: <ProfilePayment></ProfilePayment>
       },
       {
         path: 'update-profile',
