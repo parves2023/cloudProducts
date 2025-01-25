@@ -17,7 +17,7 @@ function MyProducts() {
         const response = await axiosPublic.get('/my-products', {
           params: { email: user.email },
         });
-        console.log(response.data);
+        // console.log(response.data);
         
         setProducts(response.data);
       } catch (error) {
@@ -102,7 +102,9 @@ function MyProducts() {
             {products.map((product) => (
               <tr key={product._id} className="text-center">
                 <td className="border border-gray-300 p-2">{product.name}</td>
-                <td className="border border-gray-300 p-2">{product.likes ? product.likes : 0}</td>
+                <td className="border border-gray-300 p-2">{Array.isArray(product?.likes) ? product.likes.length : 0}</td>
+
+                {/* <td className="border border-gray-300 p-2">no like</td> */}
                 <td className="border border-gray-300 p-2">{product.status}</td>
                 <td className="border border-gray-300 p-2 space-x-2">
                   <button

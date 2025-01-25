@@ -20,7 +20,7 @@ const MyProfile = () => {
         const response = await axios.post("http://localhost:5000/check-membership-status", {
           email: user.email, // Pass the user's email from Firebase or your auth system
         });
-        console.log(response);
+        // console.log(response);
 
         if (response.data.status === "verified") {
           setIsSubscribed(true);
