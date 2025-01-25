@@ -9,6 +9,7 @@ import {
 } from "firebase/auth";
 import app from "../firebase/firebase.init";
 import { GoogleAuthProvider } from "firebase/auth";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 const provider = new GoogleAuthProvider();
 
@@ -22,11 +23,9 @@ const AuthProvider = ({ children }) => {
   const [forgotEmail, setForgotEmail] = useState("");
   const [updateimgname, setUpdateImgname] = useState(false);
   const [redirectPath, setRedirectPath] = useState(null);
+  const axiosPublic = useAxiosPublic();
 
-
-
-  const [dataFetching,setDataFetching] = useState(true);
-
+  const [dataFetching, setDataFetching] = useState(true);
 
   // useEffect(() => {
   //   console.log("Redirect Path Updated:", redirectPath);
@@ -44,7 +43,6 @@ const AuthProvider = ({ children }) => {
   const signIn = (email, password) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
-    
   };
 
   const signInGoogle = (email, password) => {
@@ -60,6 +58,22 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+
+
+      if (currentUser) {
+        // get token and store client
+        const userInfo = { email: currentUser.email };
+        axiosPublic.post("/jwt", userInfo).then((res) => {
+          if (res.data.token) {
+            localStorage.setItem("access-token", res.data.token);
+          }
+        });
+      } else {
+        // TODO: remove token (if token stored in the client side: Local storage, caching, in memory)
+        localStorage.removeItem("access-token");
+      }
+
+
       setLoading(false);
     });
     return () => {
@@ -81,8 +95,9 @@ const AuthProvider = ({ children }) => {
     logOut,
     redirectPath,
     setRedirectPath,
-    
-    dataFetching,setDataFetching
+
+    dataFetching,
+    setDataFetching,
   };
 
   return (

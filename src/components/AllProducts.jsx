@@ -163,16 +163,21 @@ function AllProducts() {
             <p className="text-sm text-gray-600 mb-2">Category: {product.category}</p>
             <p className="text-sm text-gray-600 mb-2">Price: ${product.price}</p>
 
-            <div className="flex flex-wrap mt-2 mb-3 ">
-                {product.tags.map((tag, index) => (
-                  <span
-                    key={index}
-                    className="bg-blue-100 text-blue-600 text-xs font-semibold px-2 py-1 rounded-full mr-2"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
+            <div className="flex flex-wrap mt-2 mb-3">
+  {Array.isArray(product.tags) && product.tags.length > 0 ? (
+    product.tags.map((tag, index) => (
+      <span
+        key={index}
+        className="bg-blue-100 text-blue-600 text-xs font-semibold px-2 py-1 rounded-full mr-2"
+      >
+        {tag}
+      </span>
+    ))
+  ) : (
+    <span>No tags available</span>
+  )}
+</div>
+
             
               <p className="text-sm text-gray-600 mb-4">
   {product.description.split(" ").slice(0, 5).join(" ")}...

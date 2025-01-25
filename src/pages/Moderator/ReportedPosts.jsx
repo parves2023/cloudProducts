@@ -24,10 +24,9 @@ function ReportedPosts() {
         setLoading(false);
       }
     };
-  
+
     fetchReportedPosts();
   }, []);
-  
 
   const handleDeleteReport = async (productId, reportIndex) => {
     try {
@@ -48,7 +47,9 @@ function ReportedPosts() {
             product._id === productId
               ? {
                   ...product,
-                  reports: product.reports.filter((_, index) => index !== reportIndex),
+                  reports: product.reports.filter(
+                    (_, index) => index !== reportIndex
+                  ),
                 }
               : product
           )
@@ -65,9 +66,12 @@ function ReportedPosts() {
 
   const handleDeletePost = async (productId) => {
     try {
-      const response = await fetch(`http://localhost:5000/products/${productId}`, {
-        method: "DELETE",
-      });
+      const response = await fetch(
+        `http://localhost:5000/products/${productId}`,
+        {
+          method: "DELETE",
+        }
+      );
 
       if (response.ok) {
         setReportedPosts((prev) =>
@@ -97,52 +101,75 @@ function ReportedPosts() {
       <table className="table-auto w-full border-collapse border border-gray-300">
         <thead>
           <tr className="bg-gray-200">
-            <th className="border border-gray-300 px-4 py-2">Product Name</th>
+            <th className="border border-gray-300 px-4 py-2">Product Image</th>
+            <th className="border border-gray-300 px-4 py-2">Name</th>
             <th className="border border-gray-300 px-4 py-2">Reports</th>
             <th className="border border-gray-300 px-4 py-2">Actions</th>
           </tr>
         </thead>
         <tbody>
-          {reportedPosts.map((product) => (
-            <tr key={product._id}>
-              <td
-              className="border cursor-pointer flex flex-col text-center border-gray-300 px-4 py-2"> <br /> <img src={`${product.image}`} className="size-36 rounded-sm mx-auto" alt="asdf" /> <p>{product.name}</p> <button
-              onClick={()=>{
-              navigate(`/details/${product._id}`)
-              }}
-              className="btn btn-primary">View Details</button></td>
-              <td className="border border-gray-300 px-4 py-2">
-                {product.reports.map((report, index) => (
-                  <div
-                    key={index}
-                    className="p-2 bg-gray-100 rounded mb-2 shadow-sm"
-                  >
-                    <p>
-                      <strong>Reported By:</strong> {report.reportedBy}
-                    </p>
-                    <p>
-                      <strong>Details:</strong> {report.reportDetails}
-                    </p>
-                    <button
-                      onClick={() => handleDeleteReport(product._id, index)}
-                      className="text-red-500 underline mt-2"
-                    >
-                      Delete Report
-                    </button>
-                  </div>
-                ))}
-              </td>
-              <td className="border border-gray-300 px-4 py-2">
-                <button
-                  onClick={() => handleDeletePost(product._id)}
-                  className="bg-red-500 text-white px-3 py-1 rounded"
-                >
-                  Delete Post
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
+  {reportedPosts.map((product) => (
+    <tr key={product._id} className="hover:bg-gray-50">
+      {/* Image Column */}
+      <td className="border border-gray-300 px-4 py-2 text-center">
+        <img
+          src={`${product.image}`}
+          className="size-28 object-cover rounded-sm mx-auto"
+          alt={product.name}
+        />
+      </td>
+
+      {/* Name Column */}
+      <td className="border border-gray-300 px-4 py-2 text-center">
+        <p>{product.name}</p>
+      </td>
+
+      {/* Reports Column */}
+      <td className="border border-gray-300 px-4 py-2">
+        {product.reports.map((report, index) => (
+          <div
+            key={index}
+            className="p-2 bg-gray-100 rounded mb-2 shadow-sm"
+          >
+            <p>
+              <strong>Reported By:</strong> {report.reportedBy}
+            </p>
+            <p>
+              <strong>Details:</strong>{" "}
+              {report.reportDetails.split(" ").slice(0, 10).join(" ")}...
+            </p>
+            <button
+              onClick={() => handleDeleteReport(product._id, index)}
+              className="text-red-500 underline mt-2"
+            >
+              Delete Report
+            </button>
+          </div>
+        ))}
+      </td>
+
+      {/* Actions Column */}
+      <td className="border border-gray-300 px-4 py-2 text-center">
+        <div className="flex flex-col gap-2">
+          <button
+            onClick={() => navigate(`/details/${product._id}`)}
+            className="btn btn-primary"
+          >
+            View Details
+          </button>
+          <button
+            onClick={() => handleDeletePost(product._id)}
+            className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+          >
+            Delete Post
+          </button>
+        </div>
+      </td>
+    </tr>
+  ))}
+</tbody>
+
+
       </table>
       <ToastContainer />
     </div>

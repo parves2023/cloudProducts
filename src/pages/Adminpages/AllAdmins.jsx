@@ -2,17 +2,21 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 function AllAdmins() {
   const [admins, setAdmins] = useState([]);
   const [loading, setLoading] = useState(true);
   const { user } = useAuth();
   const [editingAdminId, setEditingAdminId] = useState(null);
+  const axiosSecure = useAxiosSecure();
+
+
 
   useEffect(() => {
     const fetchAdmins = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/users", {
+        const response = await axiosSecure.get("/users", {
           params: { role: "admin" }, // Server filters admins by role
         });
         setAdmins(response.data || []); // Ensure admins is an array
@@ -25,6 +29,14 @@ function AllAdmins() {
 
     fetchAdmins();
   }, []);
+
+
+
+
+
+
+
+
 
   const updateAdminRole = async (adminId, newRole) => {
     const selectedAdmin = admins.find((admin) => admin._id === adminId);
@@ -39,7 +51,7 @@ function AllAdmins() {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axios.patch(`http://localhost:5000/users/${adminId}`, {
+          await axiosSecure.patch(`/users/${adminId}`, {
             role: newRole,
           });
           setAdmins((prevAdmins) =>
@@ -65,53 +77,71 @@ function AllAdmins() {
     <div className="p-4">
       <h1 className="text-2xl font-bold mb-4">All Admins</h1>
       {admins && admins.length > 0 ? (
-        <ul>
-          {admins.map((admin) => (
-            <li
-              key={admin._id}
-              className="p-2 border rounded mb-2 flex items-center gap-4"
-            >
-              <img
-                src={admin.photo}
-                alt={admin.name}
-                className="w-10 h-10 rounded-full"
-              />
-              <div className="flex justify-between w-full items-center">
-                <div className="flex-1">
-                  <p>
-                    <strong>Name:</strong> {admin.name}
-                  </p>
-                  <p>
-                    <strong>Email:</strong> {admin.email}
-                  </p>
-                  <p>
-                    <strong>Role:</strong> {admin.role}
-                  </p>
-                </div>
-                {admin.email === user.email ? (
-                  <p className="btn btn-outline">Your Account</p>
-                ) : editingAdminId === admin._id ? (
-                  <select
-                    className="select select-bordered"
-                    onChange={(e) => updateAdminRole(admin._id, e.target.value)}
-                    defaultValue={admin.role}
-                  >
-                    <option value="user">User</option>
-                    <option value="moderator">Moderator</option>
-                    <option value="admin">Admin</option>
-                  </select>
-                ) : (
-                  <button
-                    className="btn btn-primary"
-                    onClick={() => setEditingAdminId(admin._id)}
-                  >
-                    Change Role
-                  </button>
-                )}
-              </div>
-            </li>
-          ))}
-        </ul>
+        <div className="overflow-x-auto">
+  <table className="table-auto border-collapse w-full text-left">
+    <thead>
+      <tr className="bg-gray-200">
+        <th className="border p-3">Image</th>
+        <th className="border p-3">Name</th>
+        <th className="border p-3">Email</th>
+        <th className="border p-3">Role</th>
+        <th className="border p-3">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {admins.map((admin) => (
+        <tr key={admin._id} className="hover:bg-gray-100">
+          {/* Image Column */}
+          <td className="border p-3 text-center">
+            <img
+              src={admin.photo}
+              alt={admin.name}
+              className="w-10 h-10 rounded-full mx-auto"
+            />
+          </td>
+
+          {/* Name Column */}
+          <td className="border p-3">{admin.name}</td>
+
+          {/* Email Column */}
+          <td className="border p-3">{admin.email}</td>
+
+          {/* Role Column */}
+          <td className="border p-3">
+            {admin.email === user.email ? (
+              <span className="text-green-500 font-semibold">Your Account</span>
+            ) : editingAdminId === admin._id ? (
+              <select
+                className="select select-bordered"
+                onChange={(e) => updateAdminRole(admin._id, e.target.value)}
+                defaultValue={admin.role}
+              >
+                <option value="user">User</option>
+                <option value="moderator">Moderator</option>
+                <option value="admin">Admin</option>
+              </select>
+            ) : (
+              admin.role
+            )}
+          </td>
+
+          {/* Actions Column */}
+          <td className="border p-3">
+            {admin.email !== user.email && (
+              <button
+                className="btn btn-primary"
+                onClick={() => setEditingAdminId(admin._id)}
+              >
+                {editingAdminId === admin._id ? "Save Role" : "Change Role"}
+              </button>
+            )}
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
       ) : (
         <p>No admins found.</p>
       )}
