@@ -37,11 +37,11 @@ function AcceptedPosts() {
               : product
           )
         );
-        console.log(
-          `Product ${
-            !isFeatured ? "marked as featured" : "unmarked as featured"
-          } successfully`
-        );
+        // console.log(
+        //   `Product ${
+        //     !isFeatured ? "marked as featured" : "unmarked as featured"
+        //   } successfully`
+        // );
       } else {
         console.error(
           `Failed to ${!isFeatured ? "mark as featured" : "unmark as featured"}`

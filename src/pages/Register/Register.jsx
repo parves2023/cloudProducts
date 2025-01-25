@@ -18,7 +18,7 @@ const Register = () => {
   const [passwordError, setPasswordError] = useState("");
 
   const handleImageUpload = (imgURL) => {
-    console.log("Uploaded ImgBB URL:", imgURL);
+    // console.log("Uploaded ImgBB URL:", imgURL);
     setFormData((prev) => ({ ...prev, countryImage: imgURL }));
   };
 

@@ -34,12 +34,12 @@ const Login = () => {
 
     signIn(email, password)
       .then((result) => {
-        console.log("User signed in successfully:", result);
+        // console.log("User signed in successfully:", result);
         setError("");
         setLoading(false);
       })
       .catch((error) => {
-        console.log("Sign-in error:", error.message);
+        // console.log("Sign-in error:", error.message);
         if (error.message.includes("auth/user-not-found")) {
           setError("No user found with this email.");
         } else if (error.message.includes("auth/wrong-password")) {
@@ -60,17 +60,17 @@ const Login = () => {
 
     ForgotPassword(email)
       .then(() => {
-        console.log("Password reset email sent successfully.");
+        // console.log("Password reset email sent successfully.");
         navigate("/forgotpass");
       })
       .catch((error) => {
-        console.log("Error resetting password:", error.message);
+        // console.log("Error resetting password:", error.message);
         setError(error.message);
       });
   };
 
   useEffect(() => {
-    console.log(redirectPath);
+    // console.log(redirectPath);
     if (user) {
       const destination = redirectPath || "/";
       navigate(destination, { replace: true });

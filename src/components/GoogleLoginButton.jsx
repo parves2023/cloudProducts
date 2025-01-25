@@ -23,9 +23,9 @@ const GoogleLoginButton = ({ signInGoogle }) => {
           });
     
           if (response.status === 201) {
-            console.log("User registered successfully:", response.data.user);
+            // console.log("User registered successfully:", response.data.user);
           } else if (response.status === 200) {
-            console.log("User already exists:", response.data.user);
+            // console.log("User already exists:", response.data.user);
           }
     
           navigate(location?.state ? location.state : "/");
