@@ -3,6 +3,8 @@ import Slider from "../../components/Slider";
 import DynamicBanner from "../../components/DynamicBanner";
 import Featured from "../../components/Fetured";
 import TrendingProducts from "../../components/TrendingProducts";
+import Coupon from "../Adminpages/Coupon";
+import CouponSlider from "./CouponSlider";
 
 
 const Home = () => {
@@ -14,6 +16,7 @@ const Home = () => {
       <DynamicBanner></DynamicBanner>
       <Featured></Featured>
       <TrendingProducts></TrendingProducts>
+      <CouponSlider></CouponSlider>
       </div>
     </div>
   );

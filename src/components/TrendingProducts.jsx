@@ -75,7 +75,7 @@ function TrendingProducts() {
             <img
               src={product.image}
               alt={product.name}
-              className="w-full h-32 md:h-28 object-cover rounded mb-4"
+              className="w-full h-48  object-cover rounded mb-4"
             />
             <h2 className="text-lg font-semibold">{product.name}</h2>
             <p className="text-sm text-gray-600 mb-2">Category: {product.category}</p>

@@ -23,6 +23,7 @@ import AllModerators from "../pages/Adminpages/Allmoderators";
 import AllAdmins from "../pages/Adminpages/AllAdmins";
 import ProfilePayment from "../pages/MyProfile/ProfilePayment";
 import Statistics from "../pages/Adminpages/Statistics";
+import Coupon from "../pages/Adminpages/Coupon";
 
 const router = createBrowserRouter([
   {
@@ -122,6 +123,10 @@ const router = createBrowserRouter([
       {
         path: 'statistics',
         element: <Statistics></Statistics>
+      },
+      {
+        path: 'cupon',
+        element: <Coupon></Coupon>
       }
     ],
   },
