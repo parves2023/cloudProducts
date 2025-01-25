@@ -17,6 +17,8 @@ function MyProducts() {
         const response = await axiosPublic.get('/my-products', {
           params: { email: user.email },
         });
+        console.log(response.data);
+        
         setProducts(response.data);
       } catch (error) {
         console.error('Error fetching products:', error);
