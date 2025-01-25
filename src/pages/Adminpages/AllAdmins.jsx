@@ -96,7 +96,7 @@ function AllAdmins() {
             <img
               src={admin.photo}
               alt={admin.name}
-              className="w-10 h-10 rounded-full mx-auto"
+              className="w-10 h-10 object-cover rounded-full mx-auto"
             />
           </td>
 

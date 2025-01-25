@@ -14,6 +14,7 @@ const ShowReview = ({ productId ,isreviewModalOpen }) => {
         );
         if (response.data.success) {
           setReviews(response.data.reviews);
+          console.log(reviews);
         } else {
           
         }

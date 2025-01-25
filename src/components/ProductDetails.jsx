@@ -31,6 +31,8 @@ const ProductDetails = () => {
         const response = await fetch(`http://localhost:5000/products/${_id}`);
         if (response.ok) {
           const data = await response.json();
+          // console.log(data);
+          
           setProduct(data); // Set product data
         } else {
           toast.error("Failed to fetch product details");

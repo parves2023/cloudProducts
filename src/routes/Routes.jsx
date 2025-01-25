@@ -73,6 +73,10 @@ const router = createBrowserRouter([
     ),
     children: [
       {
+        path: "",
+        element: <MyProfile></MyProfile>,
+      },
+      {
         path: "addproduct",
         element: <AddProduct></AddProduct>,
       },

@@ -12,7 +12,7 @@ const MainLayout = () => {
             <Navbar></Navbar>
             <Outlet></Outlet>
             <Footer></Footer>
-            <ScrollToTop smooth component={<FaArrowAltCircleUp className="text-green-600 text-3xl" />} />
+            <ScrollToTop smooth component={<FaArrowAltCircleUp className="text-[#135D66] text-3xl" />} />
         </div>
     );
 };

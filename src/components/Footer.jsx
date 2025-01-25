@@ -13,7 +13,7 @@ import { Link } from "react-router";
 
 const Footer = () => {
   return (
-    <footer className="bg-blue-100/80 font-sans dark:bg-gray-900">
+    <footer className="bg-[#d6f0e7] font-sans dark:bg-gray-900">
       <div className="container px-6 py-12 mx-auto">
         <motion.div
           initial={{ opacity: 0 }}
@@ -31,7 +31,7 @@ const Footer = () => {
             <br />
             <br />
 
-            <h1 className="max-w-lg text-xl font-semibold tracking-tight text-gray-800 xl:text-2xl dark:text-white">
+            <h1 className="max-w-lg text-xl font-semibold tracking-tight text-[#135D66] xl:text-2xl dark:text-white">
               Subscribe to our newsletter to get updates.
             </h1>
             <div className="flex flex-col mx-auto mt-6 space-y-3 md:space-y-0 md:flex-row">
@@ -45,7 +45,7 @@ const Footer = () => {
               />
               <motion.button
                 whileHover={{ scale: 1.1 }}
-                className="w-full px-6 py-2.5 text-sm font-medium tracking-wider text-white transition-colors duration-300 transform md:w-auto md:mx-4 focus:outline-none bg-gray-800 rounded-lg hover:bg-gray-700 focus:ring focus:ring-gray-300 focus:ring-opacity-80"
+                className="w-full px-6 py-2.5 text-sm font-medium tracking-wider text-white transition-colors duration-300 transform md:w-auto md:mx-4 focus:outline-none bg-[#135D66] rounded-lg hover:bg-gray-700 focus:ring focus:ring-gray-300 focus:ring-opacity-80"
               >
                 Subscribe
               </motion.button>

@@ -79,7 +79,7 @@ const Featured = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-64">
+      <div className="flex justify-center items-center h-64 text-[#135D66]">
         <p className="text-gray-500 text-lg">Loading featured products...</p>
       </div>
     );
@@ -94,13 +94,13 @@ const Featured = () => {
   }
 
   return (
-    <div className="bg-gray-50 py-8 px-4 sm:px-6 lg:px-8 container mx-auto">
-      <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">Featured Products</h2>
+    <div className="bg-white py-8 px-4 sm:px-6 lg:px-8 container mx-auto">
+      <h2 className="text-2xl font-bold  text-center mb-6 text-[#135D66]">Featured Products</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {featuredProducts.map((product) => (
           <div
             key={product._id}
-            className="bg-white shadow-md rounded-lg overflow-hidden transform transition duration-300 hover:scale-105"
+            className="bg-[#faffff] shadow-md rounded-lg overflow-hidden transform transition duration-300 hover:scale-105"
           >
             <img
               src={product.image}
@@ -109,16 +109,16 @@ const Featured = () => {
             />
             <div className="p-4 flex flex-col justify-end w-auto h-auto">
               <div className='flex-col '>
-              <h3 className="text-lg font-semibold text-gray-700">
+              <h3 className="text-lg font-semibold text-[#003C43]">
                 {product.name}
               </h3>
-              <p className="text-gray-500">{product.category}</p>
-              <p className="text-gray-800 mt-2">${product.price}</p>
+              <p className="text-[#135D66]">{product.category}</p>
+              <p className="text-[#946220] mt-2">${product.price}</p>
               <div className="flex flex-wrap mt-2 mb-3 ">
                 {product.tags.map((tag, index) => (
                   <span
                     key={index}
-                    className="bg-blue-100 text-blue-600 text-xs font-semibold px-2 py-1 rounded-full mr-2"
+                    className="bg-[#E3FEF7] text-[#003C43] text-xs font-semibold px-2 py-1 rounded-full mr-2"
                   >
                     {tag}
                   </span>
@@ -135,7 +135,7 @@ const Featured = () => {
               <button
               type="submit"
               onClick={() => navigate(`/details/${product._id}`)}
-              className="flex justify-center border-emerald-700 gap-2 items-center ml-2 shadow-xl text-xs bg-gray-300 text-black backdrop-blur-md lg:font-semibold isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-emerald-800 hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-2 py-1 overflow-hidden border-2 rounded-full group active:scale-95 active:bg-gray-200 transition duration-300"
+              className="flex justify-center border-[#135D66] gap-2 items-center ml-2 shadow-xl text-xs bg-gray-300 text-black backdrop-blur-md lg:font-semibold isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-[#135D66] hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-2 py-1 overflow-hidden border-2 rounded-full group active:scale-95 active:bg-gray-200 transition duration-300"
             >
               View Details
               <svg
@@ -157,7 +157,7 @@ const Featured = () => {
   !user && 
     <motion.div
     onClick={() => navigate("/login")}
-      whileHover={{ backgroundColor: "#E5E7EB" }}
+      whileHover={{ backgroundColor: "#135D66" }}
       whileTap={{ scale: 0.9 }}
     ><div className='flex items-center'>
     <UpvoteButton  ></UpvoteButton>
@@ -176,7 +176,7 @@ const Featured = () => {
       whileTap={{ scale: 0.9 }}
       style={{
         backgroundColor: product.likes?.some((like) => like.email === user?.email)
-          ? "#3B82F6" // blue-500
+          ? "#135D66" // blue-500
           : "#CBD5E1", // slate-300
       }}
       className={`${

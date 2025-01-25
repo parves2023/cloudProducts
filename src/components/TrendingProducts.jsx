@@ -63,76 +63,108 @@ function TrendingProducts() {
 
   return (
     <div className="max-w-6xl mx-auto my-8">
-      <h2 className="text-3xl font-bold text-center mb-6">Trending Products</h2>
+      <h2 className="text-3xl font-bold text-center mb-6 text-[#135D66]">Trending Products</h2>
 
       {/* Product Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {trendingProducts.map((product) => (
           <div
-            key={product._id}
-            className="border flex flex-col justify-between p-4 rounded shadow hover:shadow-lg transition"
+  key={product._id}
+  className="bg-[#faffff] shadow-md rounded-lg overflow-hidden transform transition duration-300 hover:scale-105"
+>
+  <img
+    src={product.image}
+    alt={product.name}
+    className="w-full h-48 object-cover"
+  />
+  <div className="p-4 flex flex-col justify-end w-auto h-auto">
+    <div className="flex-col">
+      <h3 className="text-lg font-semibold text-[#003C43]">
+        {product.name}
+      </h3>
+      <p className="text-[#135D66]">Category: {product.category}</p>
+      <p className="text-[#946220] mt-2" >Price: ${product.price}</p>
+      <p className="text-[#135D66] mt-2" >Description: ${product.description}</p>
+      <div className="flex flex-wrap mt-2 mb-3">
+        {product.tags.map((tag, index) => (
+          <span
+            key={index}
+            className="bg-[#E3FEF7] text-[#003C43] text-xs font-semibold px-2 py-1 rounded-full mr-2"
           >
-            <img
-              src={product.image}
-              alt={product.name}
-              className="w-full h-48  object-cover rounded mb-4"
-            />
-            <h2 className="text-lg font-semibold">{product.name}</h2>
-            <p className="text-sm text-gray-600 mb-2">Category: {product.category}</p>
-            <p className="text-sm text-gray-600 mb-2">Price: ${product.price}</p>
-            <p className="text-sm text-gray-600 mb-4">{product.description}</p>
-            <span className="text-sm text-gray-600">Total Likes: {product.likes?.length || 0}</span>
-            <div className="flex items-center justify-between">
-              <Link
-                to={`/details/${product._id}`}
-                className="mt-2 bg-green-500 flex-1 text-white px-4 py-2 rounded hover:bg-green-600"
-              >
-                View Details
-              </Link>
+            {tag}
+          </span>
+        ))}
+      </div>
+    </div>
 
-              {user ? (
-                <motion.div
-                  onClick={() => handleLike(product._id,product.likes?.length)}
-                  whileHover={{ scale: 1.2, rotate: -7 }}
-                  whileTap={{ scale: 0.9 }}
-                  style={{
-                    backgroundColor: product.likes?.some(
-                      (like) => like.email === user?.email
-                    )
-                      ? "#3B82F6"
-                      : "#CBD5E1",
-                  }}
-                  className="size-10 w-16 mt-2 ml-2 p-2 rounded cursor-pointer flex items-center justify-center gap-2"
-                >
-                  <IoThumbsUpOutline
-                    className={`${
-                      product.likes?.some((like) => like.email === user?.email)
-                        ? "text-white"
-                        : "text-gray-700"
-                    } size-6`}
-                  />
-                  <span
-                    className={`${
-                      product.likes?.some((like) => like.email === user?.email)
-                        ? "text-white"
-                        : "text-gray-700"
-                    } text-sm font-medium`}
-                  >
-                    {product.likes?.length || 0}
-                  </span>
-                </motion.div>
-              ) : (
-                <motion.div
-                  onClick={() => navigate("/login")}
-                  whileHover={{ scale: 1.2, rotate: -7 }}
-                  whileTap={{ scale: 0.9 }}
-                  className="bg-slate-300 size-10 mt-2 ml-2 p-1 rounded cursor-pointer flex items-center justify-center"
-                >
-                  <IoThumbsUpOutline className="text-gray-700 size-10" />
-                </motion.div>
-              )}
-            </div>
+    <div className="flex justify-between mt-auto">
+      <button
+        type="submit"
+        onClick={() => navigate(`/details/${product._id}`)}
+        className="flex justify-center border-[#135D66] gap-2 items-center ml-2 shadow-xl text-xs bg-gray-300 text-black backdrop-blur-md lg:font-semibold isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-[#135D66] hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-2 py-1 overflow-hidden border-2 rounded-full group active:scale-95 active:bg-gray-200 transition duration-300"
+      >
+        View Details
+        <svg
+          className="w-5 h-5 hidden md:flex justify-end group-hover:rotate-90 group-hover:bg-gray-50 text-gray-50 ease-linear duration-300 rounded-full border border-gray-700 group-hover:border-none p-1 rotate-45"
+          viewBox="0 0 16 19"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658 -0.0976311 7.68342 -0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z"
+            className="fill-gray-800 group-hover:fill-gray-800"
+          ></path>
+        </svg>
+      </button>
+
+      {!user ? (
+        <motion.div
+          onClick={() => navigate("/login")}
+          whileHover={{ backgroundColor: "#135D66" }}
+          whileTap={{ scale: 0.9 }}
+        >
+          <div className="flex items-center">
+            <UpvoteButton />
+            <h1 className="btn">{product.likes?.length || 0}</h1>
           </div>
+        </motion.div>
+      ) : (
+        <motion.div
+          onClick={() => handleLike(product._id, product.likes?.length)}
+          whileHover={{ scale: 1.2, rotate: -7 }}
+          whileTap={{ scale: 0.9 }}
+          style={{
+            backgroundColor: product.likes?.some(
+              (like) => like.email === user?.email
+            )
+              ? "#135D66"
+              : "#CBD5E1",
+          }}
+          className={`${
+            product.creatorEmail !== user?.email ? "block" : "hidden"
+          } size-10 w-16 mt-2 ml-2 p-2 rounded cursor-pointer flex items-center justify-center gap-2`}
+        >
+          <IoThumbsUpOutline
+            className={`${
+              product.likes?.some((like) => like.email === user?.email)
+                ? "text-white"
+                : "text-gray-700"
+            } size-6`}
+          />
+          <span
+            className={`${
+              product.likes?.some((like) => like.email === user?.email)
+                ? "text-white"
+                : "text-gray-700"
+            } text-sm font-medium`}
+          >
+            {product.likes?.length || 0}
+          </span>
+        </motion.div>
+      )}
+    </div>
+  </div>
+</div>
+
         ))}
       </div>
 
@@ -140,7 +172,7 @@ function TrendingProducts() {
       <div className="flex justify-center mt-6">
         <button
           onClick={() => navigate("/all-product")}
-          className="px-6 py-3 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600"
+          className="px-6 py-3 bg-[#135D66] text-white rounded-lg shadow-md hover:bg-[#003C43]"
         >
           Show All Products
         </button>

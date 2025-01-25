@@ -126,7 +126,7 @@ function AllProducts() {
 
   return (
     <div className="max-w-6xl mx-auto mt-8">
-      <h1 className="text-3xl font-bold text-center mb-6">All Products</h1>
+      <h1 className="text-3xl font-bold text-center mb-6 text-[#135D66]">All Products</h1>
 
        <div className="flex  justify-center">
        <form onSubmit={handleTagSearch} className="flex items-center gap-2 mb-4">
@@ -140,7 +140,7 @@ function AllProducts() {
     />
     <button
       type="submit"
-      className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+      className="px-4 py-2 bg-[#135D66] text-white rounded-md hover:bg-[#0e444b]"
     >
       Search
     </button>
@@ -159,16 +159,19 @@ function AllProducts() {
               alt={product.name}
               className="w-full h-48 object-cover rounded mb-4"
             />
-            <h2 className="text-lg font-semibold">{product.name}</h2>
-            <p className="text-sm text-gray-600 mb-2">Category: {product.category}</p>
-            <p className="text-sm text-gray-600 mb-2">Price: ${product.price}</p>
+             <h3 className="text-lg font-semibold text-[#003C43]">
+                {product.name}
+              </h3>
+              <p className="text-[#135D66]">{product.category}</p>
+              <p className="text-[#946220] mt-2">${product.price}</p>
+              
 
             <div className="flex flex-wrap mt-2 mb-3">
   {Array.isArray(product.tags) && product.tags.length > 0 ? (
     product.tags.map((tag, index) => (
       <span
         key={index}
-        className="bg-blue-100 text-blue-600 text-xs font-semibold px-2 py-1 rounded-full mr-2"
+         className="bg-[#E3FEF7] text-[#003C43] text-xs font-semibold px-2 py-1 rounded-full mr-2"
       >
         {tag}
       </span>
@@ -179,14 +182,15 @@ function AllProducts() {
 </div>
 
             
-              <p className="text-sm text-gray-600 mb-4">
+              <p className="text-sm text-[#003C43] mb-4">
   {product.description.split(" ").slice(0, 5).join(" ")}...
 </p>
-            <span className="text-sm text-gray-600">Total Likes: {product.likes?.length || 0}</span>
+            <span className="text-sm text-[#003C43]">Total Likes: {product.likes?.length || 0}</span>
             <div className="flex items-center justify-between">
             <Link
               to={`/details/${product._id}`}
-              className="mt-2 bg-green-500 flex-1 text-white px-4 py-2 rounded hover:bg-green-600"
+              className="mt-2 bg-[#135D66] flex-1 text-white px-4 py-2 rounded hover:bg-[#003C43]"
+            
             >
               View Details
             </Link>
@@ -200,7 +204,7 @@ function AllProducts() {
       whileTap={{ scale: 0.9 }}
       style={{
         backgroundColor: product.likes?.some((like) => like.email === user?.email)
-          ? "#3B82F6" // blue-500
+          ? "#135D66" // blue-500
           : "#CBD5E1", // slate-300
       }}
       className={`${
@@ -254,7 +258,7 @@ function AllProducts() {
             onClick={() => handlePageChange(index + 1)}
             className={`px-4 py-2 mx-1 rounded ${
               currentPage === index + 1
-                ? "bg-green-500 text-white"
+                ? "bg-[#135D66] text-white"
                 : "bg-gray-200 text-gray-700 hover:bg-gray-300"
             }`}
           >

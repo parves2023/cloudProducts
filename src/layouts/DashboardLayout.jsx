@@ -11,7 +11,10 @@ import {
 import useAuth from "../hooks/useAuth";
 import { useEffect, useState } from "react";
 import useAxiosPublic from "../hooks/useAxiosPublic";
-import { FaPooStorm } from "react-icons/fa6";
+import { FaPooStorm, FaUsersGear } from "react-icons/fa6";
+import { BsGraphUpArrow } from "react-icons/bs";
+import { IoIosAddCircleOutline } from "react-icons/io";
+import { GrUserAdmin, GrUserExpert } from "react-icons/gr";
 
 const DashboardLayout = () => {
   const [moderator, setModerator] = useState(false);
@@ -126,33 +129,37 @@ const DashboardLayout = () => {
                 to="/dashboard/statistics"
                 className="flex items-center gap-3 text-gray-300 hover:text-white hover:bg-gray-700 p-2 rounded"
               >
-                <FaCrosshairs className="text-xl" /> Statistics
+              
+                <BsGraphUpArrow className="text-xl" /> Statistics
               </Link>
               <Link
                 to="/dashboard/cupon"
                 className="flex items-center gap-3 text-gray-300 hover:text-white hover:bg-gray-700 p-2 rounded"
               >
-                <FaCrosshairs className="text-xl" /> Add Coupon
+             
+                <IoIosAddCircleOutline className="text-xl" /> Add Coupon
               </Link>
               <Link
                 to="/dashboard/all-users"
                 className="flex items-center gap-3 text-gray-300 hover:text-white hover:bg-gray-700 p-2 rounded"
               >
-                <FaCrosshairs className="text-xl" /> All Users
+                
+                <FaUsersGear className="text-xl" /> All Users
               </Link>
 
               <Link
             to="/dashboard/all-modetators"
             className="flex items-center gap-3 text-gray-300 hover:text-white hover:bg-gray-700 p-2 rounded"
           >
-            <FaCrosshairs className="text-xl" /> Modarators
+            
+            <GrUserExpert className="text-xl" /> Moderator
           </Link>
 
           <Link
             to="/dashboard/all-admins"
             className="flex items-center gap-3 text-gray-300 hover:text-white hover:bg-gray-700 p-2 rounded"
           >
-            <FaCrosshairs className="text-xl" /> Admins
+            <GrUserAdmin  className="text-xl" /> Admins
           </Link>
 
             </>

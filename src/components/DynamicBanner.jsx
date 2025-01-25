@@ -3,12 +3,12 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const banners = [
   {
-    backgroundColor: "#A33B20", // Example color
+    backgroundColor: "#135D66", // Example color
     image:
       "https://workreap.amentotech.com/wp-content/uploads/2024/04/img-06-768x539.png",
   },
   {
-    backgroundColor: "#1E824C", // Example color
+    backgroundColor: "#754E1A", // Example color
     image:
       "https://workreap.amentotech.com/wp-content/uploads/2024/04/freelance-image01-600x445.png",
   },

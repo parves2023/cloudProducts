@@ -58,7 +58,7 @@ const copyCouponCode = (code) => {
 
   return (
     <div className="my-8 w-full bg-gray-100 p-6 rounded-lg shadow-lg">
-      <h2 className="text-2xl font-bold text-center mb-6">Trending Coupons</h2>
+      <h2 className="text-2xl font-bold text-center mb-6 text-[#135D66]">Trending Coupons</h2>
       {groupedCoupons.length > 0 ? (
         <Carousel
           showThumbs={false}
@@ -73,34 +73,34 @@ const copyCouponCode = (code) => {
         >
           {/* Render grouped coupons */}
           {groupedCoupons.map((group, index) => (
-            <div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {group.map((coupon) => (
-                <div
-                  key={coupon._id}
-                  className="bg-white shadow-lg rounded-lg p-6 text-center"
+            <div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {group.map((coupon) => (
+              <div
+                key={coupon._id}
+                className="bg-[#fcfffd] relative shadow-md rounded-lg p-6 transition-transform transform hover:scale-105"
+              >
+                <button
+                  onClick={() => copyCouponCode(coupon.code)}
+                  className="absolute right-4 top-4 bg-[#135D66] text-white px-4 py-2 rounded-lg shadow-md hover:bg-[#003C43] transition"
                 >
-                  <h3 className="text-lg font-bold text-blue-600">
-                    {coupon.code}
-                  </h3>
-                  <button
-                    onClick={() => copyCouponCode(coupon.code)}
-                    className="mt-2 bg-blue-500 text-white px-4 py-2 rounded-lg"
-                  >
-                    Copy Code
-                  </button>
-                  <p className="text-sm text-gray-600 mt-2">
-                    {coupon.description}
-                  </p>
-                  <p className="text-lg font-semibold text-green-600 mt-2">
-                    Discount: {coupon.discount}%
-                  </p>
-                  <p className="text-sm text-red-600 mt-2">
-                    Expires on:{" "}
+                  Copy Code
+                </button>
+          
+                <h3 className="text-xl font-bold text-[#003C43] mb-4">{coupon.code}</h3>
+                <p className="text-sm text-[#135D66] mb-3">{coupon.description}</p>
+                <p className="text-lg font-semibold text-[#77B0AA]">
+                  Discount: {coupon.discount}%
+                </p>
+                <p className="text-sm text-[#135D66] mt-2">
+                  Expires on:{" "}
+                  <span className="text-[#003C43] font-medium">
                     {new Date(coupon.expiryDate).toLocaleDateString()}
-                  </p>
-                </div>
-              ))}
-            </div>
+                  </span>
+                </p>
+              </div>
+            ))}
+          </div>
+          
           ))}
         </Carousel>
       ) : (

@@ -28,18 +28,18 @@ const Navbar = () => {
   return (
     <div className="sticky top-0 pt-1 pb-2 z-50  bg-white dark:bg-gray-700">
       <div className="container mx-auto">
-        <div className="navbar bg-white p-4 rounded-2xl border-b-2">
+        <div className="navbar bg-[#eefaf7] p-4 rounded-2xl border-b-2">
           <div className="navbar-start">
             <div className="">
               <Link to="/" className="md:flex">
-                <h1 className="md:text-3xl text-[#932F04] text-2xl ralewayfont font-bold">
-                  Product<span className="text-[#0E5C3E]">Hunt</span>
+                <h1 className="md:text-3xl text-[#946220] text-2xl ralewayfont font-bold">
+                  Product<span className="text-[#135D66]">Hunt</span>
                 </h1>
               </Link>
             </div>
           </div>
           <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal px-1">{navLinks}</ul>
+            <ul className="menu menu-horizontal px-1 text-[#003C43]">{navLinks}</ul>
           </div>
           <div className="navbar-end">
             {user ? (
@@ -49,7 +49,7 @@ const Navbar = () => {
                     src={user?.photoURL || "https://via.placeholder.com/150"}
                     alt="Profile"
                     onClick={handleProfileClick}
-                    className="size-10 mx-auto rounded-full ring ring-green-300 text-center cursor-pointer hover:brightness-75 transition-transform duration-300 hover:scale-110 active:scale-90"
+                    className="size-10 mx-auto rounded-full ring ring-[#E3FEF7] text-center cursor-pointer hover:brightness-75 transition-transform duration-300 hover:scale-110 active:scale-90"
                   />
 
                   <div
@@ -58,7 +58,7 @@ const Navbar = () => {
                     }  absolute top-full -left-1/2 transform -translate-x-1/2 bg-white p-4 rounded shadow-lg`}
                   >
                     <h2 className="text-xs text-center">Welcome</h2>
-                    <p className="text-center text-sm font-bold">
+                    <p className="text-center text-sm font-bold text-[#135D66]">
                       {user?.displayName}
                     </p>
 
@@ -68,7 +68,7 @@ const Navbar = () => {
 
                     <button
                       onClick={handleSignOut}
-                      className="btn bg-white px-10 hover:bg-teal-800 hover:text-white font-medium border border-green-500 mt-2"
+                      className="btn bg-white px-10 hover:bg-teal-800 hover:text-white font-medium border border-[#003C43] mt-2"
                     >
                       Sign Out
                     </button>
