@@ -122,6 +122,12 @@ const DashboardLayout = () => {
 
           {admin && (
             <>
+            <Link
+                to="/dashboard/statistics"
+                className="flex items-center gap-3 text-gray-300 hover:text-white hover:bg-gray-700 p-2 rounded"
+              >
+                <FaCrosshairs className="text-xl" /> Statistics
+              </Link>
               <Link
                 to="/dashboard/all-users"
                 className="flex items-center gap-3 text-gray-300 hover:text-white hover:bg-gray-700 p-2 rounded"

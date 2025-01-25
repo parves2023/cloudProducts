@@ -22,6 +22,7 @@ import AllUsers from "../pages/Adminpages/AllUsers";
 import AllModerators from "../pages/Adminpages/Allmoderators";
 import AllAdmins from "../pages/Adminpages/AllAdmins";
 import ProfilePayment from "../pages/MyProfile/ProfilePayment";
+import Statistics from "../pages/Adminpages/Statistics";
 
 const router = createBrowserRouter([
   {
@@ -117,6 +118,10 @@ const router = createBrowserRouter([
       {
         path: 'all-admins',
         element: <AllAdmins></AllAdmins>
+      },
+      {
+        path: 'statistics',
+        element: <Statistics></Statistics>
       }
     ],
   },
