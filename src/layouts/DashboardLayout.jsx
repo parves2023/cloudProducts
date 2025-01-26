@@ -20,7 +20,7 @@ import { HiMenuAlt3, HiX } from "react-icons/hi";
 const DashboardLayout = () => {
   const [moderator, setModerator] = useState(false);
   const [admin, setAdmin] = useState(false);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const axiosPublic = useAxiosPublic();
   const { user } = useAuth();
 

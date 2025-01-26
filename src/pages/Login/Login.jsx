@@ -79,8 +79,8 @@ const Login = () => {
 
   return (
     <div className="my-5">
-      <h1 className="text-3xl mt-7 ralewayfont font-bold text-center mb-6">
-        Please <span className="text-indigo-600">Login</span>
+      <h1 className="text-3xl text-[#003C43] mt-7 ralewayfont font-bold text-center mb-6">
+        Please <span className="">Login</span>
       </h1>
       <form onSubmit={handleLogin} className="md:w-3/4 lg:w-1/2 mx-auto">
         <div className="form-control">

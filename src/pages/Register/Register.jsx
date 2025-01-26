@@ -109,7 +109,7 @@ const Register = () => {
   return (
     <div className="my-7">
       <h1 className="text-3xl mt-7 ralewayfont font-bold text-center mb-6">
-        Please <span className="text-indigo-600">Register</span>
+        Please <span className="text-[#003C43]">Register</span>
       </h1>
       <form onSubmit={handleRegister} className="md:w-3/4 lg:w-1/2 mx-auto">
         <ToastContainer
