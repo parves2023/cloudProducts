@@ -4,6 +4,7 @@ import { IoThumbsUpOutline } from "react-icons/io5";
 import { motion } from "framer-motion";
 import useAuth from "../hooks/useAuth";
 import useAxiosPublic from "../hooks/useAxiosPublic";
+import UpvoteButton from "./UpvoteButton";
 
 
 

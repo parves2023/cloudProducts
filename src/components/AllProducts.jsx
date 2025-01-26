@@ -128,15 +128,15 @@ function AllProducts() {
     <div className="max-w-6xl mx-auto mt-8">
       <h1 className="text-3xl font-bold text-center mb-6 text-[#135D66]">All Products</h1>
 
-       <div className="flex  justify-center">
-       <form onSubmit={handleTagSearch} className="flex items-center gap-2 mb-4">
-    <label className="font-medium">Search by Tags:</label> <br />
+       <div className="flex  justify-center ">
+       <form onSubmit={handleTagSearch} className="flex flex-col md:flex-row items-center gap-1 mb-2 md:mb-4">
+    <label className="font-medium">Search by Tags:</label> 
     <input
       type="text"
       placeholder="Enter tags (comma-separated)"
       value={searchTags}
       onChange={(e) => setSearchTags(e.target.value)}
-      className="p-2 border rounded-md focus:ring focus:ring-blue-500"
+      className="p-2  border rounded-md focus:ring focus:ring-blue-500"
     />
     <button
       type="submit"
