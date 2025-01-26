@@ -69,7 +69,7 @@ function AllModerators() {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">All Moderators</h1>
+      <h1 className="text-2xl font-bold mb-4 text-[#003C43]">All Moderators</h1>
       {moderators && moderators.length > 0 ? (
         <div className="overflow-x-auto">
   <table className="table-auto border-collapse w-full text-left">
@@ -123,7 +123,7 @@ function AllModerators() {
           <td className="border p-3">
             {moderator.email !== user.email && (
               <button
-                className="btn btn-primary"
+                className="btn bg-[#135D66] text-white"
                 onClick={() => setEditingModeratorId(moderator._id)}
               >
                 {editingModeratorId === moderator._id ? "Save Role" : "Change Role"}

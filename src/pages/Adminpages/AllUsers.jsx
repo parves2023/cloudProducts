@@ -63,7 +63,7 @@ function AllUsers() {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">All Users</h1>
+      <h1 className="text-2xl font-bold mb-4 text-[#003C43]">All Users</h1>
       {users && users.length > 0 ? (
         <div className="overflow-x-auto">
   <table className="table-auto border-collapse w-full text-left">
@@ -117,7 +117,7 @@ function AllUsers() {
           <td className="border p-3">
             {userItem.email !== user.email && (
               <button
-                className="btn btn-primary"
+                className="btn bg-[#135D66] text-white"
                 onClick={() => setEditingUserId(userItem._id)}
               >
                 {editingUserId === userItem._id ? "Save Role" : "Change Role"}

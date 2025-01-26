@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
-import { FaServicestack } from "react-icons/fa";
+
+import { MdOutlinePlaylistAdd } from "react-icons/md";
 
 import Swal from "sweetalert2";
 import useAxiosPublic from "../hooks/useAxiosPublic";
@@ -106,12 +107,12 @@ const AddProduct = () => {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-4">
+      <h1 className="text-2xl font-bold mb-4 text-[#135D66]">
         Welcome, {user?.name || "User"}!
       </h1>
       {canAddProduct ? (
         <div className="p-8 bg-white shadow-md rounded-lg">
-          <h1 className="text-2xl font-bold mb-6">Add a Product</h1>
+          <h1 className="text-2xl font-bold mb-6 text-[#135D66]">Add a Product</h1>
           <form onSubmit={handleSubmit(onSubmit)}>
             {/* Product Name */}
             <div className="form-control w-full my-4">
@@ -210,16 +211,16 @@ const AddProduct = () => {
             </div>
 
             {/* Image Upload */}
-            <div className="form-control w-full my-4">
+            <div className="form-control w-full my-4 ">
               <input
                 {...register("image", { required: true })}
                 type="file"
-                className="file-input w-full max-w-xs"
+                className="file-input w-full max-w-xs text-white bg-[#135D66]"
               />
             </div>
 
-            <button type="submit" className="btn btn-primary">
-              Add Product <FaServicestack className="ml-4" />
+            <button type="submit" className="btn hover:bg-[#0a3a41] bg-[#135D66] border-none text-white">
+              Add Product <MdOutlinePlaylistAdd  className="ml-4" />
             </button>
           </form>
         </div>

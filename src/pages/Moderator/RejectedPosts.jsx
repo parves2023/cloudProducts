@@ -22,7 +22,7 @@ function RejectedPosts() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold mb-6">Rejected Products</h1>
+      <h1 className="text-2xl font-bold text-[#135D66] mb-6">Rejected Products</h1>
       {rejectedProducts.length === 0 ? (
         <p className="text-center text-gray-500">No rejected products found.</p>
       ) : (
@@ -59,7 +59,7 @@ function RejectedPosts() {
                       onClick={() =>
                         (window.location.href = `/details/${product._id}`)
                       }
-                      className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+                      className="px-4 py-2 bg-[#135D66] text-white rounded hover:bg-green-600"
                     >
                       Details
                     </button>

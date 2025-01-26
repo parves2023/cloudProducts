@@ -49,7 +49,7 @@ const Navbar = () => {
                     src={user?.photoURL || "https://via.placeholder.com/150"}
                     alt="Profile"
                     onClick={handleProfileClick}
-                    className="size-10 mx-auto rounded-full ring ring-[#E3FEF7] text-center cursor-pointer hover:brightness-75 transition-transform duration-300 hover:scale-110 active:scale-90"
+                    className="size-10 mx-auto rounded-full ring ring-[#E3FEF7] text-center cursor-pointer hover:brightness-75 transition-transform duration-300 hover:scale-110 active:scale-90 object-cover"
                   />
 
                   <div

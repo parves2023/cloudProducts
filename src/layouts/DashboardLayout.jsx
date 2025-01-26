@@ -5,7 +5,6 @@ import {
   FaHome,
   FaProductHunt,
   FaWind,
-  FaCross,
   FaCrosshairs,
 } from "react-icons/fa";
 import useAuth from "../hooks/useAuth";
@@ -15,24 +14,24 @@ import { FaPooStorm, FaUsersGear } from "react-icons/fa6";
 import { BsGraphUpArrow } from "react-icons/bs";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { GrUserAdmin, GrUserExpert } from "react-icons/gr";
+import { motion } from "framer-motion";
+import { HiMenuAlt3, HiX } from "react-icons/hi";
 
 const DashboardLayout = () => {
   const [moderator, setModerator] = useState(false);
   const [admin, setAdmin] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const axiosPublic = useAxiosPublic();
   const { user } = useAuth();
 
   useEffect(() => {
     const checkModeratorRole = async () => {
       try {
-        // Ensure user is logged in and has an email
         if (user && user.email) {
-          // Make a request to your API to verify the user's role
           const response = await axiosPublic.post("/api/check-role", {
             email: user.email,
           });
 
-          // Assuming the response contains a `role` field
           if (response.data.role === "moderator") {
             setModerator(true);
           } else if (response.data.role === "admin") {
@@ -52,14 +51,29 @@ const DashboardLayout = () => {
   }, [user, axiosPublic]);
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex flex-col md:flex-row min-h-screen">
+      {/* Mobile Sidebar Toggle */}
+      <button
+        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+        className="md:hidden p-4 bg-[#0a2427] text-white text-2xl fixed top-0 left-0 z-50"
+      >
+        {isSidebarOpen ? <HiX /> : <HiMenuAlt3 />}
+      </button>
+
       {/* Sidebar */}
-      <div className="w-64 bg-gray-800 text-white p-5">
+      <motion.div
+        className={`${
+          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+        } md:translate-x-0 fixed  top-0 left-0 h-screen w-64 bg-[#0a2427] text-white p-5 overflow-y-auto md:sticky md:top-0 z-40`}
+        initial={{ x: -300 }}
+        animate={{ x: isSidebarOpen ? 0 : -300 }}
+        transition={{ type: "spring", stiffness: 60 }}
+      >
         <div className="text-center mb-8">
           <img
             src={user?.photoURL}
             alt="User"
-            className="w-20 h-20 rounded-full mx-auto border-4 border-green-500"
+            className="size-16 rounded-full mx-auto border-4 border-green-500 object-cover"
           />
           <h2 className="text-lg font-semibold mt-2">{user?.displayName}</h2>
           {moderator && <h1>Welcome, Moderator!</h1>}
@@ -92,7 +106,7 @@ const DashboardLayout = () => {
             <FaHome className="text-xl" /> Home
           </Link>
 
-          <div className=" border-b"></div>
+          <div className="border-b"></div>
 
           {moderator && (
             <>
@@ -125,50 +139,43 @@ const DashboardLayout = () => {
 
           {admin && (
             <>
-            <Link
+              <Link
                 to="/dashboard/statistics"
                 className="flex items-center gap-3 text-gray-300 hover:text-white hover:bg-gray-700 p-2 rounded"
               >
-              
                 <BsGraphUpArrow className="text-xl" /> Statistics
               </Link>
               <Link
                 to="/dashboard/cupon"
                 className="flex items-center gap-3 text-gray-300 hover:text-white hover:bg-gray-700 p-2 rounded"
               >
-             
                 <IoIosAddCircleOutline className="text-xl" /> Add Coupon
               </Link>
               <Link
                 to="/dashboard/all-users"
                 className="flex items-center gap-3 text-gray-300 hover:text-white hover:bg-gray-700 p-2 rounded"
               >
-                
                 <FaUsersGear className="text-xl" /> All Users
               </Link>
-
               <Link
-            to="/dashboard/all-modetators"
-            className="flex items-center gap-3 text-gray-300 hover:text-white hover:bg-gray-700 p-2 rounded"
-          >
-            
-            <GrUserExpert className="text-xl" /> Moderator
-          </Link>
-
-          <Link
-            to="/dashboard/all-admins"
-            className="flex items-center gap-3 text-gray-300 hover:text-white hover:bg-gray-700 p-2 rounded"
-          >
-            <GrUserAdmin  className="text-xl" /> Admins
-          </Link>
-
+                to="/dashboard/all-modetators"
+                className="flex items-center gap-3 text-gray-300 hover:text-white hover:bg-gray-700 p-2 rounded"
+              >
+                <GrUserExpert className="text-xl" /> Moderator
+              </Link>
+              <Link
+                to="/dashboard/all-admins"
+                className="flex items-center gap-3 text-gray-300 hover:text-white hover:bg-gray-700 p-2 rounded"
+              >
+                <GrUserAdmin className="text-xl" /> Admins
+              </Link>
             </>
           )}
         </nav>
-      </div>
+      </motion.div>
 
       {/* Main Content */}
-      <div className="flex-1 p-10 bg-gray-100">
+      <div className="flex-1 mx-auto container p-5 bg-gray-100 overflow-y-auto">
         <Outlet />
       </div>
     </div>

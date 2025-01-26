@@ -102,7 +102,7 @@ const ReviewModal = ({ productId, user, isOpen, onClose }) => {
           </button>
           <button
             type="button"
-            className="px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 rounded-md"
+            className="px-4 py-2 bg-[#135D66] text-white hover:bg-blue-600 rounded-md"
             onClick={handleSubmit}
           >
             Submit

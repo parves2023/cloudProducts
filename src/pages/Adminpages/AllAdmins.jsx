@@ -75,7 +75,7 @@ function AllAdmins() {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">All Admins</h1>
+      <h1 className="text-2xl font-bold mb-4 text-[#003C43]">All Admins</h1>
       {admins && admins.length > 0 ? (
         <div className="overflow-x-auto">
   <table className="table-auto border-collapse w-full text-left">
@@ -129,7 +129,7 @@ function AllAdmins() {
           <td className="border p-3">
             {admin.email !== user.email && (
               <button
-                className="btn btn-primary"
+                className="btn bg-[#135D66] text-white"
                 onClick={() => setEditingAdminId(admin._id)}
               >
                 {editingAdminId === admin._id ? "Save Role" : "Change Role"}

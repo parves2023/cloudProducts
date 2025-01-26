@@ -97,7 +97,7 @@ function ReportedPosts() {
 
   return (
     <div className="max-w-6xl mx-auto my-10 p-4">
-      <h1 className="text-2xl font-bold mb-4">Reported Posts</h1>
+      <h1 className="text-2xl font-bold mb-4 text-[#135D66]">Reported Posts</h1>
       <table className="table-auto w-full border-collapse border border-gray-300">
         <thead>
           <tr className="bg-gray-200">
@@ -153,7 +153,7 @@ function ReportedPosts() {
         <div className="flex flex-col gap-2">
           <button
             onClick={() => navigate(`/details/${product._id}`)}
-            className="btn btn-primary"
+            className="btn text-white bg-[#135D66]"
           >
             View Details
           </button>

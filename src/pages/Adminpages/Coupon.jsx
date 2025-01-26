@@ -63,7 +63,7 @@ const Coupon = () => {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Manage Coupons</h1>
+      <h1 className="text-2xl font-bold mb-4 text-[#003C43]">Manage Coupons</h1>
 
       <form onSubmit={handleAddCoupon} className="mb-6">
         <div className="grid grid-cols-2 gap-4">
@@ -105,7 +105,7 @@ const Coupon = () => {
         </div>
         <button
           type="submit"
-          className="mt-4 bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
+          className="mt-4 bg-[#135D66] text-white py-2 px-4 rounded hover:bg-blue-700"
         >
           Add Coupon
         </button>

@@ -36,14 +36,14 @@ function PendingPosts() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold mb-6">Pending Products</h1>
+      <h1 className="text-2xl font-bold mb-6 text-[#135D66]">Pending Products</h1>
       {pendingProducts.length === 0 ? (
         <p className="text-center text-gray-500">No pending products found.</p>
       ) : (
         <div className="overflow-x-auto">
           <table className="table-auto border-collapse w-full text-left">
             <thead>
-              <tr className="bg-gray-200">
+              <tr className="bg-gray-200 text-[#135D66]">
                 <th className="border p-3">Image</th>
                 <th className="border p-3">Name</th>
                 <th className="border p-3">Category</th>
@@ -73,7 +73,7 @@ function PendingPosts() {
                       onClick={() =>
                         handleStatusChange(product._id, "approved")
                       }
-                      className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                      className="px-4 py-2 bg-[#135D66] text-white rounded hover:bg-blue-600"
                     >
                       Approve
                     </button>

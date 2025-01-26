@@ -59,12 +59,12 @@ function AcceptedPosts() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold mb-6">Accepted Products</h1>
+      <h1 className="text-2xl text-[#135D66] font-bold mb-6">Accepted Products</h1>
       {acceptedProducts.length === 0 ? (
         <p className="text-center text-gray-500">No accepted products found.</p>
       ) : (
         <div className="overflow-x-auto">
-          <table className="table-auto border-collapse w-full text-left">
+          <table className="table-auto text-[#135D66] border-collapse w-full text-left">
             <thead>
               <tr className="bg-gray-200">
                 <th className="border p-3">Image</th>
@@ -96,7 +96,7 @@ function AcceptedPosts() {
                       onClick={() =>
                         (window.location.href = `/details/${product._id}`)
                       }
-                      className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+                      className="px-4 py-2 bg-[#135D66] text-white rounded hover:bg-green-600"
                     >
                       Details
                     </button>

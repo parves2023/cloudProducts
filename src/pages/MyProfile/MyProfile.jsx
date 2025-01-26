@@ -66,7 +66,7 @@ const MyProfile = () => {
         <div className="p-6">
           <button
             onClick={() => navigate("/dashboard/update-profile")}
-            className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg shadow hover:bg-blue-600 transition"
+            className="w-full bg-[#135D66] text-white py-2 px-4 rounded-lg shadow hover:bg-blue-600 transition"
           >
             Update Profile
           </button>

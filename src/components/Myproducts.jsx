@@ -85,11 +85,12 @@ function MyProducts() {
 
   return (
     <div className="p-8">
-      <h1 className="text-2xl font-bold mb-6">My Products</h1>
+      <h1 className="text-2xl font-bold mb-6 text-[#135D66]">My Products</h1>
       {products.length === 0 ? (
         <p>No products added yet.</p>
       ) : (
-        <table className="table-auto w-full border-collapse border border-gray-300">
+        <div className='overflow-x-auto'>
+          <table className="table-auto w-full border-collapse border border-gray-300">
           <thead>
             <tr className="bg-gray-100">
               <th className="border border-gray-300 p-2">Product Name</th>
@@ -108,7 +109,7 @@ function MyProducts() {
                 <td className="border border-gray-300 p-2">{product.status}</td>
                 <td className="border border-gray-300 p-2 space-x-2">
                   <button
-                    className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
+                    className=" bg-[#135D66] text-white px-3 py-1 rounded hover:bg-blue-600"
                     onClick={() => openModal(product)}
                   >
                     Update
@@ -124,6 +125,7 @@ function MyProducts() {
             ))}
           </tbody>
         </table>
+        </div>
       )}
 
       {/* Update Product Modal */}

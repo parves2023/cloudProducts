@@ -10,7 +10,6 @@ import useAxiosPublic from "../hooks/useAxiosPublic";
 import ReviewModal from "./review/ReviewModal";
 import ShowReview from "./review/ShowReview";
 
-
 // Set the app element for accessibility
 Modal.setAppElement("#root");
 
@@ -21,7 +20,7 @@ const ProductDetails = () => {
   const [loading, setLoading] = useState(true); // Loading state
   const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
   const [reportDetails, setReportDetails] = useState(""); // Report details state
-  const axiosPublic = useAxiosPublic(); 
+  const axiosPublic = useAxiosPublic();
   const [isreviewModalOpen, setIsreviewModalOpen] = useState(false);
 
   // Fetch product details on component mount
@@ -32,7 +31,7 @@ const ProductDetails = () => {
         if (response.ok) {
           const data = await response.json();
           // console.log(data);
-          
+
           setProduct(data); // Set product data
         } else {
           toast.error("Failed to fetch product details");
@@ -47,8 +46,6 @@ const ProductDetails = () => {
     fetchProduct();
   }, [_id]);
 
-
-
   // Handle the report post functionality
   const handleRepostPost = async (id) => {
     if (!reportDetails.trim()) {
@@ -62,11 +59,14 @@ const ProductDetails = () => {
     };
 
     try {
-      const response = await fetch(`http://localhost:5000/products/report/${id}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(reportData),
-      });
+      const response = await fetch(
+        `http://localhost:5000/products/report/${id}`,
+        {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(reportData),
+        }
+      );
 
       if (response.ok) {
         toast.success("Report submitted successfully!");
@@ -83,7 +83,9 @@ const ProductDetails = () => {
   if (loading) {
     return (
       <div className="max-w-4xl mx-auto mt-10">
-        <h1 className="text-3xl font-bold text-center mb-6">Product Details</h1>
+        <h1 className="text-3xl font-bold text-center mb-6 text-[#135D66]">
+          Product Details
+        </h1>
         <div className="flex justify-center h-screen">
           <BallTriangle
             height={100}
@@ -98,8 +100,6 @@ const ProductDetails = () => {
     );
   }
 
-
-
   const handleLike = async (productId, totalLikes) => {
     try {
       // API call to update the like count in the backend
@@ -108,16 +108,15 @@ const ProductDetails = () => {
         userName: user.name,
         likeCount: totalLikes,
       });
-  
+
       if (response.data.success) {
         // Update the local state directly since `product` is an object
         setProduct((prevProduct) => {
-
           // Check if the user has already liked the product
           const isLiked = prevProduct.likes.some(
             (like) => like.email === user.email
           );
-  
+
           // Update the `likeCount` and `likes` array
           return {
             ...prevProduct,
@@ -136,11 +135,6 @@ const ProductDetails = () => {
       console.error("Error liking product:", error);
     }
   };
-  
-  
-  
-
-
 
   // Handle product not found
   if (!product) {
@@ -149,205 +143,146 @@ const ProductDetails = () => {
 
   return (
     <div className="max-w-3xl mx-auto my-10 p-4 border rounded-lg shadow-lg bg-white">
-      <h1 className="text-2xl font-bold mb-4 text-center">{product.name}</h1>
+      <h1 className="text-2xl font-bold mb-4 text-center text-[#135D66]">
+        {product.name}
+      </h1>
       <img
         src={product.image}
         alt={`${product.name}`}
-        className="w-full h-64 object-cover rounded mb-4"
+        className="w-full h-72 object-cover rounded mb-4"
       />
-      <p>
-        <strong>Category:</strong> {product.category}
+      <p className="text-[#135D66]">
+        <strong className="text-[#135D66]">Category:</strong> {product.category}
       </p>
-      <p>
-        <strong>Price:</strong> ${product.price}
+      <p className="text-[#946220]">
+        <strong className="text-[#946220]">Price:</strong> ${product.price}
       </p>
-      <p>
-        <strong>Status:</strong> {product.status}
+      <p className="text-[#135D66]">
+        <strong className="text-[#135D66]">Status:</strong> {product.status}
       </p>
-      <p>
-        <strong>Creator Email:</strong> {product?.creatorEmail}
+      <p className="text-[#135D66]">
+        <strong className="text-[#135D66]">Creator Email:</strong>{" "}
+        {product?.creatorEmail}
       </p>
 
-      <p>total Likes : {product?.likeCount}</p>
+      <p className="text-[#135D66]">
+        <strong>total Likes :</strong> {product?.likeCount}
+      </p>
 
       <div className="flex flex-wrap mt-2 mb-3 ">
-                {product.tags.map((tag, index) => (
-                  <span
-                    key={index}
-                    className="bg-blue-100 text-blue-600 text-xs font-semibold px-2 py-1 rounded-full mr-2"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-             
-
+        {product.tags.map((tag, index) => (
+          <span
+            key={index}
+            className="bg-[#E3FEF7] text-[#003C43] text-xs font-semibold px-2 py-1 rounded-full mr-2"
+          >
+            {tag}
+          </span>
+        ))}
+      </div>
 
       <p className="mt-4">
-        <strong>Description:</strong>
+        <strong className="text-[#135D66]">Description:</strong>
       </p>
-      <p>{product.description}</p>
+      <p className="text-[#135D66]">{product.description}</p>
 
       {/* Button to open the report modal */}
       <div>
-      <button
-        onClick={() => setIsModalOpen(true)}
-        className="btn btn-warning text-gray-700 my-3"
-      >
-        Report this post
-      </button>
-
-      {
-  product.externalLink ? (
-    <a
-      href={product.externalLink} // Use the provided external link
-      target="_blank"
-      rel="noopener noreferrer"
-      className="btn btn-link"
-    >
-      Visit External Link
-    </a>
-  ) : (
-    <a
-      href={`https://${product.name
-        .split(' ') // Convert the string into an array of words
-        .map((word) => word.trim().toLowerCase()) // Trim and lowercase each word
-        .join('') // Join the words back into a single string without spaces
-      }.com`} // Generate the URL based on product name
-      target="_blank"
-      rel="noopener noreferrer"
-      className="btn btn-link"
-    >
-      Visit Product
-    </a>
-  )
-}
-
-
-
-
-<div className="flex gap-5 mb-10 flex-row-reverse justify-end">
-  {/* //like button  */}
-{
-  user && (
-    <motion.div
-      onClick={() => handleLike(product._id,product.likes?.length)}
-      whileHover={{ scale: 1.2, rotate: -7 }}
-      whileTap={{ scale: 0.9 }}
-      style={{
-        backgroundColor: product.likes?.some((like) => like.email === user?.email)
-          ? "#3B82F6" // blue-500
-          : "#CBD5E1", // slate-300
-      }}
-      className={`${
-        product.creatorEmail !== user?.email ? "block" : "hidden"
-      } size-10 btn w-16   p-2 rounded cursor-pointer flex items-center justify-center gap-2`}
-    >
-      <IoThumbsUpOutline
-        className={`${
-          product.likes?.some((like) => like.email === user?.email)
-            ? "text-white"
-            : "text-gray-700"
-        } size-6`}
-      />
-      <span
-        className={`${
-          product.likes?.some((like) => like.email === user?.email)
-            ? "text-white"
-            : "text-gray-700"
-        } text-sm font-medium`}
-      >
-        {product.likes?.length || 0}
-      </span>
-    </motion.div>
-  )
-}
-
-<button
-  className="px-4 py-2 text-white bg-blue-500 hover:bg-blue-600 rounded-md shadow-lg transition duration-300"
-  onClick={() => setIsreviewModalOpen(true)}
->
-  Post a Review
-</button>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<hr />
-
-
-{
-  user && <ShowReview isreviewModalOpen={isreviewModalOpen} productId={product._id} ></ShowReview>
-}
-
-
-   {/* Review Modal */}
-   <ReviewModal
-        productId={product._id}
-        user={user}
-        isOpen={isreviewModalOpen}
-        onClose={() => setIsreviewModalOpen(false)}
-      />
-
-
-
-
-
-
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="btn btn-warning text-gray-700 my-3"
+        >
+          Report this post
+        </button>
+
+        {product.externalLink ? (
+          <a
+            href={product.externalLink} // Use the provided external link
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-link "
+          >
+            Visit External Link
+          </a>
+        ) : (
+          <a
+            href={`https://${
+              product.name
+                .split(" ") // Convert the string into an array of words
+                .map((word) => word.trim().toLowerCase()) // Trim and lowercase each word
+                .join("") // Join the words back into a single string without spaces
+            }.com`} // Generate the URL based on product name
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-link "
+          >
+            Visit Product
+          </a>
+        )}
+
+        <div className="flex gap-5 mb-10 flex-row-reverse justify-end items-center">
+          {/* //like button  */}
+          {user && (
+            <motion.div
+              onClick={() => handleLike(product._id, product.likes?.length)}
+              whileHover={{ scale: 1.2, rotate: -7 }}
+              whileTap={{ scale: 0.9 }}
+              style={{
+                backgroundColor: product.likes?.some(
+                  (like) => like.email === user?.email
+                )
+                  ? "#135D66"
+                  : "#CBD5E1", // slate-300
+              }}
+              className={`${
+                product.creatorEmail !== user?.email ? "block" : "hidden"
+              } size-10 btn w-16  p-[8px] rounded cursor-pointer flex items-center justify-center gap-2`}
+            >
+              <IoThumbsUpOutline
+                className={`${
+                  product.likes?.some((like) => like.email === user?.email)
+                    ? "text-white"
+                    : "text-gray-700"
+                } size-6`}
+              />
+              <span
+                className={`${
+                  product.likes?.some((like) => like.email === user?.email)
+                    ? "text-white"
+                    : "text-gray-700"
+                } text-sm font-medium`}
+              >
+                {product.likes?.length || 0}
+              </span>
+            </motion.div>
+          )}
+
+          <button
+            className="px-4   rounded-md shadow-lg transition duration-300 
+  mt-2 bg-[#135D66] py-3 text-white  hover:bg-[#003C43]
+  "
+            onClick={() => setIsreviewModalOpen(true)}
+          >
+            Post a Review
+          </button>
+        </div>
+
+        <hr />
+
+        {user && (
+          <ShowReview
+            isreviewModalOpen={isreviewModalOpen}
+            productId={product._id}
+          ></ShowReview>
+        )}
+
+        {/* Review Modal */}
+        <ReviewModal
+          productId={product._id}
+          user={user}
+          isOpen={isreviewModalOpen}
+          onClose={() => setIsreviewModalOpen(false)}
+        />
       </div>
-
-
 
       {/* Report Modal */}
       <Modal

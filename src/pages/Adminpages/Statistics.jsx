@@ -39,7 +39,7 @@ const Statistics = () => {
 
   return (
     <div className="flex flex-col items-center">
-      <h2 className="text-2xl font-semibold mb-5">Admin Statistics</h2>
+      <h2 className="text-2xl font-semibold mb-5 text-[#003C43]">Admin Statistics</h2>
       {loading ? (
         <p>Loading...</p>
       ) : (
