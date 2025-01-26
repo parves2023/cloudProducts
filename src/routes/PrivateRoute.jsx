@@ -1,32 +1,38 @@
 import { useContext, useEffect } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { Navigate, useLocation } from "react-router-dom";
-import { BallTriangle } from "react-loader-spinner";
+import { Vortex } from "react-loader-spinner";
 
 const PrivateRoute = ({ children }) => {
-  const { user, loading,redirectPath, setRedirectPath } = useContext(AuthContext);
+  const { user, loading, redirectPath, setRedirectPath } =
+    useContext(AuthContext);
   const location = useLocation();
 
- 
   useEffect(() => {
     if (!user) {
       setRedirectPath(location.pathname);
     }
   }, [user, location.pathname, setRedirectPath]);
-  
 
   if (loading) {
     return (
       <div className="flex justify-center items-start mt-10 h-screen">
-        <BallTriangle
+        <Vortex
+          visible={true}
           height={100}
           width={100}
-          radius={5}
-          color="#4fa94d"
-          ariaLabel="ball-triangle-loading"
+          ariaLabel="vortex-loading"
           wrapperStyle={{}}
-          wrapperClass=""
-          visible={true}
+          wrapperClass="vortex-wrapper"
+          colors={[
+            "#E6F0FF",
+            "#F6EBD2",
+            "#D94848",
+            "#4D8B92",
+            "#A5D0CC",
+            "#FFD7D7",
+            "#F2F8E1",
+          ]}
         />
       </div>
     );

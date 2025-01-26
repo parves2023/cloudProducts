@@ -7,8 +7,6 @@ const ReviewModal = ({ productId, user, isOpen, onClose }) => {
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState("");
 
-  
-
   const handleSubmit = async () => {
     if (!rating || !review.trim()) {
       alert("Please provide a rating and a review!");
@@ -26,32 +24,34 @@ const ReviewModal = ({ productId, user, isOpen, onClose }) => {
     };
 
     try {
-        // Save review to MongoDB
-        const response = await axios.post(`http://localhost:5000/reviews`, feedback);
-        if (response.data.success) {
-          Swal.fire({
-            icon: "success",
-            title: "Review Submitted!",
-            text: "Thank you for your feedback.",
-          });
-          onClose(); // Close the modal
-        } else {
-          Swal.fire({
-            icon: "error",
-            title: "Submission Failed",
-            text: "Failed to submit review. Please try again.",
-          });
-        }
-      } catch (error) {
-        console.error("Error submitting review:", error.message);
+      // Save review to MongoDB
+      const response = await axios.post(
+        `https://cloudproducts.vercel.app/reviews`,
+        feedback
+      );
+      if (response.data.success) {
+        Swal.fire({
+          icon: "success",
+          title: "Review Submitted!",
+          text: "Thank you for your feedback.",
+        });
+        onClose(); // Close the modal
+      } else {
         Swal.fire({
           icon: "error",
-          title: "Error",
-          text: "Something went wrong! Please try again later.",
+          title: "Submission Failed",
+          text: "Failed to submit review. Please try again.",
         });
-
-
-  }};
+      }
+    } catch (error) {
+      console.error("Error submitting review:", error.message);
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Something went wrong! Please try again later.",
+      });
+    }
+  };
 
   if (!isOpen) return null;
 

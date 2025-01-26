@@ -3,6 +3,7 @@ import Swal from 'sweetalert2';
 import useAxiosPublic from '../hooks/useAxiosPublic';
 import useAuth from '../hooks/useAuth';
 import UpdateProduct from './UpdateProduct';
+import { Vortex } from 'react-loader-spinner';
 
 function MyProducts() {
   const { user } = useAuth();
@@ -10,6 +11,8 @@ function MyProducts() {
   const [selectedProduct, setSelectedProduct] = useState(null); // For the modal
   const [isModalOpen, setIsModalOpen] = useState(false);
   const axiosPublic = useAxiosPublic();
+    const [loading, setLoading] = useState(true);
+
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -20,6 +23,7 @@ function MyProducts() {
         // console.log(response.data);
         
         setProducts(response.data);
+        
       } catch (error) {
         console.error('Error fetching products:', error);
         Swal.fire({
@@ -27,6 +31,8 @@ function MyProducts() {
           title: 'Failed to load products',
           text: error.response?.data?.message || error.message,
         });
+      }finally{
+        setLoading(false);
       }
     };
 
@@ -34,6 +40,34 @@ function MyProducts() {
       fetchProducts();
     }
   }, [axiosPublic, user]);
+
+
+    if (loading) {
+      return (
+        <div className="flex justify-center items-start mt-10 h-screen">
+          <Vortex
+            visible={true}
+            height={100}
+            width={100}
+            ariaLabel="vortex-loading"
+            wrapperStyle={{}}
+            wrapperClass="vortex-wrapper"
+            colors={[
+              "#E6F0FF",
+              "#F6EBD2",
+              "#D94848",
+              "#4D8B92",
+              "#A5D0CC",
+              "#FFD7D7",
+              "#F2F8E1",
+            ]}
+          />
+        </div>
+      );
+    }
+
+
+
 
   
   // Delete product handler
@@ -82,6 +116,17 @@ function MyProducts() {
       )
     );
   };
+
+
+
+
+
+
+
+
+
+
+
 
   return (
     <div className="p-8">

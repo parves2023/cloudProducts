@@ -59,7 +59,7 @@ const Register = () => {
             });
 
             // Send user data to the backend
-            fetch("http://localhost:5000/register", {
+            fetch("https://cloudproducts.vercel.app/register", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",

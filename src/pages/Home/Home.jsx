@@ -1,9 +1,7 @@
 import React from "react";
-import Slider from "../../components/Slider";
 import DynamicBanner from "../../components/DynamicBanner";
 import Featured from "../../components/Fetured";
 import TrendingProducts from "../../components/TrendingProducts";
-import Coupon from "../Adminpages/Coupon";
 import CouponSlider from "./CouponSlider";
 
 

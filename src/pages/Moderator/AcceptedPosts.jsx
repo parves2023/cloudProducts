@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Vortex } from "react-loader-spinner";
 
 function AcceptedPosts() {
   const [acceptedProducts, setAcceptedProducts] = useState([]);
   const axiosSecure = useAxiosSecure();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchAcceptedProducts = async () => {
@@ -12,11 +14,38 @@ function AcceptedPosts() {
         setAcceptedProducts(response.data);
       } catch (error) {
         console.error("Error fetching accepted products:", error);
+      }finally{
+        setLoading(false);
       }
     };
 
     fetchAcceptedProducts();
   }, [axiosSecure]);
+
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-start mt-10 h-screen">
+        <Vortex
+          visible={true}
+          height={100}
+          width={100}
+          ariaLabel="vortex-loading"
+          wrapperStyle={{}}
+          wrapperClass="vortex-wrapper"
+          colors={[
+            "#E6F0FF",
+            "#F6EBD2",
+            "#D94848",
+            "#4D8B92",
+            "#A5D0CC",
+            "#FFD7D7",
+            "#F2F8E1",
+          ]}
+        />
+      </div>
+    );
+  }
 
 
   

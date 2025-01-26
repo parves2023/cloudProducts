@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import useAxiosPublic from "../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Vortex } from "react-loader-spinner";
 
 function RejectedPosts() {
   const [rejectedProducts, setRejectedProducts] = useState([]);
-  const axiosPublic = useAxiosPublic();
+  const [loading, setLoading] = useState(true);
   const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
@@ -14,11 +14,37 @@ function RejectedPosts() {
         setRejectedProducts(response.data);
       } catch (error) {
         console.error("Error fetching rejected products:", error);
+      }finally{
+        setLoading(false);
       }
     };
 
     fetchRejectedProducts();
   }, [axiosSecure]);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-start mt-10 h-screen">
+        <Vortex
+          visible={true}
+          height={100}
+          width={100}
+          ariaLabel="vortex-loading"
+          wrapperStyle={{}}
+          wrapperClass="vortex-wrapper"
+          colors={[
+            "#E6F0FF",
+            "#F6EBD2",
+            "#D94848",
+            "#4D8B92",
+            "#A5D0CC",
+            "#FFD7D7",
+            "#F2F8E1",
+          ]}
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="container mx-auto px-4 py-8">

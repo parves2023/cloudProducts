@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Modal from "react-modal";
 import { AuthContext } from "../providers/AuthProvider";
-import { BallTriangle } from "react-loader-spinner";
+import { Vortex } from "react-loader-spinner";
 import { toast, ToastContainer } from "react-toastify";
 import { motion } from "framer-motion";
 import { IoThumbsUpOutline } from "react-icons/io5";
@@ -27,7 +27,9 @@ const ProductDetails = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/products/${_id}`);
+        const response = await fetch(
+          `https://cloudproducts.vercel.app/products/${_id}`
+        );
         if (response.ok) {
           const data = await response.json();
           // console.log(data);
@@ -60,7 +62,7 @@ const ProductDetails = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/products/report/${id}`,
+        `https://cloudproducts.vercel.app/products/report/${id}`,
         {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
@@ -86,14 +88,42 @@ const ProductDetails = () => {
         <h1 className="text-3xl font-bold text-center mb-6 text-[#135D66]">
           Product Details
         </h1>
-        <div className="flex justify-center h-screen">
-          <BallTriangle
+        <div className="flex justify-center items-start mt-10 h-screen">
+          <Vortex
+            visible={true}
             height={100}
             width={100}
-            radius={5}
-            color="#4fa94d"
-            ariaLabel="ball-triangle-loading"
+            ariaLabel="vortex-loading"
+            wrapperStyle={{}}
+            wrapperClass="vortex-wrapper"
+            colors={[
+              "#E6F0FF",
+              "#F6EBD2",
+              "#D94848",
+              "#4D8B92",
+              "#A5D0CC",
+              "#FFD7D7",
+              "#F2F8E1",
+            ]}
+          />
+        </div>
+        <div className="flex justify-center h-screen">
+          <Vortex
             visible={true}
+            height={100}
+            width={100}
+            ariaLabel="vortex-loading"
+            wrapperStyle={{}}
+            wrapperClass="vortex-wrapper"
+            colors={[
+              "#E6F0FF",
+              "#F6EBD2",
+              "#D94848",
+              "#4D8B92",
+              "#A5D0CC",
+              "#FFD7D7",
+              "#F2F8E1",
+            ]}
           />
         </div>
       </div>

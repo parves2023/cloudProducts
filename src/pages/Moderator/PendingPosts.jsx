@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Vortex } from "react-loader-spinner";
 
 function PendingPosts() {
   const [pendingProducts, setPendingProducts] = useState([]);
   const axiosSecure = useAxiosSecure();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchPendingProducts = async () => {
@@ -13,11 +15,38 @@ function PendingPosts() {
         setPendingProducts(response.data);
       } catch (error) {
         console.error("Error fetching pending products:", error);
+      }finally{
+        setLoading(false)
       }
     };
 
     fetchPendingProducts();
   }, [axiosSecure]);
+
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-start mt-10 h-screen">
+        <Vortex
+          visible={true}
+          height={100}
+          width={100}
+          ariaLabel="vortex-loading"
+          wrapperStyle={{}}
+          wrapperClass="vortex-wrapper"
+          colors={[
+            "#E6F0FF",
+            "#F6EBD2",
+            "#D94848",
+            "#4D8B92",
+            "#A5D0CC",
+            "#FFD7D7",
+            "#F2F8E1",
+          ]}
+        />
+      </div>
+    );
+  }
 
   const handleStatusChange = async (id, status) => {
     try {

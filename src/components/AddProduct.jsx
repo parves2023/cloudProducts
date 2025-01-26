@@ -8,6 +8,7 @@ import useAuth from "../hooks/useAuth";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import useUserPermission from "../hooks/useUserPermission";
+import { Vortex } from "react-loader-spinner";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -25,7 +26,25 @@ const AddProduct = () => {
   if (loading) {
     return (
       <>
-        <h1 className="text-center text-2xl font-semibold">loading</h1>
+        <div className="flex justify-center items-start mt-10 h-screen">
+          <Vortex
+            visible={true}
+            height={100}
+            width={100}
+            ariaLabel="vortex-loading"
+            wrapperStyle={{}}
+            wrapperClass="vortex-wrapper"
+            colors={[
+              "#E6F0FF",
+              "#F6EBD2",
+              "#D94848",
+              "#4D8B92",
+              "#A5D0CC",
+              "#FFD7D7",
+              "#F2F8E1",
+            ]}
+          />
+        </div>
       </>
     );
   }
@@ -112,7 +131,9 @@ const AddProduct = () => {
       </h1>
       {canAddProduct ? (
         <div className="p-8 bg-white shadow-md rounded-lg">
-          <h1 className="text-2xl font-bold mb-6 text-[#135D66]">Add a Product</h1>
+          <h1 className="text-2xl font-bold mb-6 text-[#135D66]">
+            Add a Product
+          </h1>
           <form onSubmit={handleSubmit(onSubmit)}>
             {/* Product Name */}
             <div className="form-control w-full my-4">
@@ -219,8 +240,11 @@ const AddProduct = () => {
               />
             </div>
 
-            <button type="submit" className="btn hover:bg-[#0a3a41] bg-[#135D66] border-none text-white">
-              Add Product <MdOutlinePlaylistAdd  className="ml-4" />
+            <button
+              type="submit"
+              className="btn hover:bg-[#0a3a41] bg-[#135D66] border-none text-white"
+            >
+              Add Product <MdOutlinePlaylistAdd className="ml-4" />
             </button>
           </form>
         </div>

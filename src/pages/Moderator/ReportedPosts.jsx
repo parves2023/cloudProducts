@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Vortex } from "react-loader-spinner";
 import { useNavigate } from "react-router";
 import { toast, ToastContainer } from "react-toastify";
 
@@ -10,7 +11,9 @@ function ReportedPosts() {
   useEffect(() => {
     const fetchReportedPosts = async () => {
       try {
-        const response = await fetch("http://localhost:5000/reported-posts");
+        const response = await fetch(
+          "https://cloudproducts.vercel.app/reported-posts"
+        );
         if (response.ok) {
           const data = await response.json();
           setReportedPosts(data); // Use server-filtered data directly
@@ -31,7 +34,7 @@ function ReportedPosts() {
   const handleDeleteReport = async (productId, reportIndex) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/products/${productId}/delete-report`,
+        `https://cloudproducts.vercel.app/products/${productId}/delete-report`,
         {
           method: "PATCH",
           headers: {
@@ -67,7 +70,7 @@ function ReportedPosts() {
   const handleDeletePost = async (productId) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/products/${productId}`,
+        `https://cloudproducts.vercel.app/products/${productId}`,
         {
           method: "DELETE",
         }
@@ -88,7 +91,30 @@ function ReportedPosts() {
   };
 
   if (loading) {
-    return <div>Loading reported posts...</div>;
+    return (
+      <div>
+        Loading reported posts...{" "}
+        <div className="flex justify-center items-start mt-10 h-screen">
+          <Vortex
+            visible={true}
+            height={100}
+            width={100}
+            ariaLabel="vortex-loading"
+            wrapperStyle={{}}
+            wrapperClass="vortex-wrapper"
+            colors={[
+              "#E6F0FF",
+              "#F6EBD2",
+              "#D94848",
+              "#4D8B92",
+              "#A5D0CC",
+              "#FFD7D7",
+              "#F2F8E1",
+            ]}
+          />
+        </div>
+      </div>
+    );
   }
 
   if (reportedPosts.length === 0) {
@@ -108,68 +134,67 @@ function ReportedPosts() {
           </tr>
         </thead>
         <tbody>
-  {reportedPosts.map((product) => (
-    <tr key={product._id} className="hover:bg-gray-50">
-      {/* Image Column */}
-      <td className="border border-gray-300 px-4 py-2 text-center">
-        <img
-          src={`${product.image}`}
-          className="size-28 object-cover rounded-sm mx-auto"
-          alt={product.name}
-        />
-      </td>
+          {reportedPosts.map((product) => (
+            <tr key={product._id} className="hover:bg-gray-50">
+              {/* Image Column */}
+              <td className="border border-gray-300 px-4 py-2 text-center">
+                <img
+                  src={`${product.image}`}
+                  className="size-28 object-cover rounded-sm mx-auto"
+                  alt={product.name}
+                />
+              </td>
 
-      {/* Name Column */}
-      <td className="border border-gray-300 px-4 py-2 text-center">
-        <p>{product.name}</p>
-      </td>
+              {/* Name Column */}
+              <td className="border border-gray-300 px-4 py-2 text-center">
+                <p>{product.name}</p>
+              </td>
 
-      {/* Reports Column */}
-      <td className="border border-gray-300 px-4 py-2">
-        {product.reports.map((report, index) => (
-          <div
-            key={index}
-            className="p-2 bg-gray-100 rounded mb-2 shadow-sm"
-          >
-            <p>
-              <strong>Reported By:</strong> {report.reportedBy}
-            </p>
-            <p>
-              <strong>Details:</strong>{" "}
-              {report.reportDetails.split(" ").slice(0, 10).join(" ")}...
-            </p>
-            <button
-              onClick={() => handleDeleteReport(product._id, index)}
-              className="text-red-500 underline mt-2"
-            >
-              Delete Report
-            </button>
-          </div>
-        ))}
-      </td>
+              {/* Reports Column */}
+              <td className="border border-gray-300 px-4 py-2">
+                {product.reports.map((report, index) => (
+                  <div
+                    key={index}
+                    className="p-2 bg-gray-100 rounded mb-2 shadow-sm"
+                  >
+                    <p>
+                      <strong>Reported By:</strong> {report.reportedBy}
+                    </p>
+                    <p>
+                      <strong>Details:</strong>{" "}
+                      {report.reportDetails.split(" ").slice(0, 10).join(" ")}
+                      ...
+                    </p>
+                    <button
+                      onClick={() => handleDeleteReport(product._id, index)}
+                      className="text-red-500 underline mt-2"
+                    >
+                      Delete Report
+                    </button>
+                  </div>
+                ))}
+              </td>
 
-      {/* Actions Column */}
-      <td className="border border-gray-300 px-4 py-2 text-center">
-        <div className="flex flex-col gap-2">
-          <button
-            onClick={() => navigate(`/details/${product._id}`)}
-            className="btn text-white bg-[#135D66]"
-          >
-            View Details
-          </button>
-          <button
-            onClick={() => handleDeletePost(product._id)}
-            className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
-          >
-            Delete Post
-          </button>
-        </div>
-      </td>
-    </tr>
-  ))}
-</tbody>
-
-
+              {/* Actions Column */}
+              <td className="border border-gray-300 px-4 py-2 text-center">
+                <div className="flex flex-col gap-2">
+                  <button
+                    onClick={() => navigate(`/details/${product._id}`)}
+                    className="btn text-white bg-[#135D66]"
+                  >
+                    View Details
+                  </button>
+                  <button
+                    onClick={() => handleDeletePost(product._id)}
+                    className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                  >
+                    Delete Post
+                  </button>
+                </div>
+              </td>
+            </tr>
+          ))}
+        </tbody>
       </table>
       <ToastContainer />
     </div>

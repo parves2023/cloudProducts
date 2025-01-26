@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Vortex } from "react-loader-spinner";
 
 const MyProfile = () => {
   const { user } = useAuth();
@@ -17,9 +18,12 @@ const MyProfile = () => {
     const checkMembershipStatus = async () => {
       try {
         setLoading(true); // Set loading to true before the request
-        const response = await axios.post("http://localhost:5000/check-membership-status", {
-          email: user.email, // Pass the user's email from Firebase or your auth system
-        });
+        const response = await axios.post(
+          "https://cloudproducts.vercel.app/check-membership-status",
+          {
+            email: user.email, // Pass the user's email from Firebase or your auth system
+          }
+        );
         // console.log(response);
 
         if (response.data.status === "verified") {
@@ -77,8 +81,25 @@ const MyProfile = () => {
       {user && (
         <div className="p-6">
           {loading ? (
-            <div className="text-center">
+            <div className="flex justify-center flex-col items-center">
               <p className="text-gray-600">Checking membership status...</p>
+              <Vortex
+                visible={true}
+                height={100}
+                width={100}
+                ariaLabel="vortex-loading"
+                wrapperStyle={{}}
+                wrapperClass="vortex-wrapper"
+                colors={[
+                  "#E6F0FF",
+                  "#F6EBD2",
+                  "#D94848",
+                  "#4D8B92",
+                  "#A5D0CC",
+                  "#FFD7D7",
+                  "#F2F8E1",
+                ]}
+              />
             </div>
           ) : !isSubscribed ? (
             <div className="text-center">

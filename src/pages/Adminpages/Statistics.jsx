@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Vortex } from "react-loader-spinner";
 
 
 const COLORS = ["#8884d8", "#82ca9d", "#ffc658", "#ff6f61", "#ff73fa"];
@@ -41,7 +42,17 @@ const Statistics = () => {
     <div className="flex flex-col items-center">
       <h2 className="text-2xl font-semibold mb-5 text-[#003C43]">Admin Statistics</h2>
       {loading ? (
-        <p>Loading...</p>
+              <div className="flex justify-center items-start mt-10 h-screen">
+              <Vortex
+                visible={true}
+                height={100}
+                width={100}
+                ariaLabel="vortex-loading"
+                wrapperStyle={{}}
+                wrapperClass="vortex-wrapper"
+                colors={['#E6F0FF', '#F6EBD2', '#D94848', '#4D8B92', '#A5D0CC', '#FFD7D7', '#F2F8E1']}
+              />
+                    </div>
       ) : (
         <PieChart width={400} height={400}>
           <Pie

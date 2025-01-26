@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Vortex } from "react-loader-spinner";
 
 
 
@@ -112,7 +113,20 @@ const Coupon = () => {
       </form>
 
       {loading ? (
-        <p>Loading coupons...</p>
+        <div>
+          <p>Loading coupons...</p>
+          <div className="flex justify-center items-start mt-10 h-screen">
+<Vortex
+  visible={true}
+  height={100}
+  width={100}
+  ariaLabel="vortex-loading"
+  wrapperStyle={{}}
+  wrapperClass="vortex-wrapper"
+  colors={['#E6F0FF', '#F6EBD2', '#D94848', '#4D8B92', '#A5D0CC', '#FFD7D7', '#F2F8E1']}
+/>
+      </div>
+        </div>
       ) : (
         <div className="grid grid-cols-1 gap-4">
           {coupons.map((coupon) => (

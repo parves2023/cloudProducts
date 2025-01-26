@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
-import { BallTriangle } from "react-loader-spinner";
+import {  Vortex } from "react-loader-spinner";
 import { AuthContext } from "../providers/AuthProvider";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import { IoThumbsUpOutline } from "react-icons/io5";
@@ -67,14 +67,15 @@ function AllProducts() {
       <div className="max-w-4xl mx-auto mt-8">
         <h1 className="text-3xl font-bold text-center mb-6">All Products</h1>
         <div className="flex justify-center h-screen">
-          <BallTriangle
-            height={100}
-            width={100}
-            radius={5}
-            color="#4fa94d"
-            ariaLabel="ball-triangle-loading"
-            visible={true}
-          />
+<Vortex
+  visible={true}
+  height={100}
+  width={100}
+  ariaLabel="vortex-loading"
+  wrapperStyle={{}}
+  wrapperClass="vortex-wrapper"
+  colors={['#E6F0FF', '#F6EBD2', '#D94848', '#4D8B92', '#A5D0CC', '#FFD7D7', '#F2F8E1']}
+/>
         </div>
       </div>
     );
