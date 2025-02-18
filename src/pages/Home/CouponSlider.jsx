@@ -57,7 +57,7 @@ const copyCouponCode = (code) => {
 
 
   return (
-    <div className="my-8 w-full bg-gray-100 p-6 rounded-lg shadow-lg">
+    <div className="my-8 container mx-auto w-full bg-gray-100 p-6 rounded-lg shadow-lg">
       <h2 className="text-2xl font-bold text-center mb-6 text-[#135D66]">Trending Coupons</h2>
       {groupedCoupons.length > 0 ? (
         <Carousel

@@ -126,7 +126,7 @@ function AllProducts() {
   
 
   return (
-    <div className="container mx-auto mt-8">
+    <div className="container mx-auto my-8">
       <h1 className="text-3xl font-bold text-center mb-6 text-[#135D66]">All Products</h1>
 
        <div className="flex  justify-center ">

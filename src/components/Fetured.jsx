@@ -115,7 +115,7 @@ const Featured = () => {
         {featuredProducts.map((product) => (
           <div
             key={product._id}
-            className="bg-[#faffff] shadow-md rounded-lg overflow-hidden transform transition duration-300 hover:scale-105"
+            className="bg-[#faffff] shadow-md rounded-lg overflow-hidden transform transition duration-300 "
           >
             <img
               src={product.image}

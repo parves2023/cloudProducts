@@ -18,8 +18,24 @@ const Navbar = () => {
       <li>
         <NavLink to="/all-product">All Products</NavLink>
       </li>
+      {user ? (
+        <>
+          <li>
+            <NavLink to="/dashboard/addproduct">Add Product</NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/myproducts">My Products</NavLink>
+          </li>
+        </>
+      ) : (
+        <></>
+      )}
+      <li>
+        <NavLink to="/contact">Contact Us</NavLink>
+      </li>
     </>
   );
+  
 
   const handleProfileClick = () => {
     setProfileMenu(!profileMenu);

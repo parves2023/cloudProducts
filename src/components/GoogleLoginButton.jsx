@@ -42,7 +42,7 @@ const GoogleLoginButton = ({ signInGoogle }) => {
     <div className="flex justify-center mt-10">
       <button
         onClick={handleGoogleLogin}
-        className="flex items-center px-6 py-3 bg-green-400 text-white text-lg font-medium rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 transition-transform transform hover:scale-105"
+        className="flex items-center px-6 py-3 bg-green-400 text-white text-lg font-medium rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 transition-transform transform "
       >
         <img
           src="https://www.google.com/favicon.ico"

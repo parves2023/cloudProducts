@@ -24,6 +24,7 @@ import AllAdmins from "../pages/Adminpages/AllAdmins";
 import ProfilePayment from "../pages/MyProfile/ProfilePayment";
 import Statistics from "../pages/Adminpages/Statistics";
 import Coupon from "../pages/Adminpages/Coupon";
+import ContactUs from "../components/ContactUs";
 
 const router = createBrowserRouter([
   {
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: "/all-product",
         element: <AllProducts />,
+      },
+      {
+        path: "/contact",
+        element: <ContactUs />,
       },
     ],
   },
