@@ -56,7 +56,7 @@ function AllProducts() {
   const handleTagSearch = (e) => {
     e.preventDefault();
     fetchProducts(currentPage, searchTags); // Pass tags to the fetchProducts function
-    console.log(searchTags);
+    // console.log(searchTags);
     
   };
 
@@ -126,7 +126,7 @@ function AllProducts() {
   
 
   return (
-    <div className="max-w-6xl mx-auto mt-8">
+    <div className="container mx-auto mt-8">
       <h1 className="text-3xl font-bold text-center mb-6 text-[#135D66]">All Products</h1>
 
        <div className="flex  justify-center ">
@@ -149,7 +149,7 @@ function AllProducts() {
        </div>
 
       {/* Product Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 bg-white">
         {products.map((product) => (
           <div
             key={product._id}

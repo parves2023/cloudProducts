@@ -63,7 +63,7 @@ function TrendingProducts() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto my-8">
+    <div className="container mx-auto my-8">
       <h2 className="text-3xl font-bold text-center mb-6 text-[#135D66]">Trending Products</h2>
 
       {/* Product Cards */}
@@ -71,22 +71,27 @@ function TrendingProducts() {
         {trendingProducts.map((product) => (
           <div
   key={product._id}
-  className="bg-[#faffff] shadow-md rounded-lg overflow-hidden transform transition duration-300 hover:scale-105"
+  className="bg-[#faffff] flex flex-col justify-between shadow-md rounded-lg overflow-hidden transform transition duration-300 hover:scale-105"
 >
   <img
     src={product.image}
     alt={product.name}
-    className="w-full h-48 object-cover"
+    className="w-full md:h-60 h-48 object-cover"
   />
-  <div className="p-4 flex flex-col justify-end w-auto h-auto">
-    <div className="flex-col">
+  <div className="p-4 flex flex-col justify-between w-auto h-full">
+    <div className="flex-col justify-between">
       <h3 className="text-lg font-semibold text-[#003C43]">
         {product.name}
       </h3>
       <p className="text-[#135D66]">Category: {product.category}</p>
       <p className="text-[#946220] mt-2" >Price: ${product.price}</p>
       <p className="text-[#135D66] mt-2" >Description: ${product.description}</p>
-      <div className="flex flex-wrap mt-2 mb-3">
+      
+    </div>
+
+<div>
+
+<div className="flex flex-wrap mt-2 mb-3">
         {product.tags.map((tag, index) => (
           <span
             key={index}
@@ -96,9 +101,7 @@ function TrendingProducts() {
           </span>
         ))}
       </div>
-    </div>
-
-    <div className="flex justify-between mt-auto">
+<div className="flex justify-between mt-auto ">
       <button
         type="submit"
         onClick={() => navigate(`/details/${product._id}`)}
@@ -163,6 +166,7 @@ function TrendingProducts() {
         </motion.div>
       )}
     </div>
+</div>
   </div>
 </div>
 

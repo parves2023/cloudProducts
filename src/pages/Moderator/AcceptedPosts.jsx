@@ -51,6 +51,8 @@ function AcceptedPosts() {
   
 
   const toggleFeaturedStatus = async (id, isFeatured) => {
+    // console.log(id, isFeatured);
+    
     try {
       const response = await axiosSecure.patch(
         `/products/mark-as-featured/${id}`,

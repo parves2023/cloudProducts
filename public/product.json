@@ -9,7 +9,7 @@
       "image": "https://blog.dymaptic.com/hubfs/Experience-Builder--1.jpg",
       "status": "approved",
       "createdAt": "2025-01-15T18:33:59.814+00:00",
-      "featured": true,
+      "markAsFeatured": false,
       "externalLink": "www.webappbuilder.com",
       "tags": ["Web Apps", "Tech Tools", "AI Integration"],
       "likes": [],

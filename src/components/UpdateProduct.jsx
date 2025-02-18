@@ -31,6 +31,8 @@ function UpdateProduct({ product, isOpen, onClose, onUpdate }) {
         ...formData,
         tags: formData.tags.split(',').map((tag) => tag.trim()), // Convert back to array
       };
+      console.log(updatedData);
+      
 
       const response = await axiosPublic.put(`/products/${product._id}`, updatedData);
       Swal.fire('Updated!', 'Product updated successfully.', 'success');

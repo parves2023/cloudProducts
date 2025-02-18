@@ -68,6 +68,7 @@ const AddProduct = () => {
         // Prepare product data with the uploaded image URL and additional data
         const product = {
           name: data.name,
+          markAsFeatured: false,
           creatorName: user?.displayName,
           creatorEmail: user?.email,
           creatorImage: user.photoURL,

@@ -22,6 +22,8 @@ const Featured = () => {
         "https://cloudproducts.vercel.app/api/featured-products"
       );
       if (response.headers["content-type"]?.includes("application/json")) {
+        // console.log(response.data);
+
         setFeaturedProducts(response.data); // Assume it's an array
       } else {
         console.error("Unexpected response format:", response.data);
