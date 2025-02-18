@@ -122,7 +122,7 @@ const Featured = () => {
               alt={product.name}
               className="w-full h-48 object-cover"
             />
-            <div className="p-4 flex flex-col justify-end w-auto h-auto">
+            <div className="p-4 flex flex-col justify-between  w-auto h-auto">
               <div className="flex-col ">
                 <h3 className="text-lg font-semibold text-[#003C43]">
                   {product.name}
@@ -188,9 +188,12 @@ const Featured = () => {
                       )
                         ? "#135D66" // blue-500
                         : "#CBD5E1", // slate-300
+                        
                     }}
+                    
+                    
                     className={`${
-                      product.creatorEmail !== user?.email ? "block" : "hidden"
+                      product.creatorEmail !== user?.email ? "block" : "block "
                     } size-10 w-16 mt-2 ml-2 p-2 rounded cursor-pointer flex items-center justify-center gap-2`}
                   >
                     <IoThumbsUpOutline
