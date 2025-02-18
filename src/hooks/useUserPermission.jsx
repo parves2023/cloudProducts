@@ -15,7 +15,7 @@ const useUserPermission = () => {
 
         // Fetch user data from the backend using the email
         const response = await axios.get(
-          `https://cloudproducts.vercel.app/checkuserstatus?email=${user?.email}`
+          `http://localhost:5000/checkuserstatus?email=${user?.email}`
         );
         const fetchedUser = response.data;
 
@@ -28,7 +28,7 @@ const useUserPermission = () => {
         } else {
           // Normal users can add only one product
           const productResponse = await axios.get(
-            `https://cloudproducts.vercel.app/checkproductslength?email=${user?.email}`
+            `http://localhost:5000/checkproductslength?email=${user?.email}`
           );
           const userProducts = productResponse.data;
 

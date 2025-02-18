@@ -16,7 +16,7 @@ const ProfilePayment = () => {
   const handleApplyCoupon = async () => {
     try {
       const response = await axios.post(
-        "https://cloudproducts.vercel.app/validate-coupon",
+        "http://localhost:5000/validate-coupon",
         {
           couponCode,
           amount: 9900,

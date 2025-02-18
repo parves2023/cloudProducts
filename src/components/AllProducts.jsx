@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {  Vortex } from "react-loader-spinner";
 import { AuthContext } from "../providers/AuthProvider";
 import useAxiosPublic from "../hooks/useAxiosPublic";
@@ -7,6 +7,9 @@ import { IoThumbsUpOutline } from "react-icons/io5";
 import { motion } from "framer-motion";
 import useAuth from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import { MdOutlineSearch } from "react-icons/md";
+import { RxCross2 } from "react-icons/rx";
+
 
 function AllProducts() {
   const {user} = useAuth();
@@ -18,27 +21,37 @@ function AllProducts() {
   const [searchTags, setSearchTags] = useState("");
   const axiosPublic = useAxiosPublic();
   const limit = 6; // Items per page
+  const [filter, setFilter] = useState(true);
+  const [priceSort, setPriceSort] = useState('');
+
+
 
   // Fetch products from the server
-  const fetchProducts = async (page, tags = "") => {
-    setDataFetching(true);
-    try {
-      const response = await axiosPublic.get(
-        `/products?page=${page}&limit=${limit}&tags=${tags}`
-      );
-      if (response.status === 200) {
-        const { products, totalPages } = response.data;
-        setProducts(products);
-        setTotalPages(totalPages);
-      } else {
-        console.error("Failed to fetch products");
-      }
-    } catch (error) {
-      console.error("Error fetching products:", error);
-    } finally {
-      setDataFetching(false);
+
+const fetchProducts = async (page, tags = "") => {
+  setDataFetching(true);
+  console.log(tags, priceSort);
+  
+  try {
+    const response = await axiosPublic.get(
+      `/products?page=${page}&limit=${limit}&tags=${tags}&sortByPrice=${priceSort}`
+    );
+    if (response.status === 200) {
+      const { products, totalPages } = response.data;
+      console.log(products);
+      
+      setProducts(products);
+      setTotalPages(totalPages);
+    } else {
+      console.error("Failed to fetch products");
     }
-  };
+  } catch (error) {
+    console.error("Error fetching products:", error);
+  } finally {
+    setDataFetching(false);
+  }
+};
+
 
 
 
@@ -59,6 +72,20 @@ function AllProducts() {
     // console.log(searchTags);
     
   };
+
+  useEffect(() => {
+    fetchProducts(1, searchTags);
+  }, [priceSort]);
+
+    const handleReset = () => {
+      setSearchTags('');      // Clear the tag input
+      setPriceSort('');       // Reset the price sort option
+      setCurrentPage(1);      // Reset to the first page
+      fetchProducts(1, '');   // Fetch products without any filters
+    };
+    
+
+  
 
 
   // Show loading spinner while fetching data
@@ -127,26 +154,104 @@ function AllProducts() {
 
   return (
     <div className="container mx-auto my-8">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{/* Floating Button */}
+<button
+  className="btn btn-primary px-4 py-2 border-none bg-[#135D66] text-white rounded-lg hover:bg-[#135c66c7] shadow-md fixed top-24 left-0 z-30 flex items-center gap-2"
+  onClick={() => setFilter(!filter)}
+>
+  {filter ? <RxCross2 size={20} /> : <MdOutlineSearch  size={20} />}
+</button>
+
+{/* Floating Sidebar */}
+{filter && (
+  <motion.div
+    initial={{ opacity: 0, x: -50 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ duration: 0.3 }}
+    className="fixed top-28 left-5 bg-white w-72 p-6 shadow-lg rounded-lg z-20"
+  >
+    <div className="flex flex-col items-center">
+      <form
+        onSubmit={handleTagSearch}
+        className="flex flex-col gap-3 my-4 w-full"
+      >
+        <label className="font-medium text-[#135D66]">Search by Tags:</label>
+        <input
+          type="text"
+          placeholder="Enter tags (comma-separated)"
+          value={searchTags}
+          onChange={(e) => setSearchTags(e.target.value)}
+          className="w-full p-2 border rounded-md focus:ring focus:ring-[#135D66] outline-none"
+        />
+        <button
+          type="submit"
+          className="px-4 py-2 bg-[#135D66] text-white rounded-md hover:bg-[#0e444b] transition duration-300"
+        >
+          Search
+        </button>
+      </form>
+
+      {/* Price Sorting Options */}
+<div className="w-full my-4">
+  <label className="font-medium text-[#135D66]">Sort by Price:</label>
+  <select
+    onChange={(e) => setPriceSort(e.target.value)}
+    className="w-full p-2 border rounded-md focus:ring focus:ring-[#135D66] outline-none"
+  >
+    <option value="">Select</option>
+    <option value="lowToHigh">Low to High</option>
+    <option value="highToLow">High to Low</option>
+  </select>
+</div>
+
+    </div>
+    <div>
+      <button
+      onClick={handleReset}
+      className="btn  w-full bg-[#135D66] text-white hover:bg-[#135c66dc]">Reset All</button>
+    </div>
+  </motion.div>
+)}
+
+
+
+
       <h1 className="text-3xl font-bold text-center mb-6 text-[#135D66]">All Products</h1>
 
-       <div className="flex  justify-center ">
-       <form onSubmit={handleTagSearch} className="flex flex-col md:flex-row items-center gap-1 mb-2 md:mb-4">
-    <label className="font-medium">Search by Tags:</label> 
-    <input
-      type="text"
-      placeholder="Enter tags (comma-separated)"
-      value={searchTags}
-      onChange={(e) => setSearchTags(e.target.value)}
-      className="p-2  border rounded-md focus:ring focus:ring-blue-500"
-    />
-    <button
-      type="submit"
-      className="px-4 py-2 bg-[#135D66] text-white rounded-md hover:bg-[#0e444b]"
-    >
-      Search
-    </button>
-  </form>
-       </div>
+ 
 
       {/* Product Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 bg-white">

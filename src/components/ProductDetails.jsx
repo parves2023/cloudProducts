@@ -27,9 +27,7 @@ const ProductDetails = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(
-          `https://cloudproducts.vercel.app/products/${_id}`
-        );
+        const response = await fetch(`http://localhost:5000/products/${_id}`);
         if (response.ok) {
           const data = await response.json();
           // console.log(data);
@@ -62,7 +60,7 @@ const ProductDetails = () => {
 
     try {
       const response = await fetch(
-        `https://cloudproducts.vercel.app/products/report/${id}`,
+        `http://localhost:5000/products/report/${id}`,
         {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
