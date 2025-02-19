@@ -8,7 +8,8 @@ const banners = [
       "https://workreap.amentotech.com/wp-content/uploads/2024/04/img-06-768x539.png",
   },
   {
-    backgroundColor: "#754E1A", // Example color
+    // backgroundColor: "#754E1A", // Example color
+    backgroundColor: "#135D56", // Example color
     image:
       "https://workreap.amentotech.com/wp-content/uploads/2024/04/freelance-image01-600x445.png",
   },
