@@ -107,15 +107,15 @@ const Featured = () => {
   }
 
   return (
-    <div className="bg-white py-8 px-4 sm:px-6 lg:px-8 container mx-auto">
-      <h2 className="text-2xl font-bold  text-center mb-6 text-[#135D66]">
+    <div className="bg-background my-10 rounded-2xl py-8 px-4 sm:px-6 lg:px-8 container mx-auto">
+      <h2 className="text-2xl font-bold  text-center mb-6 text-text-primary">
         Featured Products
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {featuredProducts.map((product) => (
           <div
             key={product._id}
-            className="bg-[#faffff] shadow-md rounded-lg overflow-hidden transform transition duration-300 "
+            className="bg-cardback shadow-md rounded-lg overflow-hidden transform transition duration-300 "
           >
             <img
               src={product.image}
@@ -124,10 +124,10 @@ const Featured = () => {
             />
             <div className="p-4 flex flex-col justify-between  w-auto h-auto">
               <div className="flex-col ">
-                <h3 className="text-lg font-semibold text-[#003C43]">
+                <h3 className="text-lg font-semibold text-text-primary">
                   {product.name}
                 </h3>
-                <p className="text-[#135D66]">{product.category}</p>
+                <p className="text-text-light">{product.category}</p>
                 <p className="text-[#946220] mt-2">${product.price}</p>
                 <div className="flex flex-wrap mt-2 mb-3 ">
                   {product.tags.map((tag, index) => (

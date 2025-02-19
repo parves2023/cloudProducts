@@ -55,7 +55,9 @@ const ShowReview = ({ productId, isreviewModalOpen }) => {
 
   return (
     <div className="space-y-6">
-      <h2 className="text-xl font-semibold text-[#135D66]">Customer Reviews</h2>
+      <h2 className="text-xl font-semibold text-text-primary">
+        Customer Reviews
+      </h2>
       {reviews.map((review) => (
         <figure
           key={review._id}
@@ -71,7 +73,7 @@ const ShowReview = ({ productId, isreviewModalOpen }) => {
           {/* Review Content */}
           <div className="p-6 md:p-8 flex-1">
             <blockquote>
-              <p className="text-lg font-semibold text-[#135D66] dark:text-gray-100 leading-relaxed">
+              <p className="text-lg font-semibold text-text-primary dark:text-gray-100 leading-relaxed">
                 {review.review}
               </p>
             </blockquote>
@@ -84,15 +86,15 @@ const ShowReview = ({ productId, isreviewModalOpen }) => {
                 activeColor="#fbbf24"
                 isHalf={true}
               />
-              <span className="ml-3 text-[#135D66] dark:text-gray-400 text-sm font-medium">
+              <span className="ml-3 text-text-primary dark:text-gray-400 text-sm font-medium">
                 {review.rating}/5
               </span>
             </div>
             <figcaption className="mt-4">
-              <div className="text-[#135D66] dark:text-sky-400 font-semibold text-base">
+              <div className="text-text-primary dark:text-sky-400 font-semibold text-base">
                 {review.userName}
               </div>
-              <div className="text-[#135D66] dark:text-gray-400 text-sm">
+              <div className="text-text-primary dark:text-gray-400 text-sm">
                 Reviewed on: {new Date(review.createdAt).toLocaleDateString()}
               </div>
             </figcaption>

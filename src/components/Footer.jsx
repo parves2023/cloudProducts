@@ -13,7 +13,7 @@ import { Link } from "react-router";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#d6f0e7] font-sans dark:bg-gray-900">
+    <footer className="bg-nav-footer-bg font-sans">
       <div className="container px-6 py-12 mx-auto">
         <motion.div
           initial={{ opacity: 0 }}
@@ -24,14 +24,14 @@ const Footer = () => {
           {/* Subscription Section */}
           <div className="sm:col-span-2">
             <Link to="/" className="md:flex">
-              <h1 className="md:text-4xl text-[#932F04] text-2xl ralewayfont font-bold">
-                Product<span className="text-[#0E5C3E]">Hunt</span>
+              <h1 className="md:text-4xl text-text-secondary text-2xl ralewayfont font-bold">
+                Product<span className="text-text-primary">Hunt</span>
               </h1>
             </Link>
             <br />
             <br />
 
-            <h1 className="max-w-lg text-xl font-semibold tracking-tight text-[#135D66] xl:text-2xl dark:text-white">
+            <h1 className="max-w-lg text-xl font-semibold tracking-tight text-text-primary xl:text-2xl dark:text-white">
               Subscribe to our newsletter to get updates.
             </h1>
             <div className="flex flex-col mx-auto mt-6 space-y-3 md:space-y-0 md:flex-row">
@@ -115,7 +115,10 @@ const Footer = () => {
                 className="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:cursor-pointer hover:text-blue-500 flex items-center space-x-2"
               >
                 <span className="material-icons">email</span>
-                <a href="mailto:ProductHunt@gmail.com" className="hover:underline">
+                <a
+                  href="mailto:ProductHunt@gmail.com"
+                  className="hover:underline"
+                >
                   ProductHunt@gmail.com
                 </a>
               </motion.div>

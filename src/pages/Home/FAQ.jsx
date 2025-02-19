@@ -53,10 +53,10 @@ const FAQ = () => {
   };
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16 bg-background">
       <div className="container mx-auto px-4">
         <motion.h2
-          className="text-3xl text-center mb-8 bg-blue-600 font-semibold py-3 text-white rounded-2xl"
+          className="text-3xl text-center mb-8 bg-[#135d66] font-semibold py-3 text-white rounded-2xl"
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -79,7 +79,7 @@ const FAQ = () => {
               >
                 <button
                   onClick={() => toggleFAQ(index)}
-                  className="w-full p-4 bg-white text-left text-lg font-semibold flex justify-between items-center hover:bg-gray-100 transition duration-200"
+                  className="w-full p-4 bg-cardback text-left text-lg font-semibold flex justify-between items-center hover:bg-gray-100 transition duration-200"
                 >
                   {faq.question}
                   <motion.span

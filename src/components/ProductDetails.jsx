@@ -83,7 +83,7 @@ const ProductDetails = () => {
   if (loading) {
     return (
       <div className="max-w-4xl mx-auto mt-10">
-        <h1 className="text-3xl font-bold text-center mb-6 text-[#135D66]">
+        <h1 className="text-3xl font-bold text-center mb-6 text-text-primary">
           Product Details
         </h1>
         <div className="flex justify-center items-start mt-10 h-screen">
@@ -171,7 +171,7 @@ const ProductDetails = () => {
 
   return (
     <div className="max-w-3xl mx-auto my-10 p-4 border rounded-lg shadow-lg bg-white">
-      <h1 className="text-2xl font-bold mb-4 text-center text-[#135D66]">
+      <h1 className="text-2xl font-bold mb-4 text-center text-text-primary">
         {product.name}
       </h1>
       <img
@@ -179,21 +179,22 @@ const ProductDetails = () => {
         alt={`${product.name}`}
         className="w-full h-72 object-cover rounded mb-4"
       />
-      <p className="text-[#135D66]">
-        <strong className="text-[#135D66]">Category:</strong> {product.category}
+      <p className="text-text-primary">
+        <strong className="text-text-primary">Category:</strong>{" "}
+        {product.category}
       </p>
       <p className="text-[#946220]">
         <strong className="text-[#946220]">Price:</strong> ${product.price}
       </p>
-      <p className="text-[#135D66]">
-        <strong className="text-[#135D66]">Status:</strong> {product.status}
+      <p className="text-text-primary">
+        <strong className="text-text-primary">Status:</strong> {product.status}
       </p>
-      <p className="text-[#135D66]">
-        <strong className="text-[#135D66]">Creator Email:</strong>{" "}
+      <p className="text-text-primary">
+        <strong className="text-text-primary">Creator Email:</strong>{" "}
         {product?.creatorEmail}
       </p>
 
-      <p className="text-[#135D66]">
+      <p className="text-text-primary">
         <strong>total Likes :</strong> {product?.likeCount}
       </p>
 
@@ -209,9 +210,9 @@ const ProductDetails = () => {
       </div>
 
       <p className="mt-4">
-        <strong className="text-[#135D66]">Description:</strong>
+        <strong className="text-text-primary">Description:</strong>
       </p>
-      <p className="text-[#135D66]">{product.description}</p>
+      <p className="text-text-primary">{product.description}</p>
 
       {/* Button to open the report modal */}
       <div>

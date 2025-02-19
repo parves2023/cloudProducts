@@ -24,7 +24,7 @@ const reviews = [
 
 const Reviews = () => {
   return (
-    <div className="py-12 bg-gray-50">
+    <div className="py-12 bg-background">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-8">What Our Users Say</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -34,7 +34,7 @@ const Reviews = () => {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="bg-white p-6 rounded-lg shadow-md"
+              className="bg-cardback p-6 rounded-lg shadow-md"
             >
               <div className="flex items-center mb-4">
                 <div className="text-yellow-500">
@@ -43,8 +43,8 @@ const Reviews = () => {
                   ))}
                 </div>
               </div>
-              <p className="text-gray-700 mb-4">{review.comment}</p>
-              <p className="text-gray-900 font-semibold">- {review.name}</p>
+              <p className="text-text-light mb-4">{review.comment}</p>
+              <p className="text-text-primary font-semibold">- {review.name}</p>
             </motion.div>
           ))}
         </div>

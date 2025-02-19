@@ -63,15 +63,15 @@ function TrendingProducts() {
   };
 
   return (
-    <div className="container mx-auto my-8">
-      <h2 className="text-3xl font-bold text-center mb-6 text-[#135D66]">Trending Products</h2>
+    <div className="container mx-auto p-8 bg-background my-10 rounded-2xl">
+      <h2 className="text-3xl font-bold text-center mb-6 text-text-primary">Trending Products</h2>
 
       {/* Product Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {trendingProducts.map((product) => (
           <div
   key={product._id}
-  className="bg-[#faffff] flex flex-col justify-between shadow-md rounded-lg overflow-hidden transform transition duration-300 "
+  className="bg-cardback flex flex-col justify-between shadow-md rounded-lg overflow-hidden transform transition duration-300 "
 >
   <img
     src={product.image}
@@ -80,12 +80,12 @@ function TrendingProducts() {
   />
   <div className="p-4 flex flex-col justify-between w-auto h-full">
     <div className="flex-col justify-between">
-      <h3 className="text-lg font-semibold text-[#003C43]">
+      <h3 className="text-lg font-semibold text-text-primary">
         {product.name}
       </h3>
-      <p className="text-[#135D66]">Category: {product.category}</p>
-      <p className="text-[#946220] mt-2" >Price: ${product.price}</p>
-      <p className="text-[#135D66] mt-2" >Description: ${product.description}</p>
+      <p className="text-text-light">Category: {product.category}</p>
+      <p className="text-text-secondary mt-2" >Price: ${product.price}</p>
+      <p className="text-text-light  mt-2" >Description: ${product.description}</p>
       
     </div>
 

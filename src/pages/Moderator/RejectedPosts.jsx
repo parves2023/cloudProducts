@@ -14,7 +14,7 @@ function RejectedPosts() {
         setRejectedProducts(response.data);
       } catch (error) {
         console.error("Error fetching rejected products:", error);
-      }finally{
+      } finally {
         setLoading(false);
       }
     };
@@ -48,7 +48,9 @@ function RejectedPosts() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold text-[#135D66] mb-6">Rejected Products</h1>
+      <h1 className="text-2xl font-bold text-text-primary mb-6">
+        Rejected Products
+      </h1>
       {rejectedProducts.length === 0 ? (
         <p className="text-center text-gray-500">No rejected products found.</p>
       ) : (

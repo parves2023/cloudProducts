@@ -121,7 +121,9 @@ function ReportedPosts() {
 
   return (
     <div className="max-w-6xl mx-auto my-10 p-4">
-      <h1 className="text-2xl font-bold mb-4 text-[#135D66]">Reported Posts</h1>
+      <h1 className="text-2xl font-bold mb-4 text-text-primary">
+        Reported Posts
+      </h1>
       <table className="table-auto w-full border-collapse border border-gray-300">
         <thead>
           <tr className="bg-gray-200">

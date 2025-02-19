@@ -3,7 +3,6 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import ThemeToggle from "./ThemeToggle";
 
-
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [profileMenu, setProfileMenu] = useState(false);
@@ -37,7 +36,6 @@ const Navbar = () => {
       </li>
     </>
   );
-  
 
   const handleProfileClick = () => {
     setProfileMenu(!profileMenu);
@@ -50,22 +48,21 @@ const Navbar = () => {
           <div className="navbar-start">
             <div className="">
               <Link to="/" className="md:flex">
-                <h1 className="md:text-3xl text-[#946220] text-2xl ralewayfont font-bold">
-                  Product<span className="text-[#135D66]">Hunt</span>
+                <h1 className="md:text-3xl text-text-secondary text-2xl ralewayfont font-bold">
+                  Product<span className="text-text-primary">Hunt</span>
                 </h1>
               </Link>
             </div>
           </div>
           <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal px-1 text-[#003C43]">{navLinks}</ul>
+            <ul className="menu menu-horizontal px-1 text-text-primary">
+              {navLinks}
+            </ul>
           </div>
           <div className="navbar-end">
-
-          <div className="mr-3">
-          <ThemeToggle></ThemeToggle>
-          </div>
-
-
+            <div className="mr-3">
+              <ThemeToggle></ThemeToggle>
+            </div>
 
             {user ? (
               <div className="flex flex-col md:flex-row items-center justify-center gap-3">
@@ -83,7 +80,7 @@ const Navbar = () => {
                     }  absolute top-full -left-1/2 transform -translate-x-1/2 bg-white p-4 rounded shadow-lg`}
                   >
                     <h2 className="text-xs text-center">Welcome</h2>
-                    <p className="text-center text-sm font-bold text-[#135D66]">
+                    <p className="text-center text-sm font-bold text-text-primary">
                       {user?.displayName}
                     </p>
 

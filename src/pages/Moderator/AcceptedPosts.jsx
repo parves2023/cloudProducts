@@ -14,14 +14,13 @@ function AcceptedPosts() {
         setAcceptedProducts(response.data);
       } catch (error) {
         console.error("Error fetching accepted products:", error);
-      }finally{
+      } finally {
         setLoading(false);
       }
     };
 
     fetchAcceptedProducts();
   }, [axiosSecure]);
-
 
   if (loading) {
     return (
@@ -47,12 +46,9 @@ function AcceptedPosts() {
     );
   }
 
-
-  
-
   const toggleFeaturedStatus = async (id, isFeatured) => {
     // console.log(id, isFeatured);
-    
+
     try {
       const response = await axiosSecure.patch(
         `/products/mark-as-featured/${id}`,
@@ -90,12 +86,14 @@ function AcceptedPosts() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-2xl text-[#135D66] font-bold mb-6">Accepted Products</h1>
+      <h1 className="text-2xl text-text-primary font-bold mb-6">
+        Accepted Products
+      </h1>
       {acceptedProducts.length === 0 ? (
         <p className="text-center text-gray-500">No accepted products found.</p>
       ) : (
         <div className="overflow-x-auto">
-          <table className="table-auto text-[#135D66] border-collapse w-full text-left">
+          <table className="table-auto text-text-primary border-collapse w-full text-left">
             <thead>
               <tr className="bg-gray-200">
                 <th className="border p-3">Image</th>

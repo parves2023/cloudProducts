@@ -127,12 +127,12 @@ const AddProduct = () => {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-4 text-[#135D66]">
+      <h1 className="text-2xl font-bold mb-4 text-text-primary">
         Welcome, {user?.name || "User"}!
       </h1>
       {canAddProduct ? (
         <div className="p-8 bg-white shadow-md rounded-lg">
-          <h1 className="text-2xl font-bold mb-6 text-[#135D66]">
+          <h1 className="text-2xl font-bold mb-6 text-text-primary">
             Add a Product
           </h1>
           <form onSubmit={handleSubmit(onSubmit)}>

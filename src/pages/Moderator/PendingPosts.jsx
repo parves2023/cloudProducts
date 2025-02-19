@@ -15,14 +15,13 @@ function PendingPosts() {
         setPendingProducts(response.data);
       } catch (error) {
         console.error("Error fetching pending products:", error);
-      }finally{
-        setLoading(false)
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchPendingProducts();
   }, [axiosSecure]);
-
 
   if (loading) {
     return (
@@ -65,14 +64,16 @@ function PendingPosts() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold mb-6 text-[#135D66]">Pending Products</h1>
+      <h1 className="text-2xl font-bold mb-6 text-text-primary">
+        Pending Products
+      </h1>
       {pendingProducts.length === 0 ? (
         <p className="text-center text-gray-500">No pending products found.</p>
       ) : (
         <div className="overflow-x-auto">
           <table className="table-auto border-collapse w-full text-left">
             <thead>
-              <tr className="bg-gray-200 text-[#135D66]">
+              <tr className="bg-gray-200 text-text-primary">
                 <th className="border p-3">Image</th>
                 <th className="border p-3">Name</th>
                 <th className="border p-3">Category</th>
