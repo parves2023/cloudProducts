@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Typewriter from "typewriter-effect";
+import { useNavigate } from "react-router-dom";
 
 const banners = [
   {
-    backgroundColor: "#135D66", // Example color
-    image:
-      "https://workreap.amentotech.com/wp-content/uploads/2024/04/img-06-768x539.png",
+    backgroundColor: "#135D66",
+    image: "https://workreap.amentotech.com/wp-content/uploads/2024/04/img-06-768x539.png",
+    heading: "Discover & Upvote The Best Tech Products",
+    subtext: "Explore a curated list of innovative products in one place!",
   },
   {
-    // backgroundColor: "#754E1A", // Example color
-    backgroundColor: "#135D56", // Example color
-    image:
-      "https://workreap.amentotech.com/wp-content/uploads/2024/04/freelance-image01-600x445.png",
+    backgroundColor: "#135D56",
+    image: "https://workreap.amentotech.com/wp-content/uploads/2024/04/freelance-image01-600x445.png",
+    heading: "Support Innovation & Find The Next Big Thing",
+    subtext: "Upvote, discuss, and follow the latest trends in tech!",
   },
 ];
 
@@ -23,6 +26,7 @@ const categories = [
 
 const DynamicBanner = () => {
   const [currentBanner, setCurrentBanner] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -31,7 +35,11 @@ const DynamicBanner = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const { backgroundColor, image } = banners[currentBanner];
+  const { backgroundColor, image, heading, subtext } = banners[currentBanner];
+
+  const handleCategoryClick = () => {
+    navigate("/all-product"); // Navigate to the all-products page
+  };
 
   return (
     <div className="container mx-auto p-1">
@@ -42,14 +50,29 @@ const DynamicBanner = () => {
         }}
         className="rounded-lg min-h-[300px] md:min-h-[500px] flex flex-col md:flex-row items-center justify-between p-6 md:p-10 text-white"
       >
-        {/* Static Left Content */}
+        {/* Dynamic Left Content */}
         <div className="text-center md:text-left flex-1">
           <h1 className="text-3xl md:text-4xl font-bold mb-4">
-            Unlock The Potential Of Your Team’s Talent.
+            <Typewriter
+              options={{
+                strings: [heading],
+                autoStart: true,
+                loop: true,
+                delay: 50,
+                deleteSpeed: 20,
+              }}
+            />
           </h1>
           <p className="text-lg md:text-xl mb-6">
-            Flourish in a thriving freelance ecosystem dedicated to excellence
-            and limitless opportunities.
+            <Typewriter
+              options={{
+                strings: [subtext],
+                autoStart: true,
+                loop: true,
+                delay: 50,
+                deleteSpeed: 20,
+              }}
+            />
           </p>
           <div className="flex justify-center md:justify-start mb-6">
             <input
@@ -57,9 +80,9 @@ const DynamicBanner = () => {
               placeholder="Search by keyword"
               className="p-4 rounded-full w-full md:w-80 border border-gray-300 outline-none shadow-sm focus:ring-2 focus:ring-green-700 focus:border-green-400 transition duration-200 ease-in-out text-gray-800 placeholder-gray-500"
             />
-
             <button
               type="submit"
+              onClick={handleCategoryClick}
               className="flex justify-center border-emerald-700 gap-2 items-center ml-2 shadow-xl text-lg bg-gray-300 text-black backdrop-blur-md lg:font-semibold isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-emerald-800 hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-4 py-2 overflow-hidden border-2 rounded-full group active:scale-95 active:bg-gray-200 transition duration-300"
             >
               Search
@@ -83,6 +106,7 @@ const DynamicBanner = () => {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 className="bg-gray-100 text-black py-2 px-4 rounded-full shadow-md hover:bg-gray-200 transition"
+                onClick={handleCategoryClick} // Navigate on click
               >
                 {category}
               </motion.button>

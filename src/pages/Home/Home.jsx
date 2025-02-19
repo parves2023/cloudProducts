@@ -3,6 +3,10 @@ import DynamicBanner from "../../components/DynamicBanner";
 import Featured from "../../components/Fetured";
 import TrendingProducts from "../../components/TrendingProducts";
 import CouponSlider from "./CouponSlider";
+import Reviews from "./Reviews";
+import Newsletter from "./Newsletter";
+import Contact from "./Contact";
+import FAQ from "./FAQ";
 
 
 const Home = () => {
@@ -15,6 +19,10 @@ const Home = () => {
       <Featured></Featured>
       <TrendingProducts></TrendingProducts>
       <CouponSlider></CouponSlider>
+      <Reviews></Reviews>
+      <FAQ></FAQ>
+      <Contact></Contact>
+   
       </div>
     </div>
   );
