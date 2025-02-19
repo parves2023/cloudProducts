@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Vortex } from "react-loader-spinner";
+import AdminStatistics from "./AdminStatistics";
 
 
 const COLORS = ["#8884d8", "#82ca9d", "#ffc658", "#ff6f61", "#ff73fa"];
@@ -39,6 +40,8 @@ const Statistics = () => {
   }, [axiosSecure]);
 
   return (
+<div>
+<AdminStatistics></AdminStatistics>
     <div className="flex flex-col items-center">
       <h2 className="text-2xl font-semibold mb-5 text-[#003C43]">Admin Statistics</h2>
       {loading ? (
@@ -74,6 +77,7 @@ const Statistics = () => {
         </PieChart>
       )}
     </div>
+</div>
   );
 };
 
