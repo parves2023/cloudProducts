@@ -126,12 +126,12 @@ const AddProduct = () => {
   };
 
   return (
-    <div>
+    <div className="bg-background">
       <h1 className="text-2xl font-bold mb-4 text-text-primary">
         Welcome, {user?.name || "User"}!
       </h1>
       {canAddProduct ? (
-        <div className="p-8 bg-white shadow-md rounded-lg">
+        <div className="p-8 bg-cardback shadow-md rounded-lg ">
           <h1 className="text-2xl font-bold mb-6 text-text-primary">
             Add a Product
           </h1>
@@ -139,14 +139,14 @@ const AddProduct = () => {
             {/* Product Name */}
             <div className="form-control w-full my-4">
               <label className="label">
-                <span className="label-text">Product Name*</span>
+                <span className="label-text text-text-primary">Product Name*</span>
               </label>
               <input
                 type="text"
                 placeholder="Product Name"
                 {...register("name", { required: true })}
                 required
-                className="input input-bordered w-full"
+                className="input input-bordered w-full text-gray-950"
               />
             </div>
 
@@ -154,13 +154,13 @@ const AddProduct = () => {
               {/* Category */}
               <div className="form-control w-full my-4">
                 <label className="label">
-                  <span className="label-text">Category*</span>
+                  <span className="label-text text-text-primary">Category*</span>
                 </label>
                 <select
                   {...register("category", {
                     required: "Category is required",
                   })} // Add validation error message
-                  className="select select-bordered w-full"
+                  className="select select-bordered w-full text-gray-950"
                 >
                   <option value="" disabled>
                     Select a category
@@ -177,14 +177,14 @@ const AddProduct = () => {
               {/* Price */}
               <div className="form-control w-full my-4">
                 <label className="label">
-                  <span className="label-text">Price ($)*</span>
+                  <span className="label-text text-text-primary">Price ($)*</span>
                 </label>
                 <input
                   type="number"
                   placeholder="Price"
                   {...register("price", { required: true })}
                   required
-                  className="input input-bordered w-full"
+                  className="input input-bordered w-full text-gray-950"
                 />
               </div>
             </div>
@@ -192,27 +192,27 @@ const AddProduct = () => {
             {/* Description */}
             <div className="form-control w-full my-4">
               <label className="label">
-                <span className="label-text">Description</span>
+                <span className="label-text text-text-primary">Description</span>
               </label>
               <textarea
                 {...register("description")}
-                className="textarea textarea-bordered h-24"
-                placeholder="Enter product description"
+                className="textarea textarea-bordered h-24 text-gray-950"
+                placeholder="Enter product description "
               ></textarea>
             </div>
 
             {/* Tags */}
             <div className="form-control w-full my-4">
               <label className="label">
-                <span className="label-text">Tags</span>
+                <span className="label-text text-text-primary">Tags</span>
               </label>
               <input
                 type="text"
-                className="input input-bordered w-full"
+                className="input input-bordered w-full text-gray-950"
                 placeholder="Enter tags separated by commas"
                 onChange={handleTagsChange}
               />
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-text-light">
                 Enter tags separated by commas.
               </p>
             </div>
@@ -220,12 +220,12 @@ const AddProduct = () => {
             {/* External Link */}
             <div className="form-control w-full my-4">
               <label className="label">
-                <span className="label-text">External Link</span>
+                <span className="label-text text-text-primary">External Link</span>
               </label>
               <input
                 type="url"
                 {...register("externalLink")}
-                className="input input-bordered w-full"
+                className="input input-bordered w-full text-gray-950"
                 placeholder="Enter external link (if any)"
                 value={externalLink}
                 onChange={handleExternalLinkChange}

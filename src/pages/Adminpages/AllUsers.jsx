@@ -88,13 +88,13 @@ function AllUsers() {
     );
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4 text-[#003C43]">All Users</h1>
+    <div className="p-4 bg-cardback" >
+      <h1 className="text-2xl font-bold mb-4 text-text-primary">All Users</h1>
       {users && users.length > 0 ? (
         <div className="overflow-x-auto">
           <table className="table-auto border-collapse w-full text-left">
             <thead>
-              <tr className="bg-gray-200">
+              <tr className="bg-background">
                 <th className="border p-3">Image</th>
                 <th className="border p-3">Name</th>
                 <th className="border p-3">Email</th>
@@ -104,7 +104,7 @@ function AllUsers() {
             </thead>
             <tbody>
               {users.map((userItem) => (
-                <tr key={userItem._id} className="hover:bg-gray-100">
+                <tr key={userItem._id} className="hover:bg-background">
                   {/* Image Column */}
                   <td className="border p-3 text-center">
                     <img
@@ -128,7 +128,7 @@ function AllUsers() {
                       </span>
                     ) : editingUserId === userItem._id ? (
                       <select
-                        className="select select-bordered"
+                        className="select select-bordered text-gray-950"
                         onChange={(e) =>
                           updateUserRole(userItem._id, e.target.value)
                         }

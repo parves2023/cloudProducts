@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Vortex } from "react-loader-spinner";
+import { Link } from "react-router";
 
 function PendingPosts() {
   const [pendingProducts, setPendingProducts] = useState([]);
@@ -63,17 +64,19 @@ function PendingPosts() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 bg-cardback">
       <h1 className="text-2xl font-bold mb-6 text-text-primary">
         Pending Products
       </h1>
       {pendingProducts.length === 0 ? (
-        <p className="text-center text-gray-500">No pending products found.</p>
+        <p className="text-center text-text-primary">
+          No pending products found.
+        </p>
       ) : (
         <div className="overflow-x-auto">
           <table className="table-auto border-collapse w-full text-left">
             <thead>
-              <tr className="bg-gray-200 text-text-primary">
+              <tr className="bg-background text-text-primary">
                 <th className="border p-3">Image</th>
                 <th className="border p-3">Name</th>
                 <th className="border p-3">Category</th>
@@ -84,7 +87,7 @@ function PendingPosts() {
             </thead>
             <tbody>
               {pendingProducts.map((product) => (
-                <tr key={product._id} className="hover:bg-gray-100">
+                <tr key={product._id} className="hover:bg-background">
                   <td className="border p-3">
                     <img
                       src={product.image}
@@ -98,7 +101,7 @@ function PendingPosts() {
                   <td className="border p-3">
                     {product.description.split(" ").slice(0, 3).join(" ")}...
                   </td>
-                  <td className="border p-3 flex gap-3">
+                  <td className="border p-3 space-x-2">
                     <button
                       onClick={() =>
                         handleStatusChange(product._id, "approved")
@@ -115,14 +118,12 @@ function PendingPosts() {
                     >
                       Reject
                     </button>
-                    <button
-                      onClick={() =>
-                        (window.location.href = `/details/${product._id}`)
-                      }
-                      className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+                    <Link
+                      to={`/details/${product._id}`}
+                      className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 inline-block text-center"
                     >
                       Details
-                    </button>
+                    </Link>
                   </td>
                 </tr>
               ))}

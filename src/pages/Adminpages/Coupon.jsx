@@ -63,8 +63,8 @@ const Coupon = () => {
   };
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4 text-[#003C43]">Manage Coupons</h1>
+    <div className="py-6 bg-background">
+      <h1 className="text-2xl font-bold mb-4 text-text-primary">Manage Coupons</h1>
 
       <form onSubmit={handleAddCoupon} className="mb-6">
         <div className="grid grid-cols-2 gap-4">
@@ -74,7 +74,7 @@ const Coupon = () => {
             placeholder="Coupon Code"
             value={newCoupon.code}
             onChange={handleInputChange}
-            className="p-2 border rounded"
+            className="p-2 border rounded text-gray-900"
             required
           />
           <input
@@ -82,7 +82,7 @@ const Coupon = () => {
             name="expiryDate"
             value={newCoupon.expiryDate}
             onChange={handleInputChange}
-            className="p-2 border rounded"
+            className="p-2 border rounded text-gray-900"
             required
           />
           <input
@@ -91,7 +91,7 @@ const Coupon = () => {
             placeholder="Coupon Description"
             value={newCoupon.description}
             onChange={handleInputChange}
-            className="p-2 border rounded"
+            className="p-2 border rounded text-gray-900"
             required
           />
           <input
@@ -100,7 +100,7 @@ const Coupon = () => {
             placeholder="Discount Amount"
             value={newCoupon.discount}
             onChange={handleInputChange}
-            className="p-2 border rounded"
+            className="p-2 border rounded text-gray-900"
             required
           />
         </div>
@@ -132,7 +132,7 @@ const Coupon = () => {
           {coupons.map((coupon) => (
             <div
               key={coupon._id}
-              className="p-4 border rounded shadow flex justify-between items-center"
+              className="p-4 bg-cardback border rounded shadow flex justify-between items-center"
             >
               <div>
                 <h2 className="font-bold text-lg">{coupon.code}</h2>

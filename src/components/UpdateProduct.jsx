@@ -52,8 +52,8 @@ function UpdateProduct({ product, isOpen, onClose, onUpdate }) {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-11/12 md:w-1/2 lg:w-1/3">
-        <h2 className="text-xl font-bold mb-4">Update Product</h2>
+      <div className="bg-cardback p-6 rounded-lg shadow-lg w-11/12 md:w-1/2 lg:w-1/3">
+        <h2 className="text-xl font-bold mb-4 text-text-primary">Update Product</h2>
         <form onSubmit={handleSubmit}>
           {/* Product Name */}
           <div className="mb-4">
@@ -66,7 +66,7 @@ function UpdateProduct({ product, isOpen, onClose, onUpdate }) {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border rounded text-gray-900"
               required
             />
           </div>
@@ -82,7 +82,7 @@ function UpdateProduct({ product, isOpen, onClose, onUpdate }) {
               name="category"
               value={formData.category}
               onChange={handleChange}
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border rounded text-gray-900"
               required
             />
           </div>
@@ -98,7 +98,7 @@ function UpdateProduct({ product, isOpen, onClose, onUpdate }) {
               name="price"
               value={formData.price}
               onChange={handleChange}
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border rounded text-gray-900"
               required
             />
           </div>
@@ -114,7 +114,7 @@ function UpdateProduct({ product, isOpen, onClose, onUpdate }) {
               name="externalLink"
               value={formData.externalLink}
               onChange={handleChange}
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border rounded text-gray-900"
               placeholder="https://example.com"
             />
           </div>
@@ -130,7 +130,7 @@ function UpdateProduct({ product, isOpen, onClose, onUpdate }) {
               name="tags"
               value={formData.tags}
               onChange={handleChange}
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border rounded text-gray-900"
               placeholder="e.g., tech, gadget, innovation"
             />
           </div>
@@ -146,7 +146,7 @@ function UpdateProduct({ product, isOpen, onClose, onUpdate }) {
               name="image"
               value={formData.image}
               onChange={handleChange}
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border rounded text-gray-900"
               placeholder="https://example.com/image.jpg"
             />
           </div>
@@ -161,7 +161,7 @@ function UpdateProduct({ product, isOpen, onClose, onUpdate }) {
               name="description"
               value={formData.description}
               onChange={handleChange}
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border rounded text-gray-900"
               rows="4"
               placeholder="Enter a brief description of the product"
             ></textarea>

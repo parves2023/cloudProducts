@@ -11,7 +11,9 @@ function ReportedPosts() {
   useEffect(() => {
     const fetchReportedPosts = async () => {
       try {
-        const response = await fetch("http://localhost:5000/reported-posts");
+        const response = await fetch(
+          "https://cloudproducts.vercel.app/reported-posts"
+        );
         if (response.ok) {
           const data = await response.json();
           setReportedPosts(data); // Use server-filtered data directly
@@ -32,7 +34,7 @@ function ReportedPosts() {
   const handleDeleteReport = async (productId, reportIndex) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/products/${productId}/delete-report`,
+        `https://cloudproducts.vercel.app/products/${productId}/delete-report`,
         {
           method: "PATCH",
           headers: {
@@ -68,7 +70,7 @@ function ReportedPosts() {
   const handleDeletePost = async (productId) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/products/${productId}`,
+        `https://cloudproducts.vercel.app/products/${productId}`,
         {
           method: "DELETE",
         }
@@ -120,13 +122,13 @@ function ReportedPosts() {
   }
 
   return (
-    <div className="max-w-6xl mx-auto my-10 p-4">
+    <div className="container mx-auto my-10 p-4 bg-cardback">
       <h1 className="text-2xl font-bold mb-4 text-text-primary">
         Reported Posts
       </h1>
-      <table className="table-auto w-full border-collapse border border-gray-300">
+      <table className="table-auto w-full border-collapse border border-border">
         <thead>
-          <tr className="bg-gray-200">
+          <tr className="bg-background">
             <th className="border border-gray-300 px-4 py-2">Product Image</th>
             <th className="border border-gray-300 px-4 py-2">Name</th>
             <th className="border border-gray-300 px-4 py-2">Reports</th>
@@ -135,7 +137,7 @@ function ReportedPosts() {
         </thead>
         <tbody>
           {reportedPosts.map((product) => (
-            <tr key={product._id} className="hover:bg-gray-50">
+            <tr key={product._id} className="hover:bg-background">
               {/* Image Column */}
               <td className="border border-gray-300 px-4 py-2 text-center">
                 <img
@@ -155,7 +157,7 @@ function ReportedPosts() {
                 {product.reports.map((report, index) => (
                   <div
                     key={index}
-                    className="p-2 bg-gray-100 rounded mb-2 shadow-sm"
+                    className="p-2 bg-background rounded mb-2 shadow-sm"
                   >
                     <p>
                       <strong>Reported By:</strong> {report.reportedBy}

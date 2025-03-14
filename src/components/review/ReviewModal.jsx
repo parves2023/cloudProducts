@@ -26,7 +26,7 @@ const ReviewModal = ({ productId, user, isOpen, onClose }) => {
     try {
       // Save review to MongoDB
       const response = await axios.post(
-        `http://localhost:5000/reviews`,
+        `https://cloudproducts.vercel.app/reviews`,
         feedback
       );
       if (response.data.success) {

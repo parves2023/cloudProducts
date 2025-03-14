@@ -94,13 +94,13 @@ function AllModerators() {
     );
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4 text-[#003C43]">All Moderators</h1>
+    <div className="p-4 bg-cardback">
+      <h1 className="text-2xl font-bold mb-4 text-text-primary">All Moderators</h1>
       {moderators && moderators.length > 0 ? (
         <div className="overflow-x-auto">
           <table className="table-auto border-collapse w-full text-left">
             <thead>
-              <tr className="bg-gray-200">
+              <tr className="bg-background">
                 <th className="border p-3">Image</th>
                 <th className="border p-3">Name</th>
                 <th className="border p-3">Email</th>
@@ -110,7 +110,7 @@ function AllModerators() {
             </thead>
             <tbody>
               {moderators.map((moderator) => (
-                <tr key={moderator._id} className="hover:bg-gray-100">
+                <tr key={moderator._id} className="hover:bg-background">
                   {/* Image Column */}
                   <td className="border p-3 text-center">
                     <img
@@ -134,7 +134,7 @@ function AllModerators() {
                       </span>
                     ) : editingModeratorId === moderator._id ? (
                       <select
-                        className="select select-bordered"
+                        className="select select-bordered text-gray-950"
                         onChange={(e) =>
                           updateModeratorRole(moderator._id, e.target.value)
                         }

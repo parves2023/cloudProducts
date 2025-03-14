@@ -4,7 +4,15 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Vortex } from "react-loader-spinner";
 import { motion } from "framer-motion";
-import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from "recharts";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 import Statistics from "../Adminpages/Statistics";
 import AdminStatistics from "../Adminpages/AdminStatistics";
 
@@ -41,7 +49,7 @@ const MyProfile = () => {
       try {
         setLoading(true); // Set loading to true before the request
         const response = await axios.post(
-          "http://localhost:5000/check-membership-status",
+          "https://cloudproducts.vercel.app/check-membership-status",
           {
             email: user.email, // Pass the user's email from Firebase or your auth system
           }
@@ -72,11 +80,11 @@ const MyProfile = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
+    <div className="min-h-screen bg-background p-0">
       <div className="container mx-auto">
         {/* User Details Card */}
         <motion.div
-          className="bg-white rounded-lg shadow-md p-6 mb-6"
+          className="bg-cardback rounded-lg shadow-md p-6 mb-6"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -87,10 +95,10 @@ const MyProfile = () => {
               alt="Profile"
               className="w-24 h-24 rounded-full border-2 border-blue-500 mb-4"
             />
-            <h1 className="text-2xl font-semibold text-gray-800">
+            <h1 className="text-2xl font-semibold text-text-primary">
               {user?.displayName || "User"}
             </h1>
-            <p className="text-gray-600">{user?.email}</p>
+            <p className="text-text-light">{user?.email}</p>
           </div>
 
           {/* Update Profile Button */}
@@ -107,14 +115,16 @@ const MyProfile = () => {
         {/* Membership Status Card */}
         {user && (
           <motion.div
-            className="bg-white rounded-lg shadow-md p-6 mb-6"
+            className="bg-cardback rounded-lg shadow-md p-6 mb-6"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             {loading ? (
               <div className="flex justify-center flex-col items-center">
-                <p className="text-gray-600">Checking membership status...</p>
+                <p className="text-text-primary">
+                  Checking membership status...
+                </p>
                 <Vortex
                   visible={true}
                   height={100}
@@ -135,7 +145,7 @@ const MyProfile = () => {
               </div>
             ) : !isSubscribed ? (
               <div className="text-center">
-                <p className="text-gray-600 mb-4">
+                <p className="text-text-light mb-4">
                   Become a member to unlock premium features!
                 </p>
                 <button
@@ -147,7 +157,9 @@ const MyProfile = () => {
               </div>
             ) : (
               <div className="text-center">
-                <p className="text-gray-800 font-semibold">Membership Status:</p>
+                <p className="text-text-primary font-semibold">
+                  Membership Status:
+                </p>
                 <p className="text-green-500 font-bold text-lg">Verified</p>
               </div>
             )}
@@ -159,48 +171,49 @@ const MyProfile = () => {
           {statsData.map((stat, index) => (
             <motion.div
               key={index}
-              className="bg-white rounded-lg shadow-md p-6"
+              className="bg-cardback rounded-lg shadow-md p-6"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
             >
-              <h3 className="text-lg font-semibold text-gray-800">{stat.title}</h3>
-              <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
+              <h3 className="text-lg font-semibold text-text-primary">
+                {stat.title}
+              </h3>
+              <p className="text-2xl font-bold text-text-primary">
+                {stat.value}
+              </p>
               <p className="text-sm text-green-500">{stat.change}</p>
             </motion.div>
           ))}
         </div>
 
         <div className="flex md:flex-row flex-col w-full">
-  {/* Profile Progress Chart */}
-  <motion.div
-    className="bg-white rounded-lg shadow-md p-6 flex-1"
-    initial={{ opacity: 0, y: -20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.5, delay: 0.4 }}
-  >
-    <h2 className="text-xl font-semibold text-gray-800 mb-4">
-      Profile Progress
-    </h2>
-    <ResponsiveContainer width="100%" height={400}>
-      <BarChart data={profileProgressData}>
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Bar dataKey="value" fill="#135D66" />
-      </BarChart>
-    </ResponsiveContainer>
-  </motion.div>
+          {/* Profile Progress Chart */}
+          <motion.div
+            className="bg-cardback rounded-lg shadow-md p-6 flex-1"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            <h2 className="text-xl font-semibold text-text-primary mb-4">
+              Profile Progress
+            </h2>
+            <ResponsiveContainer width="100%" height={400}>
+              <BarChart data={profileProgressData}>
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey="value" fill="#135D66" />
+              </BarChart>
+            </ResponsiveContainer>
+          </motion.div>
 
-  {/* Statistics Component */}
-  <div className="flex-1">
-    <AdminStatistics></AdminStatistics>
-  </div>
-</div>
-
-
-        
+          {/* Statistics Component */}
+          <div className="flex-1">
+            <AdminStatistics></AdminStatistics>
+          </div>
+        </div>
       </div>
     </div>
   );

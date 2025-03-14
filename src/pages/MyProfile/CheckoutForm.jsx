@@ -17,7 +17,7 @@ const CheckoutForm = ({ amount }) => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .post("http://localhost:5000/create-payment-intent", {
+        .post("https://cloudproducts.vercel.app/create-payment-intent", {
           email: user.email,
           amount,
         })
@@ -67,10 +67,13 @@ const CheckoutForm = ({ amount }) => {
         );
 
         // Send transaction details to the server
-        await axios.post("http://localhost:5000/update-membership-status", {
-          email: user.email,
-          transactionId: paymentIntent.id,
-        });
+        await axios.post(
+          "https://cloudproducts.vercel.app/update-membership-status",
+          {
+            email: user.email,
+            transactionId: paymentIntent.id,
+          }
+        );
       }
     } catch (err) {
       console.error("Payment Error:", err);

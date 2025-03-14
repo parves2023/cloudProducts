@@ -79,13 +79,13 @@ const Login = () => {
 
   return (
     <div className="my-5">
-      <h1 className="text-3xl text-[#003C43] mt-7 ralewayfont font-bold text-center mb-6">
-        Please <span className="">Login</span>
+      <h1 className="text-3xl text-text-primary mt-7 ralewayfont font-bold text-center mb-6">
+        Please <span className="text-text-secondary">Login</span>
       </h1>
       <form onSubmit={handleLogin} className="md:w-3/4 lg:w-1/2 mx-auto">
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Email</span>
+            <span className="label-text text-text-primary">Email</span>
           </label>
           <input
             type="email"
@@ -93,24 +93,24 @@ const Login = () => {
             name="email"
             ref={emailRef}
             placeholder="Email"
-            className="input input-bordered"
+            className="input input-bordered text-gray-950"
           />
         </div>
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Password</span>
+            <span className="label-text text-text-primary">Password</span>
           </label>
           <input
             type="password"
             required
             name="password"
             placeholder="Password"
-            className="input input-bordered"
+            className="input input-bordered text-gray-950"
           />
           <label className="label">
             <a
               onClick={handleForgotPassword}
-              className="label-text-alt link link-hover cursor-pointer"
+              className="label-text-alt link link-hover cursor-pointer text-text-light"
             >
               Forgot password?
             </a>

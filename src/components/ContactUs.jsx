@@ -41,7 +41,7 @@ const ContactUs = () => {
   ];
 
   return (
-    <section className="py-12 px-4 lg:px-24 bg-gray-50">
+    <section className="py-12 px-4 lg:px-24 bg-background">
       {/* Page Heading */}
       <motion.h1
         className="text-4xl font-bold text-center mb-8 text-text-primary"
@@ -53,7 +53,7 @@ const ContactUs = () => {
       </motion.h1>
 
       {/* Image Carousel */}
-      <div className="overflow-hidden rounded-2xl shadow-lg py-8 mb-12">
+      <div className="overflow-hidden bg-cardback rounded-2xl shadow-lg py-8 mb-12">
         <motion.div
           className="flex transition-transform duration-500"
           initial={{ x: 0 }}
@@ -91,13 +91,13 @@ const ContactUs = () => {
       <div className="grid grid-cols-2 gap-8">
         {/* Contact Details */}
         <motion.div
-          className="bg-white p-8 rounded-2xl shadow-lg mb-8"
+          className="bg-cardback p-8 rounded-2xl shadow-lg mb-8"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-2xl font-semibold mb-4">Contact Information</h2>
-          <ul className="space-y-4 text-gray-700">
+          <h2 className="text-2xl text-text-primary font-semibold mb-4">Contact Information</h2>
+          <ul className="space-y-4 text-text-light">
             <li>
               <strong>Location:</strong> 123 Tech Street, Innovation City
             </li>
@@ -131,13 +131,13 @@ const ContactUs = () => {
 
       {/* Our Aim */}
       <motion.div
-        className="bg-white p-8 rounded-2xl shadow-lg"
+        className="bg-cardback p-8 rounded-2xl shadow-lg"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <h2 className="text-2xl font-semibold mb-4">Our Aim</h2>
-        <p className="text-gray-600">
+        <h2 className="text-2xl text-text-primary font-semibold mb-4">Our Aim</h2>
+        <p className="text-text-light">
           At Cloud Products, our mission is to empower tech enthusiasts to
           discover and share innovative tools. We foster a vibrant community
           where ideas thrive, and technology evolves.

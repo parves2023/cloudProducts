@@ -111,7 +111,7 @@ function MyProducts() {
   };
 
   return (
-    <div className="p-8">
+    <div className="p-8 bg-cardback">
       <h1 className="text-2xl font-bold mb-6 text-text-primary">My Products</h1>
       {products.length === 0 ? (
         <p>No products added yet.</p>
@@ -119,7 +119,7 @@ function MyProducts() {
         <div className="overflow-x-auto">
           <table className="table-auto w-full border-collapse border border-gray-300">
             <thead>
-              <tr className="bg-gray-100">
+              <tr className="bg-background">
                 <th className="border border-gray-300 p-2">Product Name</th>
                 <th className="border border-gray-300 p-2">Votes</th>
                 <th className="border border-gray-300 p-2">Status</th>
@@ -128,7 +128,7 @@ function MyProducts() {
             </thead>
             <tbody>
               {products.map((product) => (
-                <tr key={product._id} className="text-center">
+                <tr key={product._id} className="text-center hover:bg-background">
                   <td className="border border-gray-300 p-2">{product.name}</td>
                   <td className="border border-gray-300 p-2">
                     {Array.isArray(product?.likes) ? product.likes.length : 0}

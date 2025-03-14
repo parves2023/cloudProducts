@@ -11,7 +11,7 @@ const ShowReview = ({ productId, isreviewModalOpen }) => {
     const fetchReviews = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/products/${productId}/reviews`
+          `https://cloudproducts.vercel.app/products/${productId}/reviews`
         );
         if (response.data.success) {
           setReviews(response.data.reviews);

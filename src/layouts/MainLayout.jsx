@@ -12,7 +12,7 @@ const MainLayout = () => {
       <Footer></Footer>
       <ScrollToTop
         smooth
-        component={<FaChevronUp className="text-text-primary  text-3xl" />}
+        component={<FaChevronUp className="text-text-primary bg-cardback  text-3xl" />}
       />
     </div>
   );

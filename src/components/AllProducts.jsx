@@ -159,7 +159,7 @@ function AllProducts() {
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.3 }}
-          className="fixed top-28 left-5 bg-white w-72 p-6 shadow-lg rounded-lg z-20"
+          className="fixed top-28 left-5 bg-cardback w-72 p-6 shadow-lg rounded-lg z-20"
         >
           <div className="flex flex-col items-center">
             <form
@@ -174,7 +174,7 @@ function AllProducts() {
                 placeholder="Enter tags (comma-separated)"
                 value={searchTags}
                 onChange={(e) => setSearchTags(e.target.value)}
-                className="w-full p-2 border rounded-md focus:ring focus:ring-[#135D66] outline-none"
+                className="w-full text-gray-900 p-2 border rounded-md focus:ring focus:ring-[#135D66] outline-none"
               />
               <button
                 type="submit"
@@ -185,7 +185,7 @@ function AllProducts() {
             </form>
 
             {/* Price Sorting Options */}
-            <div className="w-full my-4">
+            <div className="w-full my-4 text-gray-950 ">
               <label className="font-medium text-text-primary">
                 Sort by Price:
               </label>
@@ -202,7 +202,7 @@ function AllProducts() {
           <div>
             <button
               onClick={handleReset}
-              className="btn  w-full bg-[#135D66] text-white hover:bg-[#135c66dc]"
+              className="btn  w-full bg-[#135D66] border-none text-white hover:bg-[#135c66dc]"
             >
               Reset All
             </button>
@@ -215,18 +215,18 @@ function AllProducts() {
       </h1>
 
       {/* Product Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 bg-white">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 bg-background">
         {products.map((product) => (
           <div
             key={product._id}
-            className="border flex flex-col justify-between p-4 rounded shadow hover:shadow-lg transition"
+            className="border border-border flex flex-col justify-between p-4 rounded shadow hover:shadow-lg transition"
           >
             <img
               src={product.image}
               alt={product.name}
-              className="w-full h-48 object-cover rounded mb-4"
+              className="w-full md:h-60 h-48 object-cover rounded mb-4"
             />
-            <h3 className="text-lg font-semibold text-[#003C43]">
+            <h3 className="text-lg font-semibold text-text-primary">
               {product.name}
             </h3>
             <p className="text-text-primary">{product.category}</p>
@@ -247,10 +247,10 @@ function AllProducts() {
               )}
             </div>
 
-            <p className="text-sm text-[#003C43] mb-4">
+            <p className="text-sm text-text-primary mb-4">
               {product.description.split(" ").slice(0, 5).join(" ")}...
             </p>
-            <span className="text-sm text-[#003C43]">
+            <span className="text-sm text-text-primary">
               Total Likes: {product.likes?.length || 0}
             </span>
             <div className="flex items-center justify-between">

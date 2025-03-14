@@ -90,13 +90,13 @@ function AllAdmins() {
     );
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4 text-[#003C43]">All Admins</h1>
+    <div className="p-4 bg-cardback">
+      <h1 className="text-2xl font-bold mb-4 text-text-primary">All Admins</h1>
       {admins && admins.length > 0 ? (
         <div className="overflow-x-auto">
           <table className="table-auto border-collapse w-full text-left">
             <thead>
-              <tr className="bg-gray-200">
+              <tr className="bg-background">
                 <th className="border p-3">Image</th>
                 <th className="border p-3">Name</th>
                 <th className="border p-3">Email</th>
@@ -106,7 +106,7 @@ function AllAdmins() {
             </thead>
             <tbody>
               {admins.map((admin) => (
-                <tr key={admin._id} className="hover:bg-gray-100">
+                <tr key={admin._id} className="hover:bg-background">
                   {/* Image Column */}
                   <td className="border p-3 text-center">
                     <img
@@ -130,7 +130,7 @@ function AllAdmins() {
                       </span>
                     ) : editingAdminId === admin._id ? (
                       <select
-                        className="select select-bordered"
+                        className="select select-bordered text-gray-950"
                         onChange={(e) =>
                           updateAdminRole(admin._id, e.target.value)
                         }

@@ -175,7 +175,7 @@ const DashboardLayout = () => {
       </motion.div>
 
       {/* Main Content */}
-      <div className="flex-1 mx-auto container p-5 bg-gray-100 overflow-y-auto">
+      <div className="flex-1 mx-auto container p-5 bg-background overflow-y-auto">
         <Outlet />
       </div>
     </div>

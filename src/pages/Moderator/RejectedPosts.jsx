@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Vortex } from "react-loader-spinner";
+import { Link } from "react-router";
 
 function RejectedPosts() {
   const [rejectedProducts, setRejectedProducts] = useState([]);
@@ -47,17 +48,17 @@ function RejectedPosts() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 bg-cardback">
       <h1 className="text-2xl font-bold text-text-primary mb-6">
         Rejected Products
       </h1>
       {rejectedProducts.length === 0 ? (
-        <p className="text-center text-gray-500">No rejected products found.</p>
+        <p className="text-center text-text-primary">No rejected products found.</p>
       ) : (
         <div className="overflow-x-auto">
           <table className="table-auto border-collapse w-full text-left">
             <thead>
-              <tr className="bg-gray-200">
+              <tr className="bg-background">
                 <th className="border p-3">Image</th>
                 <th className="border p-3">Name</th>
                 <th className="border p-3">Category</th>
@@ -68,7 +69,7 @@ function RejectedPosts() {
             </thead>
             <tbody>
               {rejectedProducts.map((product) => (
-                <tr key={product._id} className="hover:bg-gray-100">
+                <tr key={product._id} className="hover:bg-background">
                   <td className="border p-3">
                     <img
                       src={product.image}
@@ -83,14 +84,12 @@ function RejectedPosts() {
                     {product.description.split(" ").slice(0, 3).join(" ")}...
                   </td>
                   <td className="border p-3">
-                    <button
-                      onClick={() =>
-                        (window.location.href = `/details/${product._id}`)
-                      }
-                      className="px-4 py-2 bg-[#135D66] text-white rounded hover:bg-green-600"
-                    >
-                      Details
-                    </button>
+                  <Link
+  to={`/details/${product._id}`}
+  className="px-4 py-2 bg-[#135D66] text-white rounded hover:bg-green-600"
+>
+  Details
+</Link>
                   </td>
                 </tr>
               ))}

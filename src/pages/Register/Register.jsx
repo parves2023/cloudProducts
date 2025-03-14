@@ -59,7 +59,7 @@ const Register = () => {
             });
 
             // Send user data to the backend
-            fetch("http://localhost:5000/register", {
+            fetch("https://cloudproducts.vercel.app/register", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -109,7 +109,7 @@ const Register = () => {
   return (
     <div className="my-7">
       <h1 className="text-3xl mt-7 ralewayfont font-bold text-center mb-6">
-        Please <span className="text-[#003C43]">Register</span>
+        Please <span className="text-text-secondary">Register</span>
       </h1>
       <form onSubmit={handleRegister} className="md:w-3/4 lg:w-1/2 mx-auto">
         <ToastContainer
@@ -122,14 +122,14 @@ const Register = () => {
         {/* Name Field */}
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Name</span>
+            <span className="label-text text-text-primary">Name</span>
           </label>
           <input
             type="text"
             required
             name="name"
             placeholder="Name"
-            className="input input-bordered"
+            className="input input-bordered text-gray-950"
           />
         </div>
 
@@ -156,7 +156,7 @@ const Register = () => {
             required
             name="email"
             placeholder="Email"
-            className="input input-bordered"
+            className="input input-bordered text-gray-950"
           />
         </div>
 
@@ -170,7 +170,7 @@ const Register = () => {
             required
             name="password"
             placeholder="Password"
-            className="input input-bordered"
+            className="input input-bordered text-gray-950"
           />
           {passwordError && (
             <p className="text-red-600 text-sm mt-2">{passwordError}</p>

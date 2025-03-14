@@ -37,10 +37,10 @@ const AdminStatistics = () => {
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28"];
 
   return (
-    <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6 p-6 bg-gray-100 min-h-screen">
+    <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6 bg-background min-h-screen">
       {/* Revenue Forecast - Line Chart */}
-      <div className="bg-white shadow-md rounded-lg p-6">
-        <h2 className="text-lg font-semibold mb-4">Revenue Forecast</h2>
+      <div className="bg-cardback shadow-md rounded-lg p-6">
+        <h2 className="text-lg font-semibold mb-4 text-text-primary">Revenue Forecast</h2>
         <ResponsiveContainer width="100%" height={300}>
           <LineChart data={revenueData}>
             <XAxis dataKey="month" />
@@ -55,7 +55,7 @@ const AdminStatistics = () => {
       </div>
 
       {/* Projects Growth - Bar Chart */}
-      <div className="bg-white shadow-md rounded-lg p-6">
+      <div className="bg-cardback shadow-md rounded-lg p-6">
         <h2 className="text-lg font-semibold mb-4">Projects Growth</h2>
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={projectData}>
@@ -69,7 +69,7 @@ const AdminStatistics = () => {
       </div>
 
       {/* Sales Overview - Pie Chart */}
-      <div className="bg-white shadow-md rounded-lg p-6">
+      <div className="bg-cardback shadow-md rounded-lg p-6">
         <h2 className="text-lg font-semibold mb-4">Sales Overview</h2>
         <ResponsiveContainer width="100%" height={300}>
           <PieChart>
@@ -85,7 +85,7 @@ const AdminStatistics = () => {
       </div>
 
       {/* Performance Metrics - Radar Chart */}
-      <div className="bg-white shadow-md rounded-lg p-6">
+      <div className="bg-cardback shadow-md rounded-lg p-6">
         <h2 className="text-lg font-semibold mb-4">Performance Metrics</h2>
         <ResponsiveContainer width="100%" height={300}>
           <RadarChart cx="50%" cy="50%" outerRadius="80%" data={performanceData}>

@@ -77,14 +77,14 @@ const Navbar = () => {
                   <div
                     className={`menu-hidden ${
                       profileMenu ? "flex flex-col gap-3" : "hidden"
-                    }  absolute top-full -left-1/2 transform -translate-x-1/2 bg-white p-4 rounded shadow-lg`}
+                    }  absolute top-full -left-1/2 transform -translate-x-1/2 bg-cardback p-4 rounded shadow-lg`}
                   >
                     <h2 className="text-xs text-center">Welcome</h2>
                     <p className="text-center text-sm font-bold text-text-primary">
                       {user?.displayName}
                     </p>
 
-                    <li className="list-none text-center font-bold text-blue-400">
+                    <li className="list-none text-center font-bold text-text-primary">
                       <NavLink to="/dashboard">Dashboard</NavLink>
                     </li>
 

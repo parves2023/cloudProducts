@@ -22,7 +22,7 @@
   --text-color-light: 19, 93, 102;
   --cardback: 255, 255, 255;
   --border: 212, 212, 212;
-  --background: 230, 230, 230; /* Converted to RGB */
+  --background: 239 239 239; /* Converted to RGB */
   
   background: rgb(var(--background)); /* Fixed proper background handling */
   color: rgb(var(--text-color-primary)); /* Ensuring text color is set */

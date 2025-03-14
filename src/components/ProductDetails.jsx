@@ -27,7 +27,9 @@ const ProductDetails = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/products/${_id}`);
+        const response = await fetch(
+          `https://cloudproducts.vercel.app/products/${_id}`
+        );
         if (response.ok) {
           const data = await response.json();
           // console.log(data);
@@ -60,7 +62,7 @@ const ProductDetails = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/products/report/${id}`,
+        `https://cloudproducts.vercel.app/products/report/${id}`,
         {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
@@ -170,7 +172,7 @@ const ProductDetails = () => {
   }
 
   return (
-    <div className="max-w-3xl mx-auto my-10 p-4 border rounded-lg shadow-lg bg-white">
+    <div className="max-w-3xl mx-auto my-10 p-4 border rounded-lg shadow-lg bg-background">
       <h1 className="text-2xl font-bold mb-4 text-center text-text-primary">
         {product.name}
       </h1>

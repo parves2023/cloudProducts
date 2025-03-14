@@ -19,7 +19,7 @@ const Featured = () => {
   const fetchFeaturedProducts = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/featured-products"
+        "https://cloudproducts.vercel.app/api/featured-products"
       );
       if (response.headers["content-type"]?.includes("application/json")) {
         // console.log(response.data);
@@ -188,10 +188,7 @@ const Featured = () => {
                       )
                         ? "#135D66" // blue-500
                         : "#CBD5E1", // slate-300
-                        
                     }}
-                    
-                    
                     className={`${
                       product.creatorEmail !== user?.email ? "block" : "block "
                     } size-10 w-16 mt-2 ml-2 p-2 rounded cursor-pointer flex items-center justify-center gap-2`}
