@@ -2,6 +2,10 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext, useRef, useState, useEffect } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import GoogleLoginButton from "../../components/GoogleLoginButton";
+import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import icons from react-icons
+import Swal from "sweetalert2";
+
+
 
 const Login = () => {
   const {
@@ -18,13 +22,20 @@ const Login = () => {
   const [Error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const [easylogin, setEasyLogin] = useState(true);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showEasyLogin, setShowEasyLogin] = useState(true); // State to control visibility
+
+  // Pre-fill credentials based on user role
+  const handleEasyLogin = (email) => {
+    setEmail(email);
+    setPassword("Asdfasdf"); // Set a default password for easy login
+  };
+
   const handleLogin = (e) => {
     e.preventDefault();
     setLoading(true);
-
-    const form = new FormData(e.currentTarget);
-    const email = form.get("email");
-    const password = form.get("password");
 
     if (!email || !password) {
       setError("Email and Password are required.");
@@ -34,12 +45,10 @@ const Login = () => {
 
     signIn(email, password)
       .then((result) => {
-        // console.log("User signed in successfully:", result);
         setError("");
         setLoading(false);
       })
       .catch((error) => {
-        // console.log("Sign-in error:", error.message);
         if (error.message.includes("auth/user-not-found")) {
           setError("No user found with this email.");
         } else if (error.message.includes("auth/wrong-password")) {
@@ -60,17 +69,22 @@ const Login = () => {
 
     ForgotPassword(email)
       .then(() => {
-        // console.log("Password reset email sent successfully.");
         navigate("/forgotpass");
       })
       .catch((error) => {
-        // console.log("Error resetting password:", error.message);
         setError(error.message);
       });
   };
 
   useEffect(() => {
-    // console.log(redirectPath);
+    Swal.fire({
+      title: "Warning...",
+      text: "Please don't misuse the easy login system.",
+      icon: "warning",
+      timer: 2000, // Closes automatically after 2 seconds
+      showConfirmButton: false,
+    });
+
     if (user) {
       const destination = redirectPath || "/";
       navigate(destination, { replace: true });
@@ -78,7 +92,42 @@ const Login = () => {
   }, [user, redirectPath, navigate, setRedirectPath]);
 
   return (
-    <div className="my-5">
+    <div className="my-5 relative">
+      {/* Toggle Button for Easy Login */}
+      
+      <button
+        onClick={() => setShowEasyLogin(!showEasyLogin)}
+        className="ml-auto bg-blue-500 text-white px-4 py-2 rounded flex items-center space-x-2"
+      >
+        {showEasyLogin ? <FaEyeSlash /> : <FaEye />} {/* Toggle icon */}
+
+        <span>{showEasyLogin ? "Hide Easy Login" : "Show Easy Login"}</span>
+      </button>
+
+      {/* Easy Login Buttons */}
+      {showEasyLogin && (
+        <div className="absolute top-15 right-0 mt-2 space-y-2 flex flex-col bg-cardback rounded-xl p-4 border-border">
+          <button
+            onClick={() => handleEasyLogin("producthuntadmin420@gmail.com")}
+            className="bg-red-500 text-white px-4 py-2 rounded"
+          >
+            Admin Easy Login
+          </button>
+          <button
+            onClick={() => handleEasyLogin("hunt@user.com")}
+            className="bg-yellow-500 text-white px-4 py-2 rounded"
+          >
+            Moderator Easy Login
+          </button>
+          <button
+            onClick={() => handleEasyLogin("new@hunt.com")}
+            className="bg-green-500 text-white px-4 py-2 rounded"
+          >
+            User Easy Login
+          </button>
+        </div>
+      )}
+
       <h1 className="text-3xl text-text-primary mt-7 ralewayfont font-bold text-center mb-6">
         Please <span className="text-text-secondary">Login</span>
       </h1>
@@ -91,6 +140,8 @@ const Login = () => {
             type="email"
             required
             name="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             ref={emailRef}
             placeholder="Email"
             className="input input-bordered text-gray-950"
@@ -104,6 +155,8 @@ const Login = () => {
             type="password"
             required
             name="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
             className="input input-bordered text-gray-950"
           />
