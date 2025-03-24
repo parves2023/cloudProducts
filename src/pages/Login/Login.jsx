@@ -21,10 +21,9 @@ const Login = () => {
   const emailRef = useRef();
   const [Error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-
-  const [easylogin, setEasyLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const [showEasyLogin, setShowEasyLogin] = useState(true); // State to control visibility
 
   // Pre-fill credentials based on user role
