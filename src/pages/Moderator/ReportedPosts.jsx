@@ -11,9 +11,7 @@ function ReportedPosts() {
   useEffect(() => {
     const fetchReportedPosts = async () => {
       try {
-        const response = await fetch(
-          "https://cloudproducts.vercel.app/reported-posts"
-        );
+        const response = await fetch("http://localhost:5000/reported-posts");
         if (response.ok) {
           const data = await response.json();
           setReportedPosts(data); // Use server-filtered data directly
@@ -34,7 +32,7 @@ function ReportedPosts() {
   const handleDeleteReport = async (productId, reportIndex) => {
     try {
       const response = await fetch(
-        `https://cloudproducts.vercel.app/products/${productId}/delete-report`,
+        `http://localhost:5000/products/${productId}/delete-report`,
         {
           method: "PATCH",
           headers: {
@@ -70,7 +68,7 @@ function ReportedPosts() {
   const handleDeletePost = async (productId) => {
     try {
       const response = await fetch(
-        `https://cloudproducts.vercel.app/products/${productId}`,
+        `http://localhost:5000/products/${productId}`,
         {
           method: "DELETE",
         }

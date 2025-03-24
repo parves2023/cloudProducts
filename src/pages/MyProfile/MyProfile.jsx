@@ -49,7 +49,7 @@ const MyProfile = () => {
       try {
         setLoading(true); // Set loading to true before the request
         const response = await axios.post(
-          "https://cloudproducts.vercel.app/check-membership-status",
+          "http://localhost:5000/check-membership-status",
           {
             email: user.email, // Pass the user's email from Firebase or your auth system
           }

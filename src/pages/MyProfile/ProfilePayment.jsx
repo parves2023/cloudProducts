@@ -16,7 +16,7 @@ const ProfilePayment = () => {
   const handleApplyCoupon = async () => {
     try {
       const response = await axios.post(
-        "https://cloudproducts.vercel.app/validate-coupon",
+        "http://localhost:5000/validate-coupon",
         {
           couponCode,
           amount: 9900,
@@ -40,6 +40,28 @@ const ProfilePayment = () => {
     }
   };
 
+
+  const handleSSLCommercePayment = async () => {
+    try {
+      const response = await axios.post("http://localhost:5000/initiate-ssl-payment", {
+        amount: finalAmount / 100,
+        user: {
+          name: user?.displayName,
+          email: user?.email,
+        },
+      });
+  
+      if (response.data.url) {
+        window.location.href = response.data.url; // Redirect to SSLCOMMERZ payment page
+      }
+    } catch (error) {
+      console.error("Error initiating SSLCommerz payment:", error);
+      Swal.fire("Payment Failed", "Could not initiate SSL payment", "error");
+    }
+  };
+  
+  
+
   return (
     <div className="container mx-auto p-6">
       <h1 className="text-2xl font-bold mb-4">
@@ -54,19 +76,23 @@ const ProfilePayment = () => {
             onChange={(e) => setCouponCode(e.target.value)}
             className="input input-bordered w-full"
           />
-          <button
-            onClick={handleApplyCoupon}
-            className="btn btn-secondary mt-2 w-full"
-          >
+          <button onClick={handleApplyCoupon} className="btn btn-secondary mt-2 w-full">
             Apply Coupon
           </button>
         </div>
         <Elements stripe={stripePromise}>
           <CheckoutForm amount={finalAmount} />
         </Elements>
+        <button
+          onClick={handleSSLCommercePayment}
+          className="btn btn-primary mt-4 w-full"
+        >
+          Pay with SSLCOMMERZ
+        </button>
       </div>
     </div>
   );
+  
 };
 
 export default ProfilePayment;

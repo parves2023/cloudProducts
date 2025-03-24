@@ -19,7 +19,7 @@ const Featured = () => {
   const fetchFeaturedProducts = async () => {
     try {
       const response = await axios.get(
-        "https://cloudproducts.vercel.app/api/featured-products"
+        "http://localhost:5000/api/featured-products"
       );
       if (response.headers["content-type"]?.includes("application/json")) {
         // console.log(response.data);
